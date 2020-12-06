@@ -10,9 +10,9 @@ $rows= $stmt->fetchAll(PDO::FETCH_ASSOC);
 if(isset($_POST['submit'])){
 	
 	if(strcmp($_POST['passw'], $_POST['rpassw'])==0){ 
-		$stmt = $pdo->prepare('UPDATE student_data SET Name=:name,contact=:contact, enroll_no=:enrol,CGPA=:CGPA, dead_back=:deadBack, active_back=:activeBack,
-		grad_year=:year, resume=:resume, password=:pass  
-		WHERE email=:email');
+		$stmt = $pdo->prepare("UPDATE student_data SET Name=:name,contact=:contact, enroll_no=:enrol,CGPA=:CGPA, dead_back=:deadBack, active_back=:activeBack,
+		grad_year=:year, resume=:resume, password=:pass WHERE email='$email'");
+
 		$stmt->execute(array(
 			':name'=> $_POST['fname'],
 			':contact' => $_POST['phone'],
@@ -23,7 +23,7 @@ if(isset($_POST['submit'])){
 			':year' => $_POST['year'],
 			':resume' => ($_POST['resume']),
 			':pass' => $_POST['passw'],
-			':email' => $email
+			
 				)
 		);
 		$_SESSION['email'] = 'Record updated';
@@ -73,22 +73,22 @@ if(isset($_POST['submit'])){
 					<div id="main">
 					<?php
 
-if(count($rows)){
-	$stmt = $pdo->query("SELECT * FROM student_data where email='$email'");
-	while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
-		$name= htmlentities($row['Name']);
-		$email= htmlentities($row['email']);
-		$contact=htmlentities($row['contact']);
-		$activeBack=htmlentities($row['active_back']);
-		$deadBack=htmlentities($row['dead_back']);
-		$enrol= htmlentities($row['enroll_no']);
-		$CGPA=htmlentities($row['CGPA']);
-		$year=htmlentities($row['grad_year']);
-		$resume=htmlentities($row['resume']);
-		$password= htmlentities($row['password']);
-	}
-}		
-?>
+					if(count($rows)){
+						$stmt = $pdo->query("SELECT * FROM student_data where email='$email'");
+						while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
+							$name= htmlentities($row['Name']);
+							$email= htmlentities($row['email_stu']);
+							$contact=htmlentities($row['contact']);
+							$activeBack=htmlentities($row['active_back']);
+							$deadBack=htmlentities($row['dead_back']);
+							$enrol= htmlentities($row['enroll_no']);
+							$CGPA=htmlentities($row['CGPA']);
+							$year=htmlentities($row['grad_year']);
+							$resume=htmlentities($row['resume']);
+							$password= htmlentities($row['password']);
+						}
+					}		
+					?>
 
 						<!-- Post -->
 							<section class="post">
@@ -122,7 +122,7 @@ if(count($rows)){
 										Contact No.<input type="text" name="phone" id="phone" value="<?= $contact?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
-										CGPA<input type="text" name="cgpa" id="cgpa" value="<?= $CGPA?>" />
+										CGPA<input type="text" name="CGPA" id="cgpa" value="<?= $CGPA?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
 										Active Backs<input type="text" name="aback" id="aback" value="<?= $activeBack?>" />
@@ -133,7 +133,7 @@ if(count($rows)){
 									<div class="col-4 col-12-xsmall">
 										Year
 										
-											<input type = "text" name="Year" value="<?= $year?>"></input>
+											<input type = "text" name="year" value="<?= $year?>"></input>
 											
 									</div>
 
