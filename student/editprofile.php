@@ -27,7 +27,7 @@ if(isset($_POST['submit'])){
 				)
 		);
 		$_SESSION['email'] = 'Record updated';
-		header("Location: noticeboard.html");
+		header("Location: profile.php");
 		return;
 	}
 	else if(strcmp($_POST['passw'], $_POST['rpassw'])!=0)
