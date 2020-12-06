@@ -136,7 +136,7 @@ if(isset($_POST['email']) && isset($_POST['password']) )
 					?>
                     <label>
                         <span>Company Name</span>
-                        <input type="text" name="comp_name" required>
+                        <input type="text" pattern="^[a-zA-Z ][a-zA-Z0-9-_. ]*$" name="comp_name" required>
                     </label>
                     
                     <label>
@@ -146,12 +146,13 @@ if(isset($_POST['email']) && isset($_POST['password']) )
                     
                     <label>
                         <span>Representative Name</span>
-                        <input type="text" name="hr_name" required>
+                        <input type="text" pattern="^[a-zA-Z ][a-zA-Z0-9-_. ]*$" name="hr_name" required>
                     </label>
                     
                     <label>
                         <span>Password</span>
-                        <input type="password" name="comp_pass" required>
+                        <input type="password" name="comp_pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+ 						 title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
                     </label>
                     
                     <input type="submit" class="submit" name="signup_comp" value="Sign Up">

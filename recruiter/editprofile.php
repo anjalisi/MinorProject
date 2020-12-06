@@ -122,7 +122,7 @@ if(isset($_POST['submit'])){
 							<form method="post" action="#">
 								<div class="row gtr-uniform">
 									<div class="col-6 col-12-xsmall">
-										Company Name<input type="text" name="cname" id="cname" value="<?= $name?>" disabled/>
+										Company Name<input type="text" name="cname" id="cname" value="<?= $name?>"  disabled/>
 									</div>
 									<div class="col-6 col-12-xsmall">
 										Recruitment Manager<input type="text" name="rname" id="rname" value="<?= $hr?>" disabled/>
@@ -134,7 +134,7 @@ if(isset($_POST['submit'])){
 										Recruiter Email<input type="text" name="email" id="email" value="<?= $email?>" disabled/>
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Contact No.<input type="text" name="phone" id="phone" value="<?= $phone?>" />
+										Contact No.<input type="tel" maxlength="10" pattern="^[0-9]{10}$" name="phone" id="phone" value="<?= $phone?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
 										Job Profile(s)<input type="text" name="jobpr" id="jobpr" value="<?= $job_profiles?>" />
@@ -167,16 +167,18 @@ if(isset($_POST['submit'])){
 										POC Name<input type="text" name="poc" value="<?= $poc ?>" />
 									</div>
 									<div class="col-6">
-										POC Contact <input type="text" name="poc_contact" id="pass" value="<?= $poc_contact ?>" />
+										POC Contact <input type="tel" name="poc_contact" id="pass" value="<?= $poc_contact ?>" maxlength="10" pattern="^[0-9]{10}$" />
 									</div>
 									<div class="col-12">
 										Job Description File(Drive Link)<input type="text" name="jd" value="<?= $jd ?>" />
 									</div>
 									<div class="col-12">
-										Password<input type="password" name="passw" id="passw" value="<?= $password ?>" />
+										Password<input type="password" name="passw" id="passw" value="<?= $password ?>" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+ 						 title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" />
 									</div>
 									<div class="col-12">
-										Confirm Password<input type="password" name="rpassw" id="rpassw" value="<?= $password ?>" />
+										Confirm Password<input type="password" name="rpassw" id="rpassw" value="<?= $password ?>" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+ 						 title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"  />
 									</div>
 									<div class="col-12">
 										<input type="checkbox" id="checkx" name="checkx" required>
