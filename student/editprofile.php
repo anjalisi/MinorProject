@@ -1,3 +1,43 @@
+<?php
+session_start();
+require_once "connect.php";
+
+$email=$_SESSION['email'];
+$stmt= $pdo->query("SELECT * FROM student_data where email='$email'");
+$rows= $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+if(isset($_POST['submit']) && isset($_POST['email'])){
+	
+	if(strcmp($_POST['pass'], $_POST['repass'])==0){
+		$stmt = $pdo->prepare('UPDATE company_data SET itemname=:itemname, price=:price,qty=:qty, tax_rate=:tax_rate, tax_amt=:tax_amt,disc_rate=:disc_rate,disc_amt=:disc_amt, amount=:amount 
+		WHERE order_id=:order_id AND invoice_id=:inv');
+		$stmt->execute(array(
+			':itemname' => $_POST['itemname'],
+			':price' => $_POST['price'],
+			':qty' => $_POST['qty'],
+			':tax_rate' => 0,
+			':tax_amt' => 0,
+			':disc_rate' => $_POST['disc'],
+			':disc_amt' => ($_POST['price']*$_POST['qty']*$_POST['disc']/100),
+			':amount' => (($_POST['price']*$_POST['qty'])*(1-($_POST['disc']/100))* $_POST['tax']/100)+$_POST['price']*$_POST['qty'],
+			':inv' => $_GET['invoice_id'],
+			':order_id' => $_POST['order_id']
+				)
+		);
+		$_SESSION['success'] = 'Record updated';
+		header("Location: freelancer-invoice.php?id=".$id."&key=".$vkey);
+		return;
+	}
+	else if(strcmp($_POST['pass'], $_POST['repass'])!=0)
+	{
+		$_SESSION['error'] = "Passwords Did Not Match";
+        header("Location: freelancer_reg.php");
+        return;
+	}
+}
+
+?>
+
 <!DOCTYPE HTML>
 
 <html>
