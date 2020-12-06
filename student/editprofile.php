@@ -11,13 +11,13 @@ if(isset($_POST['submit'])){
 	
 	if(strcmp($_POST['passw'], $_POST['rpassw'])==0){ 
 		$stmt = $pdo->prepare('UPDATE student_data SET Name=:name,contact=:contact, enroll_no=:enrol,CGPA=:CGPA, dead_back=:deadBack, active_back=:activeBack,
-		grad_year=:year, resume=:resume, password=:pass,  
+		grad_year=:year, resume=:resume, password=:pass  
 		WHERE email=:email');
 		$stmt->execute(array(
 			':name'=> $_POST['fname'],
 			':contact' => $_POST['phone'],
 			':enrol' => $_POST['enrol'],
-			':CGPA' => $_POST['CGPA'],
+			':CGPA' => $_POST['cgpa'],
 			':deadBack' =>  $_POST['dback'],
 			':activeBack' =>  $_POST['aback'],
 			':year' => $_POST['year'],
