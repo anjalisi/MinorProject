@@ -122,16 +122,16 @@ if(isset($_POST['submit'])){
 							<form method="post" action="#">
 								<div class="row gtr-uniform">
 									<div class="col-6 col-12-xsmall">
-										Company Name<input type="text" name="cname" id="cname" value="<?= $name?>"  disabled/>
+										Company Name<input type="text" name="cname" id="cname" value="<?= $name?>"  readonly/>
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Recruitment Manager<input type="text" name="rname" id="rname" value="<?= $hr?>" disabled/>
+										Recruitment Manager<input type="text" name="rname" id="rname" value="<?= $hr?>" readonly/>
 									</div>
 									<div class="col-6 col-12-xsmall">
 										Domain<input type="text" name="domain" id="" value="<?= $domain?>"/>
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Recruiter Email<input type="text" name="email" id="email" value="<?= $email?>" disabled/>
+										Recruiter Email<input type="text" name="email" id="email" value="<?= $email?>" readonly/>
 									</div>
 									<div class="col-6 col-12-xsmall">
 										Contact No.<input type="tel" maxlength="10" pattern="^[0-9]{10}$" name="phone" id="phone" value="<?= $phone?>" />

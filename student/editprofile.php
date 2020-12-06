@@ -23,8 +23,7 @@ if(isset($_POST['submit'])){
 			':year' => $_POST['year'],
 			':resume' => ($_POST['resume']),
 			':pass' => $_POST['passw'],
-			
-				)
+			)
 		);
 		header("Location: profile.php");
 		return;
@@ -106,22 +105,22 @@ if(isset($_POST['submit'])){
 							<form method="post" action="#">
 								<div class="row gtr-uniform">
 									<div class="col-6 col-12-xsmall">
-										Name<input type="text" name="fname" id="fname" value="<?= $name?>" />
+										Name<input type="text" name="fname" value="<?= $name?>" readonly/>
 									</div>
 									<!-- <div class="col-6 col-12-xsmall">
 										Last Name<input type="text" name="lname" id="lname" value="Rawat" />
 									</div> -->
 									<div class="col-6 col-12-xsmall">
-										Enrollment No.<input type="text" name="enrol" id="roll" value="<?= $enrol?>" />
+										Enrollment No.<input type="text" name="enrol" id="roll" value="<?= $enrol?>" readonly/>
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Email<input type="text" name="email" id="email" value="<?= $email?>" />
+										Email<input type="text" name="email" id="email" value="<?= $email?>" readonly />
 									</div>
 									<div class="col-6 col-12-xsmall">
 										Contact No.<input type="text" name="phone" id="phone" value="<?= $contact?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
-										CGPA<input type="text" name="CGPA" id="cgpa" value="<?= $CGPA?>" />
+										CGPA<input type="text" name="cgpa" id="cgpa" value="<?= $CGPA?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
 										Active Backs<input type="text" name="aback" id="aback" value="<?= $activeBack?>" />
@@ -129,7 +128,7 @@ if(isset($_POST['submit'])){
 									<div class="col-6 col-12-xsmall">
 										Dead Backs<input type="text" name="dback" id="dback" value="<?= $deadBack?>" />
 									</div>
-									<div class="col-4 col-12-xsmall">
+									<div class="col-6 col-12-xsmall">
 										Year
 										
 											<input type = "text" name="year" value="<?= $year?>"></input>
@@ -146,7 +145,7 @@ if(isset($_POST['submit'])){
 										Confirm Password<input type="password" name="rpassw" id="rpassw" value="<?= $password ?>" />
 									</div>
 									<div class="col-12">
-										<input type="checkbox" id="checkx" name="checkx">
+										<input type="checkbox" id="checkx" name="checkx" required>
 										<label for="checkx">I declare that the above information is true.</label>
 									</div>
 									<div class="col-12">
