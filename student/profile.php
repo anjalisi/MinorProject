@@ -78,8 +78,8 @@
 
 							<div class="col-12">
 								<ul class="actions">
-									<li><a href="editprofile.html" class="button primary">Edit</a></li>
-									<li><a href="editprofile.html" class="button">Reset Password</a></li>
+									<li><a href="editprofile.php" class="button primary">Edit</a></li>
+									<li><a href="editprofile.php" class="button">Reset Password</a></li>
 								</ul>
 							</div>
 								
