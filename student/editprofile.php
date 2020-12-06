@@ -26,7 +26,6 @@ if(isset($_POST['submit'])){
 			
 				)
 		);
-		$_SESSION['email'] = 'Record updated';
 		header("Location: profile.php");
 		return;
 	}
@@ -77,7 +76,7 @@ if(isset($_POST['submit'])){
 						$stmt = $pdo->query("SELECT * FROM student_data where email='$email'");
 						while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 							$name= htmlentities($row['Name']);
-							$email= htmlentities($row['email_stu']);
+							$email= htmlentities($row['email']);
 							$contact=htmlentities($row['contact']);
 							$activeBack=htmlentities($row['active_back']);
 							$deadBack=htmlentities($row['dead_back']);
