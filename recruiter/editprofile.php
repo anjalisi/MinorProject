@@ -6,32 +6,42 @@ $email=$_SESSION['username'];
 $stmt= $pdo->query("SELECT * FROM company_data where company_email='$email'");
 $rows= $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-if(isset($_POST['submit']) && isset($_POST['email'])){
+
+if(isset($_POST['submit'])){
 	
-	if(strcmp($_POST['pass'], $_POST['repass'])==0){
-		$stmt = $pdo->prepare('UPDATE company_data SET itemname=:itemname, price=:price,qty=:qty, tax_rate=:tax_rate, tax_amt=:tax_amt,disc_rate=:disc_rate,disc_amt=:disc_amt, amount=:amount 
-		WHERE order_id=:order_id AND invoice_id=:inv');
+	if(strcmp($_POST['passw'], $_POST['rpassw'])==0){
+		$stmt = $pdo->prepare('UPDATE company_data SET domain=:d,company_contact=:contact, base=:base,ctc=:ctc, location=:loc, job_profiles=:pro,test_date=:tdate,
+		interview_date=:idate, deadline_date=:ddate, min_shortlist= :min, password=:pass, poc_name=:poc, poc_contact= :pcont, hr_name=:hr,
+		jd_link=:jd, result_date= :rdate 
+		WHERE company_email=:email');
 		$stmt->execute(array(
-			':itemname' => $_POST['itemname'],
-			':price' => $_POST['price'],
-			':qty' => $_POST['qty'],
-			':tax_rate' => 0,
-			':tax_amt' => 0,
-			':disc_rate' => $_POST['disc'],
-			':disc_amt' => ($_POST['price']*$_POST['qty']*$_POST['disc']/100),
-			':amount' => (($_POST['price']*$_POST['qty'])*(1-($_POST['disc']/100))* $_POST['tax']/100)+$_POST['price']*$_POST['qty'],
-			':inv' => $_GET['invoice_id'],
-			':order_id' => $_POST['order_id']
+			':d'=> $_POST['domain'],
+			':contact' => $_POST['phone'],
+			':base' => $_POST['base'],
+			':ctc' => $_POST['ctc'],
+			':loc' =>  $_POST['locn'],
+			':pro' =>  $_POST['jobpr'],
+			':tdate' => $_POST['tdate'],
+			':idate' => ($_POST['idate']),
+			':ddate' => $_POST['ddate'],
+			':min' => $_POST['minshrt'],
+			':pass' => $_POST['passw'],
+			':poc' => $_POST['poc'],
+			':pcont'  => $_POST['poc_contact'],
+			':hr' => $_POST['rname'],
+			':jd' => $_POST['jd'],
+			':rdate' => $_POST['rdate'],
+			':email' => $email
 				)
 		);
 		$_SESSION['success'] = 'Record updated';
-		header("Location: freelancer-invoice.php?id=".$id."&key=".$vkey);
+		header("Location: profile.php");
 		return;
 	}
-	else if(strcmp($_POST['pass'], $_POST['repass'])!=0)
+	else if(strcmp($_POST['passw'], $_POST['rpassw'])!=0)
 	{
 		$_SESSION['error'] = "Passwords Did Not Match";
-        header("Location: freelancer_reg.php");
+        header("Location: editprofile.php");
         return;
 	}
 }
@@ -79,10 +89,12 @@ if(isset($_POST['submit']) && isset($_POST['email'])){
 							$job_profiles=htmlentities($row['job_profiles']);
 							$location= htmlentities($row['location']);
 							$ctc=htmlentities($row['ctc']);
+							$jd=htmlentities($row['jd_link']);
 							$base=htmlentities($row['base']);
-							$test_date=date("d-M-Y", strtotime($row['test_date']));
-							$interview_date=date("d-M-Y", strtotime($row['interview_date']));
-							$deadline_date=date("d-M-Y", strtotime($row['deadline_date']));
+							$test_date=htmlentities($row['test_date']);
+							$interview_date=htmlentities($row['interview_date']);
+							$rdate=htmlentities($row['result_date']);
+							$deadline_date=htmlentities($row['deadline_date']);
 							$min= htmlentities($row['min_shortlist']);
 							$hr=htmlentities($row['hr_name']);
 							$poc=htmlentities($row['poc_name']);
@@ -100,17 +112,23 @@ if(isset($_POST['submit']) && isset($_POST['email'])){
 									<h1>Company Profile</h1>
 								</header>							
 							</section>
-
+							<?php
+								if(isset($_SESSION['error']))
+								{
+									echo ("<center><span style='color:blue;'>".htmlentities($_SESSION['error'])."</span></center>\n");
+									unset($_SESSION['error']);
+								}
+							?>
 							<form method="post" action="#">
 								<div class="row gtr-uniform">
 									<div class="col-6 col-12-xsmall">
-										Company Name<input type="text" name="cname" id="cname" value="<?=$name?>" disabled/>
+										Company Name<input type="text" name="cname" id="cname" value="<?= $name?>" disabled/>
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Recruitment Manager<input type="text" name="rname" id="rname" value="<?= $hr?>" />
+										Recruitment Manager<input type="text" name="rname" id="rname" value="<?= $hr?>" disabled/>
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Domain<input type="text" name="" id="" value="<?= $domain?>"/>
+										Domain<input type="text" name="domain" id="" value="<?= $domain?>"/>
 									</div>
 									<div class="col-6 col-12-xsmall">
 										Recruiter Email<input type="text" name="email" id="email" value="<?= $email?>" disabled/>
@@ -131,22 +149,28 @@ if(isset($_POST['submit']) && isset($_POST['email'])){
 										Base Salary<input type="text" name="base" id="base" value="<?= $base?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Test Date<input type="date" name="tdate" id="tdate" value="<?= $test_date ?>" />
-									</div>
-									<div class="col-6 col-12-xsmall">
-										Interview Date<input type="date" name="idate" id="idate" value="<?= $interview_date ?>" />
-									</div>
-									<div class="col-6 col-12-xsmall">
-										Registration Deadline<input type="date" name="ddate" id="ddate" value="<?= $deadline_date ?>" />
-									</div>
-									<div class="col-6 col-12-xsmall">
 										Minimum Shortlists<input type="text" name="minshrt" id="minshrt" value="<?= $min ?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Point of Contact<input type="text" name="poc" value="<?= $poc ?>" disabled />
+										Test Date(Tentative) *<input type="date" name="tdate" id="tdate" value="<?= $test_date ?>" required />
+									</div>
+									<div class="col-6 col-12-xsmall">
+										Interview Date(Tentative) *<input type="date" name="idate" id="idate" value="<?= $interview_date ?>" required/>
+									</div>
+									<div class="col-6 col-12-xsmall">
+										Registration Deadline(Tentative) *<input type="date" name="ddate" id="ddate" value="<?= $deadline_date ?>" required/>
+									</div>
+									<div class="col-6 col-12-xsmall">
+										Result Deadline(Tentative) *<input type="date" name="rdate" id="ddate" value="<?= $rdate ?>" required/>
+									</div>
+									<div class="col-6 col-12-xsmall">
+										POC Name<input type="text" name="poc" value="<?= $poc ?>" />
+									</div>
+									<div class="col-6">
+										POC Contact <input type="text" name="poc_contact" id="pass" value="<?= $poc_contact ?>" />
 									</div>
 									<div class="col-12">
-										POC Contact <input type="password" name="poc_contact" id="pass" value="<?= $poc_contact ?>" />
+										Job Description File(Drive Link)<input type="text" name="jd" value="<?= $jd ?>" />
 									</div>
 									<div class="col-12">
 										Password<input type="password" name="passw" id="passw" value="<?= $password ?>" />

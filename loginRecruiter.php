@@ -17,8 +17,8 @@ if(isset($_POST['comp_name']) && isset($_POST['comp_email']) && isset($_POST['si
         return; 
 	}  
 	else{
-        $sql="INSERT INTO company_data(id,company_name, company_email, password, hr_name)
-	 values(1,:name,:email,:pass, :hr)";
+        $sql="INSERT INTO company_data(company_name, company_email, password, hr_name)
+	 values(:name,:email,:pass, :hr)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(array(
             ':name' => $_POST['comp_name'],
@@ -26,7 +26,7 @@ if(isset($_POST['comp_name']) && isset($_POST['comp_email']) && isset($_POST['si
             ':pass' => $_POST['comp_pass'],
             ':hr' => $_POST['hr_name'],
         ));
-        $_SESSION['success'] = 'Record Added';
+        $_SESSION["username"] = $_POST["email"];  
 
         header("Location:recruiter/applications.html");
         return;
