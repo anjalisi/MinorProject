@@ -1,3 +1,10 @@
+<?php
+session_start();
+require_once "../connect.php";
+
+$email = $_SESSION['admin'];
+
+?>
 <!DOCTYPE HTML>
 
 <html>
@@ -93,10 +100,18 @@
 							echo (htmlentities($row['test_date']));
 							echo ("</td>
 							<td>");
-							echo (htmlentities($row['test_date']));
+							echo (htmlentities($row['interview_date']));
 							echo ("</td>
 							<td>");
-							echo ("resume link");
+							echo (htmlentities($row['deadline_date']));
+							echo ("</td>
+							<td>");
+							echo (htmlentities($row['min_shortlist']));
+							echo ("</td>
+							<td>");
+							echo ('final_shortlists');
+							echo ("</td>
+							<td>");
 							echo ("</td>
 							<td><input type='button' name='notice' value='Post' class='small'></td>
 							<td><input type='button' name='editrec' value='Edit' class='small'></td>
