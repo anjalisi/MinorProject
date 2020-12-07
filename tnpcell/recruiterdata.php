@@ -34,6 +34,7 @@ $email = $_SESSION['admin'];
 				<li><a href="studentdata.php">Student Database</a></li>
 				<li class="active"><a href="recruiterdata.php">Recruiter Database</a></li>
 				<li><a href="registrations.html">Registration Database</a></li>
+				<li><a href="placed.html">Placed Students</a></li>
 			</ul>
 		</nav>
 
