@@ -155,8 +155,13 @@ $rows= $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 									if($year==3){
 										$stmt = $pdo->query("SELECT * FROM company_data where approve=1 and role='Summer Intern'");
+										
 										while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
-											$id= htmlentities($row['id']);
+
+											$id= htmlentities($row['company_email']);
+											$stmt0= $pdo->query("SELECT * FROM student_registrations where rec_id=$id and stu_id=$email");
+											$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+											
 											echo "<article><header>
 													<h2><a href='#'>";
 											echo(htmlentities($row['company_name']));
@@ -239,14 +244,24 @@ $rows= $stmt->fetchAll(PDO::FETCH_ASSOC);
 											</tbody>
 											</table>
 										<ul class='actions special'>
-											<li><form method='post'><input type='text'/><input type='submit' class='button' name='submit' value='Register'/></form></li>
-										</ul></article>						");
+											<li>
+											<form method='post'>
+												<input type='hidden' value='$email' name='stu_id'/>
+												<input type='hidden' value='$id' name='rec_id'/>
+												<input type='submit' class='button' name='submit' value='Registered' readonly/>
+											</form></li>
+										</ul></article>	");
+		
 										}
 									}
 								else{
 									$stmt = $pdo->query("SELECT * FROM company_data where approve=1 and role<>'Summer Intern'");
 									while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
+
 										$id= htmlentities($row['company_email']);
+										$stmt0= $pdo->query("SELECT * FROM student_registrations where rec_id=$id and stu_id=$email");
+										$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+										
 										echo "<article><header>
 												<h2><a href='#'>";
 										echo(htmlentities($row['company_name']));
@@ -333,9 +348,9 @@ $rows= $stmt->fetchAll(PDO::FETCH_ASSOC);
 										<form method='post'>
 											<input type='hidden' value='$email' name='stu_id'/>
 											<input type='hidden' value='$id' name='rec_id'/>
-											<input type='submit' class='button' name='submit' value='Register'/>
+											<input type='submit' class='button' name='submit' value='Registered' readonly/>
 										</form></li>
-									</ul></article>						");
+									</ul></article>	");
 									}
 								}
 							

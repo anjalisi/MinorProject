@@ -21,10 +21,10 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
-							<li><a href="studentdata.html">Student Database</a></li>
-							<li><a href="recruiterdata.html">Recruiter Database</a></li>
-							<li><a href="registrations.html">Registration Database</a></li>
-							<li class="active"><a href="placed.html">Placed Students</a></li>
+							<li><a href="studentdata.php">Student Database</a></li>
+							<li><a href="recruiterdata.php">Recruiter Database</a></li>
+							<li><a href="registrations.php">Registration Database</a></li>
+							<li class="active"><a href="placed.php">Placed Students</a></li>
 						</ul>
 					</nav>
 
