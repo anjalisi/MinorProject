@@ -117,7 +117,7 @@ if(isset($_POST['submit'])){
 										Email<input type="text" name="email" id="email" value="<?= $email?>" readonly />
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Contact No.<input type="text" name="phone" id="phone" value="<?= $contact?>" />
+										Contact No.<input type="tel" maxlength="10" pattern="^[0-9]{10}$" name="phone" id="phone" value="<?= $contact?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
 										CGPA<input type="text" name="cgpa" id="cgpa" value="<?= $CGPA?>" />
