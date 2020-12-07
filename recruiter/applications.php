@@ -1,3 +1,14 @@
+<?php
+session_start();
+require_once "connect.php";
+
+$email=$_SESSION['username'];
+
+$stmt= $pdo->query("SELECT * FROM company_data where company_email='$email'");
+$rows= $stmt->fetchAll(PDO::FETCH_ASSOC);
+					
+?>
+
 <!DOCTYPE HTML>
 
 <html>
@@ -25,6 +36,16 @@
 				<!-- Intro -->
 					<div id="intro">
 						<h1>Recruiter Dashboard</h1>
+						<?php
+							if(count($rows)){
+								$stmt = $pdo->query("SELECT * FROM company_data where company_email='$email'");
+								while ( $row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+									$name= htmlentities($row['company_name']);
+									$id= htmlentities($row['id']);
+									$poc=  htmlentities($row['poc_name']);
+								}
+							}
+						?>
 						<p>
 							<b>View applicant profiles and participate in the University Campus Recruitment Drive.</b>
 							<br />
@@ -33,9 +54,9 @@
 							<br />
 							For more information, visit the <a href="http://igdtuw.ac.in/" target="_blank">University Website</a>.
 							<br />
-							Recruiter ID: <b>MIC45325</b> Microsoft India Private Ltd.
+							Recruiter ID: <b><?= $id?></b> <?= $name?>.
 							<br />
-							Person of Contact: <b><a href="#">Shreya Srivatsan</a></b>
+							Person of Contact: <b><a href="#"><?= $poc?></a></b>
 						</p>
 						<ul class="actions">
 							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
@@ -50,8 +71,9 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
-							<li class="active"><a href="applications.html">Applications</a></li>
+							<li class="active"><a href="applications.php">Applications</a></li>
 							<li><a href="profile.php">Profile</a></li>
+							<li><a href="finalshortlists.php">Shortlists</a></li>							
 						</ul>
 					</nav>
 

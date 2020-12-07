@@ -3,7 +3,8 @@ session_start();
 require_once "connect.php";
 if(isset($_POST['comp_name']) && isset($_POST['comp_email']) && isset($_POST['signup_comp']))
 {
-	unset($_SESSION['username']);
+    unset($_SESSION['username']);
+    
     $sql_u= "select * from company_data where company_email=:email";
 	$stmt1=$pdo->prepare($sql_u);
 	$stmt1->execute(array(
@@ -17,18 +18,24 @@ if(isset($_POST['comp_name']) && isset($_POST['comp_email']) && isset($_POST['si
         return; 
 	}  
 	else{
-        $sql="INSERT INTO company_data(company_name, company_email, password, hr_name)
-	 values(:name,:email,:pass, :hr)";
+        $sql="INSERT INTO company_data(company_name, company_email, password, hr_name, id)
+     values(:name,:email,:pass, :hr,:id)";
+     
+        $str= rand();
+        $vkey= md5($str);
+        $id= rand(1000,999999);
+        
         $stmt = $pdo->prepare($sql);
         $stmt->execute(array(
             ':name' => $_POST['comp_name'],
             ':email' => $_POST['comp_email'],
             ':pass' => $_POST['comp_pass'],
             ':hr' => $_POST['hr_name'],
+            ':id' => $id
         ));
         $_SESSION["username"] = $_POST["email"];  
 
-        header("Location:recruiter/applications.html");
+        header("Location:recruiter/applications.php");
         return;
     }
 }
@@ -47,7 +54,7 @@ if(isset($_POST['email']) && isset($_POST['password']) )
 	if($count > 0) 
 	{  
 		 $_SESSION["username"] = $_POST["email"];  
-		 header("Location:recruiter/applications.html");  
+		 header("Location:recruiter/applications.php");  
 		 return;
 	}  
 	else  
@@ -146,7 +153,7 @@ if(isset($_POST['email']) && isset($_POST['password']) )
                     
                     <label>
                         <span>Representative Name</span>
-                        <input type="text" pattern="^[a-zA-Z ][a-zA-Z0-9-_. ]*$" name="hr_name" required>
+                        <input type="text" name="hr_name" required>
                     </label>
                     
                     <label>
