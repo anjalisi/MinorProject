@@ -115,7 +115,7 @@ $email = $_SESSION['admin'];
 							<td>");
 							echo ("</td>
 							<td><input type='button' name='notice' value='Post' class='small'></td>
-							<td><input type='button' name='editrec' value='Edit' class='small'></td>
+							<td><input type='button' name='editrec' value='Edit' class='modals small'></td>
 						</tr>\n");
 						}
 						?>
