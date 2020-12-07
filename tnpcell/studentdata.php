@@ -56,7 +56,7 @@ $email = $_SESSION['admin'];
 		<nav id="nav">
 			<ul class="links">
 				<li class="active"><a href="studentdata.php">Student Database</a></li>
-				<li><a href="recruiterdata.html">Recruiter Database</a></li>
+				<li><a href="recruiterdata.php">Recruiter Database</a></li>
 				<li><a href="registrations.html">Registrations Database</a></li>
 			</ul>
 		</nav>
