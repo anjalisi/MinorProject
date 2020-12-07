@@ -3010,6 +3010,11 @@ input, select, textarea {
 		border-top-color: #eeeeee;
 	}
 
+/* Table Heading */
+	.company-name {
+		padding: 6rem 2rem 2rem 6rem !important;
+	}
+
 /* Table */
 
 	.table-wrapper {
