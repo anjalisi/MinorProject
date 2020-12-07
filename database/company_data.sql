@@ -2,8 +2,8 @@
 -- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Dec 06, 2020 at 05:46 AM
+-- Host: localhost:3307
+-- Generation Time: Dec 07, 2020 at 10:33 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -29,10 +29,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `company_data` (
-  `id` int(11) NOT NULL,
+  `domain` varchar(80) DEFAULT NULL,
   `company_name` varchar(100) NOT NULL,
   `company_email` varchar(200) NOT NULL,
-  `company_contact` int(12) DEFAULT NULL,
+  `company_contact` varchar(12) DEFAULT NULL,
   `base` varchar(20) DEFAULT NULL,
   `ctc` varchar(20) DEFAULT NULL,
   `location` varchar(300) DEFAULT NULL,
@@ -43,18 +43,26 @@ CREATE TABLE `company_data` (
   `min_shortlist` varchar(10) DEFAULT NULL,
   `password` varchar(150) DEFAULT NULL,
   `poc_name` varchar(100) DEFAULT NULL,
-  `poc_contact` int(12) DEFAULT NULL,
+  `poc_contact` varchar(12) DEFAULT NULL,
   `hr_name` varchar(150) DEFAULT NULL,
   `jd_link` varchar(450) DEFAULT NULL,
-  `result_date` date DEFAULT NULL
+  `result_date` date DEFAULT NULL,
+  `id` int(10) NOT NULL,
+  `approve` int(2) NOT NULL,
+  `role` varchar(80) DEFAULT NULL,
+  `cgpa` varchar(5) DEFAULT NULL,
+  `deadback` int(11) NOT NULL,
+  `activeback` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `company_data`
 --
 
-INSERT INTO `company_data` (`id`, `company_name`, `company_email`, `company_contact`, `base`, `ctc`, `location`, `job_profiles`, `test_date`, `interview_date`, `deadline_date`, `min_shortlist`, `password`, `poc_name`, `poc_contact`, `hr_name`, `jd_link`, `result_date`) VALUES
-(1, 'a', 'an@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'an', NULL, NULL, 'an', NULL, NULL);
+INSERT INTO `company_data` (`domain`, `company_name`, `company_email`, `company_contact`, `base`, `ctc`, `location`, `job_profiles`, `test_date`, `interview_date`, `deadline_date`, `min_shortlist`, `password`, `poc_name`, `poc_contact`, `hr_name`, `jd_link`, `result_date`, `id`, `approve`, `role`, `cgpa`, `deadback`, `activeback`) VALUES
+('technology', 'a', 'an@gmail.com', '', '', '', '', '', '2020-12-24', '2020-12-16', '2020-12-15', '', 'Anjali@2020', '', '', 'Taniya', '', '2020-12-04', 0, 0, NULL, NULL, 0, 0),
+('', 'Cisco', 'cisco@gmail.com', '', '', '', '', '', '2020-12-01', '2020-12-02', '2020-12-15', '', 'Cisco@2020', 'Anjali Singh', '', 'HR', '', '2020-12-23', 335885, 0, NULL, NULL, 0, 0),
+('Technical', 'Intuit', 'hrname@intuit.com', '9934564738', '12,000,000', '35,000,000', 'Bangalore, Delhi', 'Intern, SDE', '2020-12-15', '2020-12-21', '2020-12-09', '1', 'Anjali@2020', 'Anjali', '3242342434', 'Taniya', 'drive.com', '2020-11-30', 0, 0, NULL, NULL, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -64,7 +72,7 @@ INSERT INTO `company_data` (`id`, `company_name`, `company_email`, `company_cont
 -- Indexes for table `company_data`
 --
 ALTER TABLE `company_data`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`company_email`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
