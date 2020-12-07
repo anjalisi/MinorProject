@@ -58,6 +58,10 @@ $rows= $stmt->fetchAll(PDO::FETCH_ASSOC);
 							$min= htmlentities($row['min_shortlist']);
 							$hr=htmlentities($row['hr_name']);
 							$poc=htmlentities($row['poc_name']);
+							$role= htmlentities($row['role']);
+							$aback=htmlentities($row['activeback']);
+							$dback=htmlentities($row['deadback']);
+							$cgpa=htmlentities($row['cgpa']);
 							$poc_contact=htmlentities($row['poc_contact']);
 						}
 					}		
@@ -97,6 +101,22 @@ $rows= $stmt->fetchAll(PDO::FETCH_ASSOC);
 										<tr>
 											<td>Job Profile(s)</td>
 											<td><?= $job_profiles?></td>
+										</tr>
+										<tr>
+											<td>Min. CGPA</td>
+											<td><?= $cgpa?></td>
+										</tr>
+										<tr>
+											<td>Active Backs Allowed</td>
+											<td><?= $aback?></td>
+										</tr>
+										<tr>
+											<td>Dead Backs Allowed</td>
+											<td><?= $dback?></td>
+										</tr>
+										<tr>
+											<td>Role</td>
+											<td><?= $role?></td>
 										</tr>
 										<tr>
 											<td>Location</td>

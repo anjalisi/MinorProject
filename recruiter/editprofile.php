@@ -10,11 +10,15 @@ $rows= $stmt->fetchAll(PDO::FETCH_ASSOC);
 if(isset($_POST['submit'])){
 	
 	if(strcmp($_POST['passw'], $_POST['rpassw'])==0){
-		$stmt = $pdo->prepare('UPDATE company_data SET domain=:d,company_contact=:contact, base=:base,ctc=:ctc, location=:loc, job_profiles=:pro,test_date=:tdate,
+		$stmt = $pdo->prepare('UPDATE company_data SET cgpa=:cgpa, role=:role, deadback=:dback, activeback=:aback, domain=:d,company_contact=:contact, base=:base,ctc=:ctc, location=:loc, job_profiles=:pro,test_date=:tdate,
 		interview_date=:idate, deadline_date=:ddate, min_shortlist= :min, password=:pass, poc_name=:poc, poc_contact= :pcont, hr_name=:hr,
 		jd_link=:jd, result_date= :rdate 
 		WHERE company_email=:email');
 		$stmt->execute(array(
+			':role'=>$_POST['role'],
+			':cgpa'=>$_POST['cgpa'],
+			':aback'=>$_POST['aback'],
+			':dback'=>$_POST['dback'],
 			':d'=> $_POST['domain'],
 			':contact' => $_POST['phone'],
 			':base' => $_POST['base'],
@@ -82,6 +86,7 @@ if(isset($_POST['submit'])){
 					if(count($rows)){
 						$stmt = $pdo->query("SELECT * FROM company_data where company_email='$email'");
 						while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
+							$role= htmlentities($row['role']);
 							$name= htmlentities($row['company_name']);
 							$email= htmlentities($row['company_email']);
 							$domain=htmlentities($row['domain']);
@@ -99,6 +104,9 @@ if(isset($_POST['submit'])){
 							$hr=htmlentities($row['hr_name']);
 							$poc=htmlentities($row['poc_name']);
 							$poc_contact=htmlentities($row['poc_contact']);
+							$aback=htmlentities($row['activeback']);
+							$dback=htmlentities($row['deadback']);
+							$cgpa=htmlentities($row['cgpa']);
 							$password= htmlentities($row['password']);
 						}
 					}		
@@ -138,6 +146,24 @@ if(isset($_POST['submit'])){
 									</div>
 									<div class="col-6 col-12-xsmall">
 										Job Profile(s)<input type="text" name="jobpr" id="jobpr" value="<?= $job_profiles?>" />
+									</div>
+									<div class="col-6 col-12-xsmall">
+										Role<select name="role">
+											<option selected><?=$role?></option>
+											<option >6 Month Intern</option>
+											<option >Full Time Employee</option>
+											<option >Summer Intern</option>
+											<option >Dual Offer(6 month+FTE)</option>
+										</select>
+									</div>
+									<div class="col-6 col-12-xsmall">
+										Min. CGPA<input type="text" name="cgpa" value="<?= $cgpa?>" />
+									</div>
+									<div class="col-6 col-12-xsmall">
+										Active Backs Allowed<input type="text" name="aback" id="locn" value="<?= $aback?>" />
+									</div>
+									<div class="col-6 col-12-xsmall">
+										Dead Backs Allowed<input type="text" name="dback" id="locn" value="<?= $dback?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
 										Location<input type="text" name="locn" id="locn" value="<?= $location?>" />
