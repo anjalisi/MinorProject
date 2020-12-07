@@ -173,6 +173,26 @@ header:before, header:after {
     box-sizing: inherit;
 }
 
+/* Banner */
+
+.banner {
+    overflow: hidden;
+    position: relative;
+    width: 640px;
+    height: 500px;
+    background: #fff;
+    opacity: 0;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    -moz-animation: reveal-banner 1s 0.25s ease-in-out;
+    -webkit-animation: reveal-banner 1s 0.25s ease-in-out;
+    -ms-animation: reveal-banner 1s 0.25s ease-in-out;
+    animation: reveal-banner 1s 0.25s ease-in-out;
+    -moz-animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+    -ms-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
 @-moz-keyframes reveal-banner {
     0% {
       opacity: 0;
@@ -285,15 +305,6 @@ button{
 }
 
 .submit{
-    
-    display: block;
-    margin: 0 auto;
-    width: 260px;
-    height: 36px;
-    border-radius: 30px;
-    color: #fff;
-    font-size: 15px;
-    cursor: pointer;
     margin-top: 40px;
     margin-bottom: 30px;
     text-transform: uppercase;
