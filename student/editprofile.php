@@ -130,8 +130,11 @@ if(isset($_POST['submit'])){
 									</div>
 									<div class="col-6 col-12-xsmall">
 										Year
-										
-											<input type = "text" name="year" value="<?= $year?>"></input>
+										<select name="year">
+											<option selected><?=$year?></option>
+											<option >3</option>
+											<option >4</option>
+										</select>
 											
 									</div>
 

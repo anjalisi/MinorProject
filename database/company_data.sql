@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: Dec 07, 2020 at 10:33 AM
+-- Generation Time: Dec 07, 2020 at 02:39 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -60,8 +60,8 @@ CREATE TABLE `company_data` (
 --
 
 INSERT INTO `company_data` (`domain`, `company_name`, `company_email`, `company_contact`, `base`, `ctc`, `location`, `job_profiles`, `test_date`, `interview_date`, `deadline_date`, `min_shortlist`, `password`, `poc_name`, `poc_contact`, `hr_name`, `jd_link`, `result_date`, `id`, `approve`, `role`, `cgpa`, `deadback`, `activeback`) VALUES
-('technology', 'a', 'an@gmail.com', '', '', '', '', '', '2020-12-24', '2020-12-16', '2020-12-15', '', 'Anjali@2020', '', '', 'Taniya', '', '2020-12-04', 0, 0, NULL, NULL, 0, 0),
-('', 'Cisco', 'cisco@gmail.com', '', '', '', '', '', '2020-12-01', '2020-12-02', '2020-12-15', '', 'Cisco@2020', 'Anjali Singh', '', 'HR', '', '2020-12-23', 335885, 0, NULL, NULL, 0, 0),
+('technology', 'a', 'an@gmail.com', '', '', '', '', '', '2020-12-24', '2020-12-16', '2020-12-15', '', 'Anjali@2020', 'Anjali', '', 'Taniya', '', '2020-12-04', 0, 1, '6 Month Intern', '7.5', 3, 2),
+('', 'Cisco', 'cisco@gmail.com', '', '', '', '', '', '2020-12-01', '2020-12-02', '2020-12-15', '', 'Cisco@2020', 'Anjali Singh', '', 'HR', '', '2020-12-23', 335885, 1, 'Summer Intern', '', 0, 0),
 ('Technical', 'Intuit', 'hrname@intuit.com', '9934564738', '12,000,000', '35,000,000', 'Bangalore, Delhi', 'Intern, SDE', '2020-12-15', '2020-12-21', '2020-12-09', '1', 'Anjali@2020', 'Anjali', '3242342434', 'Taniya', 'drive.com', '2020-11-30', 0, 0, NULL, NULL, 0, 0);
 
 --
