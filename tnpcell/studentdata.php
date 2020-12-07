@@ -125,7 +125,7 @@ $email = $_SESSION['admin'];
 							echo ("resume link");
 							echo ("</td>
 							<td><input type='button' name='block' value='Block' class='small'></td>
-							<td><input type='button' name='editstu' value='Edit' class='small'></td>
+							<td><input type='button' name='editstu' value='Edit' class='modals small'></td>
 						</tr>\n");
 						}
 						?>
