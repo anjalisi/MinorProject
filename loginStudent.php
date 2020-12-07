@@ -90,11 +90,12 @@ if(isset($_POST['email']) && isset($_POST['pass']) )
 					?>
                 <label>
                     <span>Email Address</span>
-                    <input name="email" type="email" name="email" placeholder="@igdtuw.ac.in" required>
+                    <input name="email" type="email" name="email" pattern="^[a-zA-Z0-9._%+-]+@igdtuw.ac.in" title= "Use college mail id" placeholder="@igdtuw.ac.in"  required>
                 </label>
                 <label>
                     <span>Password</span>
-                    <input name="pass" type="password" name="password" required>
+                    <input name="pass" type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+ 						 title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
                 </label>
                 
                     <input class="submit" type="submit" value="Sign In"></input>
@@ -135,15 +136,16 @@ if(isset($_POST['email']) && isset($_POST['pass']) )
                     </label>
                     <label>
                         <span>Email</span>
-                        <input name="stu_email" type="email" placeholder="@igdtuw.ac.in"  required>
+                        <input name="stu_email" type="email" placeholder="@igdtuw.ac.in"  pattern="^[a-zA-Z0-9._%+-]+@igdtuw.ac.in"  required>
                     </label>
                     <label>
                         <span>Enrolment Number</span>
-                        <input name="enrol" type="text" required>
+                        <input name="enrol" type="text" pattern="^[0-9]{12}$" maxlength="12" title="Enter Correct Roll Number" required>
                     </label>
                     <label>
                         <span>Password</span>
-                        <input name="stu_pass" type="password" required>
+                        <input name="stu_pass" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+ 						 title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
                     </label>
                     <input name="signup_stu" type="submit" class="submit" value="Sign Up"></input>
                 </form>

@@ -70,7 +70,7 @@ if(isset($_POST['submit'])){
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
-							<li><a href="applications.html">Applications</a></li>
+							<li><a href="applications.php">Applications</a></li>
 							<li class="active"><a href="profile.php">Profile</a></li>
 						</ul>
 					</nav>
@@ -128,7 +128,7 @@ if(isset($_POST['submit'])){
 										Recruitment Manager<input type="text" name="rname" id="rname" value="<?= $hr?>" readonly/>
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Domain<input type="text" name="domain" id="" value="<?= $domain?>"/>
+										Domain<input type="text" name="domain" value="<?= $domain?>"/>
 									</div>
 									<div class="col-6 col-12-xsmall">
 										Recruiter Email<input type="text" name="email" id="email" value="<?= $email?>" readonly/>
@@ -149,7 +149,7 @@ if(isset($_POST['submit'])){
 										Base Salary<input type="text" name="base" id="base" value="<?= $base?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Minimum Shortlists<input type="text" name="minshrt" id="minshrt" value="<?= $min ?>" />
+										Minimum Shortlists<input type="text" name="minshrt" pattern="^[0-9]{1,2,3,4,5}$" title="Enter a number" id="minshrt" value="<?= $min ?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
 										Test Date(Tentative) *<input type="date" name="tdate" id="tdate" value="<?= $test_date ?>" required />
