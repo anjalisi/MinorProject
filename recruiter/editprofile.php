@@ -51,7 +51,7 @@ if(isset($_POST['submit'])){
 
 <html>
 	<head>
-		<title>Campus Recruitment | Student</title>
+		<title>Campus Recruitment | Recruiter</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/dashboard.css" />
@@ -72,6 +72,7 @@ if(isset($_POST['submit'])){
 						<ul class="links">
 							<li><a href="applications.php">Applications</a></li>
 							<li class="active"><a href="profile.php">Profile</a></li>
+ 							<li><a href="finalshortlists.php">Shortlists</a></li>
 						</ul>
 					</nav>
 
