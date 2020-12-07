@@ -73,7 +73,7 @@ if(isset($_POST['email']) && isset($_POST['pass']) )
                     <h1 id="logo"><a href="index.html">University <span>Placement Cell</span></a></h1>
                     <nav id="nav">
                         <ul>
-                            <li><a href="loginRecruiter.html" class="button primary scrolly">Login as Recruiter</a></li>
+                            <li><a href="loginRecruiter.php" class="button primary scrolly">Login as Recruiter</a></li>
                         </ul>
                     </nav>
                 </header>

@@ -75,7 +75,7 @@ if(isset($_POST['email']) && isset($_POST['password']) )
                     <h1 id="logo"><a href="index.html">University <span>Placement Cell</span></a></h1>
                     <nav id="nav">
                         <ul>
-                            <li><a href="loginStudent.html" class="button primary scrolly">Login as Student</a></li>
+                            <li><a href="loginStudent.php" class="button primary scrolly">Login as Student</a></li>
                         </ul>
                     </nav>
                 </header>
