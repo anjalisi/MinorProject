@@ -73,6 +73,7 @@ $rows= $stmt->fetchAll(PDO::FETCH_ASSOC);
 						<ul class="links">
 							<li class="active"><a href="applications.php">Applications</a></li>
 							<li><a href="profile.php">Profile</a></li>
+							<li><a href="finalshortlists.html">Shortlists</a></li>							
 						</ul>
 					</nav>
 
