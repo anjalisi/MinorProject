@@ -40,7 +40,7 @@ $job= htmlentities($rows['job_profiles']);
 
 				<!-- Header -->
 					<header id="header">
-						<a href="../index.html" class="logo">Home</a>
+						<a href="../index.html" class="logo">Logout</a>
 					</header>
 
 				<!-- Nav -->
