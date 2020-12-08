@@ -88,45 +88,13 @@ $email = $_SESSION['admin'];
 											echo (htmlentities($row['status']));
 											echo ("</td>
 											<td><input type='button' name='register' value='Approve' class='small'></td>
-											<td><input type='button' name='editdata' value='Review' class='modals small'></td>
+											<td><a href='reviewreg.html' class='button small'></a></td>
 										</tr>\n");
 										}
 									?>
 									</tbody>
 								</table>
 							</div>
-						
-						<div id="modal" class="modal">
-							<div class="modal-content">
-								<div class="modal-heading"><span class="close">&times;</span>Review Registrations</div>	
-								<div class="row">
-									<p class="col-2">Company Name</p>
-									<input type="text" value="Intuit" class="col-4" readonly />
-
-									<p class="col-2">Student Email</p>
-									<input type="text" value="tanu@gmail.com" class="col-4" readonly />
-
-									<p class="col-2">Recruiter Email</p>
-									<input type="text" value="recruiter@intuit.com" class="col-4" readonly />
-
-									<p class="col-2">Job Profile(s)</p>
-									<input type="text" value="Software Engineer FTE" class="col-4" readonly />
-
-									<p class="col-2">Enrollment No.</p>
-									<input type="text" value="08901012017" class="col-4" readonly />
-
-									<p class="col-2">Registration Date</p>
-									<input type="text" value="26-08-2020" class="col-4" readonly />
-
-									<p class="col-2">Status</p>
-									<input type="text" value="Registered" class="col-4" readonly />
-
-								</div>
-
-								<input type="button" name="submit" value="Save" /> 
-
-							</div>
-						</div>
 						
 					</div>
 
@@ -147,31 +115,5 @@ $email = $_SESSION['admin'];
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-			<script type="text/javascript">
-				
-				var modal = document.getElementById("modal");
-
-				var buttons = document.getElementsByClassName("modals");
-
-				var span = document.getElementsByClassName("close")[0];
-
-				for (var i = 0; i < buttons.length; i++) 
-				(function(i){
-					buttons[i].onclick = function() {
-						modal.style.display = "block";
-					}
-				})(i);
-
-				span.onclick = function() {
-				  modal.style.display = "none";
-				}
-
-				window.onclick = function(event) {
-				  if (event.target == modal) {
-				    modal.style.display = "none";
-				  }
-				}
-			</script>
-
 	</body>
 </html>
