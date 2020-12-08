@@ -17,8 +17,8 @@ if(isset($_POST['stu_name']) && isset($_POST['stu_email']) && isset($_POST['sign
         return; 
 	}  
 	else{
-        $sql="INSERT INTO student_data(name, email, password, enroll_no)
-	 values(:name,:email,:password, :enroll_no)";
+        $sql="INSERT INTO student_data(name, email, password, enroll_no, status)
+	 values(:name,:email,:password, :enroll_no, 'Open')";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(array(
             ':name' => $_POST['stu_name'],
