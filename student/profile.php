@@ -33,7 +33,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		<!-- Header -->
 		<header id="header">
-			<a href="../index.html" class="logo">Home</a>
+			<a href="../index.html" class="logo">Logout</a>
 		</header>
 
 		<!-- Nav -->
