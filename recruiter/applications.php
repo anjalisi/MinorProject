@@ -125,7 +125,7 @@ $job= htmlentities($rows['job_profiles']);
 												$date= htmlentities($row['applied_date']);
 												$dback= htmlentities($row['dback']);
 												echo('<tr><td> <a href="#">');
-												echo($name);
+												echo($stu_name);
 												echo('</a> </td>
 											<td>');
 												echo($stu_contact);

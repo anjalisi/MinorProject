@@ -9,7 +9,7 @@ if(!isset($_SESSION['email']))
 $email = $_SESSION['email'];
 
 $stmt = $pdo->query("SELECT * FROM student_data where email='$email'");
-$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$rows = $stmt->fetch(PDO::FETCH_ASSOC)
 
 ?>
 
@@ -33,7 +33,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		<!-- Header -->
 		<header id="header">
-			<a href="../index.html" class="logo">Home</a>
+			<a href="../index.html" class="logo">Logout</a>
 		</header>
 
 		<!-- Nav -->

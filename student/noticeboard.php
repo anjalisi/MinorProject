@@ -9,8 +9,9 @@ if(!isset($_SESSION['email']))
 }
 $email = $_SESSION['email'];
 $stmt = $pdo->query("SELECT * FROM student_data where email='$email'");
-$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+$rows = $stmt->fetch(PDO::FETCH_ASSOC);
+$status= htmlentities($rows['status']);
+//if strcmp ==open
 
 ?>
 <!DOCTYPE HTML>
@@ -49,7 +50,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 				<br />
 				For more information, visit the <a href="http://igdtuw.ac.in/" target="_blank">University Website</a>.
 				<br />
-				Current Status: <b>Open for Recruitment</b>
+				Current Status: <b><?=$status?> for Recruitment</b>
 			</p>
 			<ul class="actions">
 				<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
@@ -58,7 +59,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		<!-- Header -->
 		<header id="header">
-			<a href="../index.html" class="logo">Home</a>
+			<a href="../index.html" class="logo">Logout</a>
 		</header>
 
 		<!-- Nav -->
@@ -89,7 +90,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 				while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 					$year = htmlentities($row['grad_year']);
 				}
-
+				//if open{
 				if (isset($_POST['submit'])) {
 					$stu_id = $_POST['stu_id'];
 					$cgpa_stu = "";
@@ -162,7 +163,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 							':stu_res' => $resume,
 							':aback' => $aback,
 							':dback' => $dback,
-							':approve' => 0,
+							':approve' => 1,
 							':stu_contact' => $contact,
 							':profile' => $job_profiles,
 
@@ -371,7 +372,9 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 									</ul></article>						");
 					}
 				}
-
+			//}
+			//else if status==closed
+			//<h3>Insert MSG</h3>
 
 				?>
 
