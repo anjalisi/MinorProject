@@ -102,6 +102,7 @@ $email = $_SESSION['admin'];
 						$stmt = $pdo->query("SELECT * FROM student_data");
 						while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 							$stu_id=htmlentities($row['email']);
+							$str="editstudent.php?txt=".strval($stu_id);
 							$status= htmlentities($row['status']);			
 							echo "<tr>
 							<td>";
@@ -147,7 +148,7 @@ $email = $_SESSION['admin'];
 								<input type='submit' class='small disabled' name='block' value='Blocked' />
 								</form></td>");
 							}
-							echo("<td><a href='editstudent.php' class='button small'>Edit</a></td>\n");
+							echo("<td><a href='$str' class='button small'>Edit</a></td>\n");
 						}
 						?>
 
