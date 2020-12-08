@@ -70,8 +70,16 @@ $email = $_SESSION['admin'];
 					</thead>
 					<tbody>
 						<?php
+						if(isset($_POST['approve'])){
+							$rec_id= $_POST['rec_id'];
+							$stmt = $pdo->prepare("UPDATE company_data SET approve=1 where company_email=:email");
+							$stmt->execute(array(':email' => $rec_id));
+							
+						}
 						$stmt = $pdo->query("SELECT * FROM company_data");
 						while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+							$rec_id=htmlentities($row['company_email']);
+							$approve = htmlentities($row['approve']);
 							echo "<tr>
 							<td>";
 							echo (htmlentities($row['company_name']));
@@ -114,10 +122,20 @@ $email = $_SESSION['admin'];
 							echo ("</td>
 							<td>");
 							echo ("</td>
-							<td><input type='button' name='notice' value='Post' class='small'></td>
-							<td><a href='editcompany.html' class='button small'>Edit</a></td>			
-							
-						</tr>\n");
+							<td><form method='post'>
+							<input type='hidden' value='$rec_id' name='rec_id'/>");
+							if($approve == 0)
+							{
+								echo("
+								<input type='submit' class='small' name='approve' value='Post'/>-
+								</form></td>");
+							}
+							else{
+								echo("
+								<input type='submit' class='small disabled' name='approve' value='Posted' />
+								</form></td>");
+							}
+							echo("<td><a href='editstudent.html' class='button small'>Edit</a></td>\n");
 						}
 						?>
 
