@@ -9,7 +9,7 @@ if(!isset($_SESSION['email']))
 $email = $_SESSION['email'];
 
 $stmt = $pdo->query("SELECT * FROM student_data where email='$email'");
-$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$rows = $stmt->fetch(PDO::FETCH_ASSOC)
 
 ?>
 
