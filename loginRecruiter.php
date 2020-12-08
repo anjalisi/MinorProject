@@ -33,7 +33,7 @@ if(isset($_POST['comp_name']) && isset($_POST['comp_email']) && isset($_POST['si
             ':hr' => $_POST['hr_name'],
             ':id' => $id
         ));
-        $_SESSION["username"] = $_POST["email"];  
+        $_SESSION["username"] = $_POST["comp_email"];  
 
         header("Location:recruiter/applications.php");
         return;

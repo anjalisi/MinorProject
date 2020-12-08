@@ -37,6 +37,7 @@ $rows= $stmt->fetchAll(PDO::FETCH_ASSOC);
 					<div id="intro">
 						<h1>Recruiter Dashboard</h1>
 						<?php
+
 							if(count($rows)){
 								$stmt = $pdo->query("SELECT * FROM company_data where company_email='$email'");
 								while ( $row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -94,11 +95,11 @@ $rows= $stmt->fetchAll(PDO::FETCH_ASSOC);
 										<tr>
 											<th>S.No.</th>
 											<th>Full Name</th>
-											<th>Course</th>
-											<th>Branch</th>
 											<th>Year</th>
 											<th>CGPA</th>
-											<th>Backlogs</th>
+											<th>Resume</th>
+											<th>Active Backlogs</th>
+											<th>Dead Backlogs</th>
 											<th>Date Applied</th>
 										</tr>
 									</thead>

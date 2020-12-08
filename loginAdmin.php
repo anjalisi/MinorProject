@@ -42,7 +42,14 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
         <div class="banner">
             <form method="POST" class="form sign-in">
-                <h2>TnP Student Login</h2>
+                <h2>TnP Student Login</h2> 
+                <?php
+					if(isset($_SESSION['error']))
+					{
+						echo ("<center><span style='color:blue;'>".htmlentities($_SESSION['error'])."</span></center>\n");
+						unset($_SESSION['error']);
+					}
+				?>
                 <label>
                     <span>Email Address</span>
                     <input type="email" name="email" placeholder="@igdtuw.ac.in" required>

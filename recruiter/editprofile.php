@@ -78,7 +78,7 @@ if(isset($_POST['submit'])){
 					<?php
 
 					if(count($rows)){
-						$stmt = $pdo->query("SELECT * FROM company_data where company_email='$id'");
+						$stmt = $pdo->query("SELECT * FROM company_data where company_email='$email'");
 						while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 							$role= htmlentities($row['role']);
 							$name= htmlentities($row['company_name']);
@@ -142,7 +142,7 @@ if(isset($_POST['submit'])){
 										Job Profile(s)<input type="text" name="jobpr" id="jobpr" value="<?= $job_profiles?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Role<select name="role">
+										Role<select name="role" >
 											<option selected><?=$role?></option>
 											<option >6 Month Intern</option>
 											<option >Full Time Employee</option>
