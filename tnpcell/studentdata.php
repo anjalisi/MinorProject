@@ -147,7 +147,7 @@ $email = $_SESSION['admin'];
 								<input type='submit' class='small disabled' name='block' value='Blocked' />
 								</form></td>");
 							}
-							echo("<td><a href='editstudent.html' class='button small'>Edit</a></td>\n");
+							echo("<td><a href='editstudent.php' class='button small'>Edit</a></td>\n");
 						}
 						?>
 
