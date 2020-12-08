@@ -115,7 +115,7 @@ $email = $_SESSION['admin'];
 							<td>");
 							echo ("</td>
 							<td><input type='button' name='notice' value='Post' class='small'></td>
-							<td><input type='button' name='editrec' value='Edit' class='small'></td>
+							<td><input type='button' name='editrec' value='Edit' class='modals small'></td>
 						</tr>\n");
 						}
 						?>
@@ -129,6 +129,9 @@ $email = $_SESSION['admin'];
 					<div class="modal-heading"><span class="close">&times;</span>Edit Details</div>	
 					<div class="row">
 						<p class="col-2">Company Name</p>
+						<input type="text" value="Intuit" class="col-4" readonly />
+
+						<p class="col-2">Company ID</p>
 						<input type="text" value="Intuit" class="col-4" readonly />
 
 						<p class="col-2">Hiring Manager</p>
@@ -146,10 +149,16 @@ $email = $_SESSION['admin'];
 						<p class="col-2">Job Profile(s)</p>
 						<input type="text" value="Intuit" class="col-4" readonly />
 
+						<p class="col-2">Duration</p>
+						<input type="text" value="role" class="col-4" readonly />
+
 						<p class="col-2">Location</p>
 						<input type="text" value="Intuit" class="col-4" readonly />
 
-						<p class="col-2">Compensation</p>
+						<p class="col-2">Base Compensation</p>
+						<input type="text" value="Intuit" class="col-4" readonly />
+
+						<p class="col-2">CTC</p>
 						<input type="text" value="Intuit" class="col-4" readonly />
 
 						<p class="col-2">Test Date</p>
@@ -164,7 +173,25 @@ $email = $_SESSION['admin'];
 						<p class="col-2">Min. Shortlists</p>
 						<input type="text" value="Intuit" class="col-4" readonly />	
 
-						<p class="col-2">Final Shortlists</p>
+						<p class="col-2">POC Name</p>
+						<input type="text" value="Intuit" class="col-4" readonly />
+
+						<p class="col-2">POC Contact No.</p>
+						<input type="text" value="Intuit" class="col-4" readonly />
+
+						<p class="col-2">Job Description</p>
+						<input type="text" value="Intuit" class="col-4" readonly />
+
+						<p class="col-2">CGPA Eligibility</p>
+						<input type="text" value="Intuit" class="col-4" readonly />
+
+						<p class="col-2">Dead Backlogs</p>
+						<input type="text" value="Intuit" class="col-4" readonly />	
+
+						<p class="col-2">Active Backlogs</p>
+						<input type="text" value="Intuit" class="col-4" readonly />
+
+						<p class="col-2">Result Date</p>
 						<input type="text" value="Intuit" class="col-4" readonly />		
 					</div>
 
