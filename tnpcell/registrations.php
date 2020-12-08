@@ -115,31 +115,5 @@ $email = $_SESSION['admin'];
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-			<script type="text/javascript">
-				
-				var modal = document.getElementById("modal");
-
-				var buttons = document.getElementsByClassName("modals");
-
-				var span = document.getElementsByClassName("close")[0];
-
-				for (var i = 0; i < buttons.length; i++) 
-				(function(i){
-					buttons[i].onclick = function() {
-						modal.style.display = "block";
-					}
-				})(i);
-
-				span.onclick = function() {
-				  modal.style.display = "none";
-				}
-
-				window.onclick = function(event) {
-				  if (event.target == modal) {
-				    modal.style.display = "none";
-				  }
-				}
-			</script>
-
 	</body>
 </html>
