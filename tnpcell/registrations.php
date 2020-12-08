@@ -88,7 +88,7 @@ $email = $_SESSION['admin'];
 											echo (htmlentities($row['status']));
 											echo ("</td>
 											<td><input type='button' name='register' value='Approve' class='small'></td>
-											<td><input type='button' name='editdata' value='Review' class='modals small'></td>
+											<td><a href='reviewreg.html' class='button small'></a></td>
 										</tr>\n");
 										}
 									?>
