@@ -28,7 +28,7 @@ if(isset($_POST['stu_name']) && isset($_POST['stu_email']) && isset($_POST['sign
         ));
         $_SESSION['email'] = $_POST['stu_email'];
 
-        header("Location:student/registrations.html");
+        header("Location:student/noticeboard.php");
         return;
     }
 }
@@ -47,7 +47,7 @@ if(isset($_POST['email']) && isset($_POST['pass']) )
 	if($count > 0) 
 	{  
 		 $_SESSION["email"] = $_POST["email"];  
-		 header("Location:student/registrations.html");  
+		 header("Location:student/noticeboard.php");  
 		 return;
 	}  
 	else  
