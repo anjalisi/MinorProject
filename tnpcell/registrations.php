@@ -96,38 +96,6 @@ $email = $_SESSION['admin'];
 								</table>
 							</div>
 						
-						<div id="modal" class="modal">
-							<div class="modal-content">
-								<div class="modal-heading"><span class="close">&times;</span>Review Registrations</div>	
-								<div class="row">
-									<p class="col-2">Company Name</p>
-									<input type="text" value="Intuit" class="col-4" readonly />
-
-									<p class="col-2">Student Email</p>
-									<input type="text" value="tanu@gmail.com" class="col-4" readonly />
-
-									<p class="col-2">Recruiter Email</p>
-									<input type="text" value="recruiter@intuit.com" class="col-4" readonly />
-
-									<p class="col-2">Job Profile(s)</p>
-									<input type="text" value="Software Engineer FTE" class="col-4" readonly />
-
-									<p class="col-2">Enrollment No.</p>
-									<input type="text" value="08901012017" class="col-4" readonly />
-
-									<p class="col-2">Registration Date</p>
-									<input type="text" value="26-08-2020" class="col-4" readonly />
-
-									<p class="col-2">Status</p>
-									<input type="text" value="Registered" class="col-4" readonly />
-
-								</div>
-
-								<input type="button" name="submit" value="Save" /> 
-
-							</div>
-						</div>
-						
 					</div>
 
 
