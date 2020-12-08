@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: Dec 07, 2020 at 02:39 PM
+-- Generation Time: Dec 08, 2020 at 10:41 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `student_registrations` (
-  `stu_id` varchar(13) DEFAULT NULL,
+  `stu_id` varchar(100) DEFAULT NULL,
   `rec_id` varchar(100) DEFAULT NULL,
   `applied_date` date DEFAULT NULL,
   `deadline_date` date DEFAULT NULL,
@@ -42,12 +42,20 @@ CREATE TABLE `student_registrations` (
   `stu_cgpa` varchar(8) DEFAULT NULL,
   `rec_jd` varchar(450) DEFAULT NULL,
   `stu_res` varchar(450) DEFAULT NULL,
-  `aback` int(10) NOT NULL,
-  `dback` int(10) NOT NULL,
+  `aback` varchar(10) DEFAULT NULL,
+  `dback` varchar(10) DEFAULT NULL,
   `approve` int(1) NOT NULL,
   `stu_contact` varchar(12) DEFAULT NULL,
   `profile` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `student_registrations`
+--
+
+INSERT INTO `student_registrations` (`stu_id`, `rec_id`, `applied_date`, `deadline_date`, `rec_name`, `rounds`, `status`, `stu_name`, `stu_year`, `role`, `stu_cgpa`, `rec_jd`, `stu_res`, `aback`, `dback`, `approve`, `stu_contact`, `profile`) VALUES
+('anju@igdtuw.ac.in', 'an@gmail.com', '2020-12-07', '2020-12-15', 'a', 0, 'Registered', 'Anjali', 4, '6 Month Intern', '', '', '', '', '', 0, '', ''),
+('anju@igdtuw.ac.in', 'anj@gmail.com', '2020-12-08', '2020-12-12', 'Anjali', 0, 'Registered', 'Anjali', 4, '6 Month Intern', '', '', '', '0', '0', 0, '', '');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
