@@ -138,35 +138,6 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 											values(:stu_id,:rec_id, :adate, :ddate, :rec_name, :rounds, :status, :stu_name, :stu_year,
 											:role, :stu_cgpa, :rec_jd, :stu_res, :aback,
 											:dback, :approve, :stu_contact,:profile)";
-<<<<<<< HEAD
-											
-											$stmt = $pdo->prepare($sql);
-											//PLS INSERT HERE
-											$stmt->execute(array(
-												':name' => $_POST['comp_name'],
-												':email' => $_POST['comp_email'],
-												':pass' => $_POST['comp_pass'],
-												':hr' => $_POST['hr_name'],
-												':id' => $id
-											));
-											$_SESSION["username"] = $_POST["email"];  
-
-											header("Location:recruiter/applications.php");
-											return;
-										}
-									}
-
-									if($year==3){
-										$stmt = $pdo->query("SELECT * FROM company_data where approve=1 and role='Summer Intern'");
-										
-										while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
-
-											$id= htmlentities($row['company_email']);
-											$stmt0= $pdo->query("SELECT * FROM student_registrations where rec_id=$id and stu_id=$email");
-											$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
-											
-											echo "<article><header>
-=======
 
 						$stmt = $pdo->prepare($sql);
 						//PLS INSERT HERE
@@ -217,7 +188,6 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 					while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 						$id = htmlentities($row['id']);
 						echo "<article><header>
->>>>>>> e2f9cb35cd8f6cfc1b37eda57fd7fbb9eb25e8ef
 													<h2><a href='#'>";
 						echo (htmlentities($row['company_name']));
 						echo ("</a></h2>
@@ -299,27 +269,6 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 											</tbody>
 											</table>
 										<ul class='actions special'>
-<<<<<<< HEAD
-											<li>
-											<form method='post'>
-												<input type='hidden' value='$email' name='stu_id'/>
-												<input type='hidden' value='$id' name='rec_id'/>
-												<input type='submit' class='button' name='submit' value='Registered' readonly/>
-											</form></li>
-										</ul></article>	");
-		
-										}
-									}
-								else{
-									$stmt = $pdo->query("SELECT * FROM company_data where approve=1 and role<>'Summer Intern'");
-									while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
-
-										$id= htmlentities($row['company_email']);
-										$stmt0= $pdo->query("SELECT * FROM student_registrations where rec_id=$id and stu_id=$email");
-										$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
-										
-										echo "<article><header>
-=======
 											<li><form method='post'><input type='text'/><input type='submit' class='button' name='submit' value='Register'/></form></li>
 										</ul></article>						");
 					}
@@ -328,7 +277,6 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 					while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 						$id = htmlentities($row['company_email']);
 						echo "<article><header>
->>>>>>> e2f9cb35cd8f6cfc1b37eda57fd7fbb9eb25e8ef
 												<h2><a href='#'>";
 						echo (htmlentities($row['company_name']));
 						echo ("</a></h2>
@@ -416,65 +364,8 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 											<input type='hidden' value='$id' name='rec_id'/>
 											<input type='submit' class='button' name='submit' value='Registered' readonly/>
 										</form></li>
-<<<<<<< HEAD
-									</ul></article>	");
-									}
-								}
-							
-
-								?>
-								
-							</section>
-
-						<!-- Footer -->
-							<footer>
-								<div class="pagination">
-									<!--<a href="#" class="previous">Prev</a>-->
-									<a href="#" class="page active">1</a>
-									<a href="#" class="page">2</a>
-									<a href="#" class="page">3</a>
-									<span class="extra">&hellip;</span>
-									<a href="#" class="page">8</a>
-									<a href="#" class="page">9</a>
-									<a href="#" class="page">10</a>
-									<a href="#" class="next">Next</a>
-								</div>
-							</footer>
-
-					</div>
-
-
-				<!-- Copyright -->
-					<div id="copyright">
-						<p> &copy; Copyright 2020 | Design: Team 23</p>
-					</div>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script type="text/javascript">
-
-				mybutton = document.getElementById("totop");
-
-				window.onscroll = function() {scrollFunction()};
-
-				function scrollFunction() {
-				  if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
-				    mybutton.style.display = "block";
-				  } else {
-				    mybutton.style.display = "none";
-				  }
-=======
 									</ul></article>						");
 					}
->>>>>>> e2f9cb35cd8f6cfc1b37eda57fd7fbb9eb25e8ef
 				}
 
 
