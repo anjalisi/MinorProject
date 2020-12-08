@@ -1,3 +1,50 @@
+<?php
+session_start();
+require_once "../connect.php";
+
+$email = $_SESSION['admin'];
+if(!isset($_GET['txt']))
+{
+	header("Location:recruiterdata.php");
+	return;
+}
+
+$id=$_GET['txt'];
+
+$stmt= $pdo->query("SELECT * FROM company_data where id=$id");
+$rows= $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+if(isset($_POST['submit'])){
+	
+		$stmt = $pdo->prepare('UPDATE company_data SET cgpa=:cgpa, deadback=:dback, activeback=:aback, company_contact=:contact, location=:loc, job_profiles=:pro,
+		test_date=:tdate, interview_date=:idate, deadline_date=:ddate, min_shortlist= :min,poc_name=:poc, poc_contact= :pcont,
+		 jd_link=:jd, result_date= :rdate 
+		WHERE id=:id');
+		$stmt->execute(array(
+			':cgpa'=>$_POST['cgpa'],
+			':aback'=>$_POST['aback'],
+			':dback'=>$_POST['dback'],
+			':contact' => $_POST['phone'],
+			':pro' =>  $_POST['jobpr'],
+			':tdate' => $_POST['tdate'],
+			':loc' => $_POST['loc'],
+			':idate' => ($_POST['idate']),
+			':ddate' => $_POST['ddate'],
+			':rdate' =>($_POST['rdate']),
+			':min' => $_POST['minshrt'],
+			':poc' => $_POST['poc'],
+			':pcont'  => $_POST['poc_contact'],
+			':jd' => $_POST['jd'],
+			':id' => $id,
+				)
+		);
+		header("Location:recruiterdata.php");
+		return;
+}
+
+?>
+
 <!DOCTYPE HTML>
 
 <html>
@@ -21,16 +68,45 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
-							<li><a href="studentdata.html">Student Database</a></li>
-							<li><a href="recruiterdata.html">Recruiter Database</a></li>
-							<li><a href="registrations.html">Registrations Database</a></li>
-							<li><a href="placed.html">Placed Students</a></li>
-							<li class="active"><a href="editcompany.html">Edit Recruiter</a></li>
+							<li><a href="studentdata.php">Student Database</a></li>
+							<li><a href="recruiterdata.php">Recruiter Database</a></li>
+							<li><a href="registrations.php">Registrations Database</a></li>
+							<li><a href="placed.php">Placed Students</a></li>
+							<li class="active"><a href="editcompany.php">Edit Recruiter</a></li>
 						</ul>
 					</nav>
 
 				<!-- Main -->
 					<div id="main">
+					<?php
+					if(count($rows)){
+						$stmt = $pdo->query("SELECT * FROM company_data where id=$id");
+						while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
+							$role= htmlentities($row['role']);
+							$name= htmlentities($row['company_name']);
+							$email= htmlentities($row['company_email']);
+							$domain=htmlentities($row['domain']);
+							$phone=htmlentities($row['company_contact']);
+							$job_profiles=htmlentities($row['job_profiles']);
+							$location= htmlentities($row['location']);
+							$ctc=htmlentities($row['ctc']);
+							$jd=htmlentities($row['jd_link']);
+							$base=htmlentities($row['base']);
+							$test_date=htmlentities($row['test_date']);
+							$interview_date=htmlentities($row['interview_date']);
+							$rdate=htmlentities($row['result_date']);
+							$deadline_date=htmlentities($row['deadline_date']);
+							$min= htmlentities($row['min_shortlist']);
+							$hr=htmlentities($row['hr_name']);
+							$poc=htmlentities($row['poc_name']);
+							$poc_contact=htmlentities($row['poc_contact']);
+							$aback=htmlentities($row['activeback']);
+							$dback=htmlentities($row['deadback']);
+							$cgpa=htmlentities($row['cgpa']);
+							$password= htmlentities($row['password']);
+						}
+					}		
+					?>
 
 						<!-- Post -->
 							<section class="post">
@@ -39,86 +115,71 @@
 								</header>							
 							</section>
 
-							<form method="post" action="#">
-								<div class="row gtr-uniform">
+							<form method="post">
+								<div class="row gtr-uniform"><h2 class="col-10"><?=$name?></h2>
 									<div class="col-4 col-12-xsmall">
-										Company Name<input type="text" name="cname" id="cname" value="Intuit" />
+										Contact No.<input type="text" name="phone" id="phone" value="<?=$phone?>" />
 									</div>
 									<div class="col-4 col-12-xsmall">
-										Company ID<input type="text" name="cid" id="cid" value="INT132" />
-									</div>
-									<div class="col-4 col-12-xsmall">
-										Hiring Manager<input type="text" name="mangr" id="mangr" value="Ms. ABC XYZ" />
-									</div>
-									<div class="col-4 col-12-xsmall">
-										Domain
-										<select name="domain" id="domain">
-											<option value="1" selected>Technical</option>
-											<option value="2">Non-Technical</option>
-										</select>
-									</div>
-									<div class="col-4 col-12-xsmall">
-										Email<input type="text" name="email" id="email" value="blah@recruiter.in" />
-									</div>
-									<div class="col-4 col-12-xsmall">
-										Contact No.<input type="text" name="phone" id="phone" value="123456987" />
-									</div>
-									<div class="col-4 col-12-xsmall">
-										Job Profile(s)<input type="text" name="profile" id="profile" value="SDE" />
+										Job Profile(s)<input type="text" name="jobpr" id="profile" value="<?=$job_profiles?>" />
 									</div>
 									
 									<div class="col-4 col-12-xsmall">
 										Duration
 										<select name="role" id="role">
-											<option value="1" selected>FTE</option>
-											<option value="2">Intern (6m)</option>
-											<option value="3">Dual-offer (6m Intern + FTE)</option>
-											<option value="4">Intern (2m)</option>
+											<option selected><?=$role?></option>
+											<option >FTE</option>
+											<option >Intern (6m)</option>
+											<option >Dual-offer (6m Intern + FTE)</option>
+											<option >Intern (2m)</option>
 										</select>
 									</div>
 									<div class="col-4 col-12-xsmall">
-										Location<input type="text" name="loc" id="loc" value="Delhi, Bangalore">
+										Location<input type="text" name="loc" id="loc" value="<?=$location?>">
 									</div>
 									<div class="col-4 col-12-xsmall">
-										Base Compensation<input type="text" name="base" id="base" value="10LPA">
+										Base Compensation<input type="text" name="base" id="base" value="<?=$base?>" readonly/>
 									</div>
 									<div class="col-4 col-12-xsmall">
-										CTC<input type="text" name="ctc" id="ctc" value="15LPA">
+										CTC<input type="text" name="ctc" id="ctc" value="<?=$ctc?>" readonly/>
 									</div>
 									<div class="col-4 col-12-xsmall">
-										Minimum Shortlists<input type="text" name="mins" id="mins" value="8">
+										Minimum Shortlists<input type="text" name="minshrt" id="mins" value="<?=$min?>">
 									</div>
-									<div class="col-6 col-12-xsmall">
-										POC Name<input type="text" name="pocn" id="pocn" value="Anjali">
+									<div class="col-4 col-12-xsmall">
+										POC Name<input type="text" name="poc" id="pocn" value="<?=$poc?>">
 									</div>
-									<div class="col-6 col-12-xsmall">
-										POC Contact No.<input type="text" name="pocc" id="pocc" value="1235487960">
+									<div class="col-4 col-12-xsmall">
+										POC Contact No.<input type="text" name="poc_contact" id="pocc" value="<?=$poc_contact?>">
 									</div>
-									<div class="col-3 col-12-xsmall">
-										Test Date<input type="text" name="tdate" id="tdate" value="26-08-2020">
+									<div class="col-4 col-12-xsmall">
+										Test Date<input type="date" name="tdate" id="tdate" value="<?=$test_date?>">
 									</div>
-									<div class="col-3 col-12-xsmall">
-										Interview Date<input type="text" name="idate" id="idate" value="28-08-2020">
+									<div class="col-4 col-12-xsmall">
+										Interview Date<input type="date" name="idate" id="idate" value="<?=$interview_date?>">
 									</div>
-									<div class="col-3 col-12-xsmall">
-										Result Date<input type="text" name="rdate" id="rdate" value="30-08-2020">
+									<div class="col-4 col-12-xsmall">
+										Deadline Date<input type="date" name="ddate" id="rdate" value="<?=$deadline_date?>">
 									</div>
-									<div class="col-3 col-12-xsmall">
-										CGPA Eligibility<input type="text" name="cgpa" id="cgpa" value="7.5">
+									<div class="col-4 col-12-xsmall">
+										Result Date<input type="date" name="rdate" id="rdate" value="<?=$rdate?>">
 									</div>
-									<div class="col-3 col-12-xsmall">
-										Dead Backlogs<input type="text" name="deadb" id="deadb" value="0">
+									<div class="col-4 col-12-xsmall">
+										CGPA Eligibility<input type="text" name="cgpa" id="cgpa" value="<?=$cgpa?>">
 									</div>
-									<div class="col-3 col-12-xsmall">
-										Active Backlogs<input type="text" name="activeb" id="activeb" value="0">
+									<div class="col-4 col-12-xsmall">
+										Dead Backlogs<input type="text" name="dback" id="deadb" value="<?=$dback?>">
+									</div>
+									<div class="col-4 col-12-xsmall">
+										Active Backlogs<input type="text" name="aback" id="activeb" value="<?=$aback?>">
 									</div>
 									
 									<div class="col-6">
-										Job Description Link<input type="text" name="jdlink" id="jdlink" value="Link"  />
+										Job Description Link<input type="text" name="jd" id="jdlink" value="<?= $jd?>"  />
 									</div>
 									<div class="col-12">
 										<ul class="actions">
-											<li><a href="recruiterdata.html" class="button primary">Save</a></li>
+											<li><input name="submit" type="submit" class="button primary" value="Save"></li>
 											<li><input type="reset" value="Reset" /></li>
 										</ul>
 									</div>

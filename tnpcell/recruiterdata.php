@@ -64,7 +64,7 @@ $email = $_SESSION['admin'];
 							<th>Interview Date</th>
 							<th>Deadline</th>
 							<th>Min. Shortlists</th>
-							<th>Final Shortlists</th>
+							<th>POC Contact</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -80,6 +80,9 @@ $email = $_SESSION['admin'];
 						while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 							$rec_id=htmlentities($row['company_email']);
 							$approve = htmlentities($row['approve']);
+							$id=htmlentities($row['id']);
+							$str="editcompany.php?txt=".strval($id);
+							//echo($str);
 							echo "<tr>
 							<td>";
 							echo (htmlentities($row['company_name']));
@@ -118,7 +121,7 @@ $email = $_SESSION['admin'];
 							echo (htmlentities($row['min_shortlist']));
 							echo ("</td>
 							<td>");
-							echo ('final_shortlists');
+							echo (htmlentities($row['poc_contact']));
 							echo ("</td>
 							<td>");
 							echo ("</td>
@@ -135,7 +138,7 @@ $email = $_SESSION['admin'];
 								<input type='submit' class='small disabled' name='approve' value='Posted' />
 								</form></td>");
 							}
-							echo("<td><a href='editstudent.html' class='button small'>Edit</a></td>\n");
+							echo("<td><a href='$str' class='button small'>Edit</a></td>\n");
 						}
 						?>
 

@@ -9,7 +9,6 @@ $rows= $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if(isset($_POST['submit'])){
 	
-	if(strcmp($_POST['passw'], $_POST['rpassw'])==0){
 		$stmt = $pdo->prepare('UPDATE company_data SET cgpa=:cgpa, role=:role, deadback=:dback, activeback=:aback, domain=:d,company_contact=:contact, base=:base,ctc=:ctc, location=:loc, job_profiles=:pro,test_date=:tdate,
 		interview_date=:idate, deadline_date=:ddate, min_shortlist= :min, password=:pass, poc_name=:poc, poc_contact= :pcont, hr_name=:hr,
 		jd_link=:jd, result_date= :rdate 
@@ -41,13 +40,7 @@ if(isset($_POST['submit'])){
 		$_SESSION['success'] = 'Record updated';
 		header("Location: profile.php");
 		return;
-	}
-	else if(strcmp($_POST['passw'], $_POST['rpassw'])!=0)
-	{
-		$_SESSION['error'] = "Passwords Did Not Match";
-        header("Location: editprofile.php");
-        return;
-	}
+	
 }
 
 ?>
@@ -85,7 +78,7 @@ if(isset($_POST['submit'])){
 					<?php
 
 					if(count($rows)){
-						$stmt = $pdo->query("SELECT * FROM company_data where company_email='$email'");
+						$stmt = $pdo->query("SELECT * FROM company_data where company_email='$id'");
 						while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 							$role= htmlentities($row['role']);
 							$name= htmlentities($row['company_name']);
@@ -213,7 +206,7 @@ if(isset($_POST['submit'])){
 									</div>
 									<div class="col-12">
 										<ul class="actions">
-											<li><input name="submit" type="submit" class="button primary" value="Save"></a></li>
+											<li><input name="submit" type="submit" class="button primary" value="Save"></li>
 											<li><input type="reset" value="Reset" /></li>
 										</ul>
 									</div>
