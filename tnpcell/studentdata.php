@@ -91,8 +91,18 @@ $email = $_SESSION['admin'];
 					</thead>
 					<tbody>
 						<?php
+						if(isset($_POST['block'])){
+							$stu_id= $_POST['stu_id'];
+							$stmt = $pdo->prepare("UPDATE student_data SET status='Closed' where email=:email");
+							$stmt->execute(array(':email' => $stu_id));
+							
+						}
+
+
 						$stmt = $pdo->query("SELECT * FROM student_data");
 						while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+							$stu_id=htmlentities($row['email']);
+							$status= htmlentities($row['status']);			
 							echo "<tr>
 							<td>";
 							echo (htmlentities($row['Name']));
@@ -124,8 +134,20 @@ $email = $_SESSION['admin'];
 							<td>");
 							echo ("resume link");
 							echo ("</td>
-							<td><input type='button' name='block' value='Block' class='small'></td>
-							<td><input type='button' name='editstu' value='Edit' class='modals small'></td>
+							<td><form method='post'>
+							<input type='hidden' value='$stu_id' name='stu_id'/>");
+							if(strcmp($status, 'Closed'))
+							{
+								echo("
+								<input type='submit' class='small' name='block' value='Block'/>-
+								</form></td>");
+							}
+							else{
+								echo("
+								<input type='submit' class='small disabled' name='block' value='Blocked' />
+								</form></td>");
+							}
+							echo("<td><input type='button' name='editstu' value='Edit' class='modals small'></td>
 						</tr>\n");
 						}
 						?>

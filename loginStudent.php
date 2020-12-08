@@ -140,7 +140,7 @@ if(isset($_POST['email']) && isset($_POST['pass']) )
                     </label>
                     <label>
                         <span>Enrolment Number</span>
-                        <input name="enrol" type="text" pattern="^[0-9]{12}$" maxlength="12" title="Enter Correct Roll Number" required>
+                        <input name="enrol" type="text" pattern="^[0-9]{11}$" maxlength="11" title="Enter Correct Roll Number" required>
                     </label>
                     <label>
                         <span>Password</span>

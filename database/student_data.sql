@@ -2,8 +2,8 @@
 -- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Dec 06, 2020 at 02:44 PM
+-- Host: localhost:3307
+-- Generation Time: Dec 08, 2020 at 04:59 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -40,15 +40,19 @@ CREATE TABLE `student_data` (
   `enroll_no` varchar(12) NOT NULL,
   `approve` varchar(10) DEFAULT NULL,
   `grad_year` varchar(10) DEFAULT NULL,
-  `recommendation` varchar(400) DEFAULT NULL
+  `recommendation` varchar(400) DEFAULT NULL,
+  `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `student_data`
 --
 
-INSERT INTO `student_data` (`Name`, `email`, `password`, `contact`, `CGPA`, `active_back`, `dead_back`, `resume`, `enroll_no`, `approve`, `grad_year`, `recommendation`) VALUES
-('Taniya', 'tanu@mail.com', 'taniya123', NULL, NULL, NULL, NULL, NULL, '100', NULL, NULL, NULL);
+INSERT INTO `student_data` (`Name`, `email`, `password`, `contact`, `CGPA`, `active_back`, `dead_back`, `resume`, `enroll_no`, `approve`, `grad_year`, `recommendation`, `status`) VALUES
+('Anjali', 'anju@gmail.com', '1231212', NULL, NULL, NULL, NULL, NULL, '100', NULL, NULL, NULL, 'Closed'),
+('Anjali', 'anju@igdtuw.ac.in', 'Anjali@2020', '', '', '', '', '', '100010120173', NULL, '4', NULL, 'Closed'),
+('Taniya', 'tanu@mail.com', 'taniya123', '237429857', '4', '', '9', '', '1001', NULL, '', NULL, 'Open'),
+('anjali', 'anjuu@gmail.com', 'ifsiodf', NULL, NULL, NULL, NULL, NULL, '2938742983', NULL, NULL, NULL, 'Open');
 
 --
 -- Indexes for dumped tables

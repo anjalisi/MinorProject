@@ -356,7 +356,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 											<input type='hidden' value='$email' name='stu_id'/>
 											<input type='hidden' value='$id' name='rec_id'/>");
 						if(count($row0)){
-							echo("<input type='text' class='button disabled' value='REgistered' readonly/> ");
+							echo("<input type='text' class='button disabled' value='Registered' readonly/> ");
 						}				
 						else{
 							echo("<input type='submit' class='button' name='submit' value='Register'/>");
