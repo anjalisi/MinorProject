@@ -2,6 +2,11 @@
 session_start();
 require_once "connect.php";
 
+if(!isset($_SESSION['username']))
+{
+	header('Location:../loginRecruiter.php');
+	return;
+}
 $email=$_SESSION['username'];
 
 $stmt= $pdo->query("SELECT * FROM company_data where company_email='$email'");

@@ -2,10 +2,18 @@
 session_start();
 require_once "connect.php";
 
+if(!isset($_SESSION['username']))
+{
+	header('Location:../loginRecruiter.php');
+	return;
+}
 $email=$_SESSION['username'];
 
 $stmt= $pdo->query("SELECT * FROM company_data where company_email='$email'");
-$rows= $stmt->fetchAll(PDO::FETCH_ASSOC);
+$rows= $stmt->fetch(PDO::FETCH_ASSOC);
+
+$duration= htmlentities($rows['role']);
+$job= htmlentities($rows['job_profiles']);
 					
 ?>
 
@@ -88,13 +96,14 @@ $rows= $stmt->fetchAll(PDO::FETCH_ASSOC);
 							</header>
 						</article>
 
-						<h3>Software Engineer - Full Time</h3>
+						<h3><?=$job?> - <?=$duration?></h3>
 							<div class="table-wrapper">
 								<table>
 									<thead>
 										<tr>
-											<th>S.No.</th>
+											
 											<th>Full Name</th>
+											<th>Contact</th>
 											<th>Year</th>
 											<th>CGPA</th>
 											<th>Resume</th>
@@ -104,60 +113,48 @@ $rows= $stmt->fetchAll(PDO::FETCH_ASSOC);
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>1.</td>
-											<td> <a href="#">Shreya Srivatsan</a> </td>
-											<td>BTech</td>
-											<td>CSE</td>
-											<td>4th</td>
-											<td>9.0</td>
-											<td>0</td>
-											<td>26-08-2020</td>
-										</tr>
-										<tr>
-											<td>2.</td>
-											<td> <a href="#">Anjali Singh</a> </td>
-											<td>BTech</td>
-											<td>CSE</td>
-											<td>4th</td>
-											<td>9.0</td>
-											<td>0</td>
-											<td>26-08-2020</td>
-										</tr>
-										<tr>
-											<td>3.</td>
-											<td> <a href="#">Taniya Rawat</a> </td>
-											<td>BTech</td>
-											<td>CSE</td>
-											<td>4th</td>
-											<td>9.0</td>
-											<td>0</td>
-											<td>26-08-2020</td>
-										</tr>
-										<tr>
-											<td>4.</td>
-											<td> <a href="#">ABCD</a> </td>
-											<td>BTech</td>
-											<td>CSE</td>
-											<td>4th</td>
-											<td>9.0</td>
-											<td>0</td>
-											<td>26-08-2020</td>
-										</tr>
-										<tr>
-											<td>5.</td>
-											<td> <a href="#">ABCD</a> </td>
-											<td>BTech</td>
-											<td>CSE</td>
-											<td>4th</td>
-											<td>9.0</td>
-											<td>0</td>
-											<td>26-08-2020</td>
-										</tr>
+										<?php
+											$stmt = $pdo->query("SELECT * FROM student_registrations where rec_id='$email' and status<>'Rejected'");
+											while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+												$stu_name= htmlentities($row['stu_name']);
+												$stu_contact= htmlentities($row['stu_contact']);
+												$stu_res= htmlentities($row['stu_res']);
+												$year= htmlentities($row['stu_year']);
+												$cgpa= htmlentities($row['stu_cgpa']);
+												$aback= htmlentities($row['aback']);
+												$date= htmlentities($row['applied_date']);
+												$dback= htmlentities($row['dback']);
+												echo('<tr><td> <a href="#">');
+												echo($name);
+												echo('</a> </td>
+											<td>');
+												echo($stu_contact);
+												echo('</td>
+											<td>');
+												echo($year);
+												echo('</td>
+											<td>');
+												echo($cgpa);
+												echo('</td>
+											<td>');
+												echo($stu_res);
+												echo('</td>
+											<td>');
+												echo($aback);
+												echo('</td>
+											<td>');
+												echo($dback);
+												echo('</td>
+											<td>');
+												echo($date);
+												echo('</td></tr>');
+											}					
+
+										?>
 									</tbody>
 								</table>
 							</div>
-
+<!-- 
 							<h3>Software Engineer - Intern</h3>
 							<div class="table-wrapper">
 								<table class="alt">
@@ -223,10 +220,10 @@ $rows= $stmt->fetchAll(PDO::FETCH_ASSOC);
 											<td>9.0</td>
 											<td>0</td>
 											<td>26-08-2020</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+										</tr> -->
+									<!-- </tbody> -->
+								<!-- </table> -->
+							<!-- </div> -->
 
 						<!-- Footer -->
 							<footer>

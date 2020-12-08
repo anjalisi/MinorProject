@@ -1,3 +1,21 @@
+<?php
+session_start();
+require_once "connect.php";
+
+if(!isset($_SESSION['username']))
+{
+	header('Location:../loginRecruiter.php');
+	return;
+}
+$email=$_SESSION['username'];
+
+$stmt= $pdo->query("SELECT * FROM company_data where company_email='$email'");
+$rows= $stmt->fetch(PDO::FETCH_ASSOC);
+
+$duration= htmlentities($rows['role']);
+$job= htmlentities($rows['job_profiles']);
+					
+?>
 <!DOCTYPE HTML>
 
 <html>
@@ -46,49 +64,59 @@
 
 							<div class="table-wrapper">
 								<table>
-									<thead>
+								<thead>
 										<tr>
-											<th>S.No.</th>
+											
 											<th>Full Name</th>
-											<th>Email</th>
-											<th>Course</th>
+											<th>Contact</th>
 											<th>Year</th>
 											<th>CGPA</th>
-											<th>Backlogs</th>
-											<th>Profile</th>
+											<th>Resume</th>
+											<th>Active Backlogs</th>
+											<th>Dead Backlogs</th>
+											<th>Duration</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>1.</td>
-											<td> <a href="#">Shreya Srivatsan</a> </td>
-											<td>shreya@gmail.com</td>
-											<td>BTech</td>
-											<td>4th</td>
-											<td>9.0</td>
-											<td>0</td>
-											<td>SDE</td>
-										</tr>
-										<tr>
-											<td>2.</td>
-											<td> <a href="#">Anjali Singh</a> </td>
-											<td>anjo@gmail.com</td>
-											<td>BTech</td>
-											<td>4th</td>
-											<td>9.0</td>
-											<td>0</td>
-											<td>SDE</td>
-										</tr>
-										<tr>
-											<td>3.</td>
-											<td> <a href="#">Taniya Rawat</a> </td>
-											<td>tanu@gmail.com</td>
-											<td>BTech</td>
-											<td>4th</td>
-											<td>9.0</td>
-											<td>0</td>
-											<td>SDE</td>
-										</tr>
+										<?php
+											$stmt = $pdo->query("SELECT * FROM student_registrations where rec_id='$email' and status='Selected'");
+											while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+												$stu_name= htmlentities($row['stu_name']);
+												$stu_contact= htmlentities($row['stu_contact']);
+												$stu_res= htmlentities($row['stu_res']);
+												$year= htmlentities($row['stu_year']);
+												$cgpa= htmlentities($row['stu_cgpa']);
+												$aback= htmlentities($row['aback']);
+												$date= htmlentities($row['applied_date']);
+												$dback= htmlentities($row['dback']);
+												$duration= htmlentities($row['role']);
+												echo('<tr><td> <a href="#">');
+												echo($name);
+												echo('</a> </td>
+											<td>');
+												echo($stu_contact);
+												echo('</td>
+											<td>');
+												echo($year);
+												echo('</td>
+											<td>');
+												echo($cgpa);
+												echo('</td>
+											<td>');
+												echo($stu_res);
+												echo('</td>
+											<td>');
+												echo($aback);
+												echo('</td>
+											<td>');
+												echo($dback);
+												echo('</td>
+											<td>');
+												echo($duration);
+												echo('</td></tr>');
+											}					
+
+										?>
 									</tbody>
 								</table>
 							</div>

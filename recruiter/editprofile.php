@@ -2,6 +2,11 @@
 session_start();
 require_once "connect.php";
 
+if(!isset($_SESSION['username']))
+{
+	header('Location:../loginRecruiter.php');
+	return;
+}
 $email=$_SESSION['username'];
 $stmt= $pdo->query("SELECT * FROM company_data where company_email='$email'");
 $rows= $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -130,7 +135,11 @@ if(isset($_POST['submit'])){
 										Recruitment Manager<input type="text" name="rname" id="rname" value="<?= $hr?>" readonly/>
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Domain<input type="text" name="domain" value="<?= $domain?>"/>
+										Domain<select name="domain" >
+											<option selected><?=$domain?></option>
+											<option >Technical</option>
+											<option >Non-Technical</option>
+										</select>
 									</div>
 									<div class="col-6 col-12-xsmall">
 										Recruiter Email<input type="text" name="email" id="email" value="<?= $email?>" readonly/>

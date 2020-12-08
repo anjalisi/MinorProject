@@ -2,6 +2,11 @@
 session_start();
 require_once "../connect.php";
 
+if(!isset($_SESSION['email']))
+{
+	header('Location:../loginStudent.php');
+	return;
+}
 $email = $_SESSION['email'];
 
 ?>
