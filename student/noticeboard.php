@@ -11,7 +11,6 @@ $email = $_SESSION['email'];
 $stmt = $pdo->query("SELECT * FROM student_data where email='$email'");
 $rows = $stmt->fetch(PDO::FETCH_ASSOC);
 $status= htmlentities($rows['status']);
-//if strcmp ==open
 
 ?>
 <!DOCTYPE HTML>
@@ -90,7 +89,7 @@ $status= htmlentities($rows['status']);
 				while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 					$year = htmlentities($row['grad_year']);
 				}
-				//if open{
+				if(strcmp($status, "Open")){
 				if (isset($_POST['submit'])) {
 					$stu_id = $_POST['stu_id'];
 					$cgpa_stu = "";
@@ -372,9 +371,10 @@ $status= htmlentities($rows['status']);
 									</ul></article>						");
 					}
 				}
-			//}
-			//else if status==closed
-			//<h3>Insert MSG</h3>
+			}
+			else{
+				echo("<h3>We have closed registrations for the session.</h3>");
+			}
 
 				?>
 
