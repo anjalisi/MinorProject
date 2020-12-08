@@ -146,22 +146,22 @@ if(isset($_POST['submit'])){
 									<div class="col-4 col-12-xsmall">
 										Minimum Shortlists<input type="text" name="minshrt" id="mins" value="<?=$min?>">
 									</div>
-									<div class="col-4 col-12-xsmall">
+									<div class="col-6 col-12-xsmall">
 										POC Name<input type="text" name="poc" id="pocn" value="<?=$poc?>">
 									</div>
-									<div class="col-4 col-12-xsmall">
+									<div class="col-6 col-12-xsmall">
 										POC Contact No.<input type="text" name="poc_contact" id="pocc" value="<?=$poc_contact?>">
 									</div>
-									<div class="col-4 col-12-xsmall">
+									<div class="col-3 col-12-xsmall">
 										Test Date<input type="date" name="tdate" id="tdate" value="<?=$test_date?>">
 									</div>
-									<div class="col-4 col-12-xsmall">
+									<div class="col-3 col-12-xsmall">
 										Interview Date<input type="date" name="idate" id="idate" value="<?=$interview_date?>">
 									</div>
-									<div class="col-4 col-12-xsmall">
+									<div class="col-3 col-12-xsmall">
 										Deadline Date<input type="date" name="ddate" id="rdate" value="<?=$deadline_date?>">
 									</div>
-									<div class="col-4 col-12-xsmall">
+									<div class="col-3 col-12-xsmall">
 										Result Date<input type="date" name="rdate" id="rdate" value="<?=$rdate?>">
 									</div>
 									<div class="col-4 col-12-xsmall">

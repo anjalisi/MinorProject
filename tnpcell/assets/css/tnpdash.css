@@ -2346,6 +2346,7 @@ input, select, textarea {
 	input[type="date"],
 	input[type="password"],
 	input[type="email"],
+	input[type="date"],
 	select,
 	textarea {
 		-moz-appearance: none;
@@ -2367,6 +2368,7 @@ input, select, textarea {
 		input[type="date"]:invalid,
 		input[type="password"]:invalid,
 		input[type="email"]:invalid,
+		input[type="date"]:invalid,
 		select:invalid,
 		textarea:invalid {
 			box-shadow: none;
@@ -2393,6 +2395,7 @@ input, select, textarea {
 	input[type="date"],
 	input[type="password"],
 	input[type="email"],
+	input[type="date"],
 	select {
 		height: 3rem;
 	}
@@ -2497,6 +2500,7 @@ input, select, textarea {
 	input[type="date"],
 	input[type="password"],
 	input[type="email"],
+	input[type="date"],
 	select,
 	textarea {
 		border-color: #CDCDCD;
@@ -2505,6 +2509,7 @@ input, select, textarea {
 		input[type="text"]:focus,
 		input[type="password"]:focus,
 		input[type="email"]:focus,
+		input[type="date"]:focus,
 		select:focus,
 		textarea:focus {
 			border-color: #18bfef;
