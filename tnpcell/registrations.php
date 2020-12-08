@@ -43,11 +43,12 @@
 									<thead>
 										<tr>
 											<th>Company Name</th>
+											<th>Student Name</th>
 											<th>Student Email</th>
 											<th>Recruiter Email</th>
-											<th>Job Profile(s)</th>
-											<th>Enrollment No.</th>
+											<th>Job Profile(s)</th>									
 											<th>Registration Date</th>
+											<th>Rounds</th>
 											<th>Status</th>
 											<th></th>
 											<th></th>
@@ -56,72 +57,20 @@
 									<tbody>
 										<tr>
 											<td>Intuit</td>
+											<td>Taniya</td>
 											<td>tanu@gmail.com</td>
 											<td>recruiter@intuit.com</td>											
-											<td>Software Engineer FTE</td>
-											<td>08901012017</td>
+											<td>SDE</td>
 											<td>26-08-2020</td>
+											<td>0</td>
 											<td>Registered</td>
 											<td><input type="button" name="register" value="Approve" class="small"></td>
-											<td><input type="button" name="editdata" value="Review" class="modals small"></td>
-										</tr>
-										<tr>
-											<td>Intuit</td>
-											<td>tanu@gmail.com</td>
-											<td>recruiter@intuit.com</td>											
-											<td>Software Engineer FTE</td>
-											<td>08901012017</td>
-											<td>26-08-2020</td>
-											<td>Registered</td>
-											<td><input type="button" name="register" value="Approve" class="small"></td>
-											<td><input type="button" name="editdata" value="Review" class="modals small"></td>
-										</tr>
-										<tr>
-											<td>Intuit</td>
-											<td>tanu@gmail.com</td>
-											<td>recruiter@intuit.com</td>											
-											<td>Software Engineer FTE</td>
-											<td>08901012017</td>
-											<td>26-08-2020</td>
-											<td>Registered</td>
-											<td><input type="button" name="register" value="Approve" class="small"></td>
-											<td><input type="button" name="editdata" value="Review" class="modals small"></td>
-										</tr>											
+											<td><a href="reviewreg.html" class="button small">Review</a></td>
+										</tr>										
 									</tbody>
 								</table>
 							</div>
 						
-						<div id="modal" class="modal">
-							<div class="modal-content">
-								<div class="modal-heading"><span class="close">&times;</span>Review Registrations</div>	
-								<div class="row">
-									<p class="col-2">Company Name</p>
-									<input type="text" value="Intuit" class="col-4" readonly />
-
-									<p class="col-2">Student Email</p>
-									<input type="text" value="tanu@gmail.com" class="col-4" readonly />
-
-									<p class="col-2">Recruiter Email</p>
-									<input type="text" value="recruiter@intuit.com" class="col-4" readonly />
-
-									<p class="col-2">Job Profile(s)</p>
-									<input type="text" value="Software Engineer FTE" class="col-4" readonly />
-
-									<p class="col-2">Enrollment No.</p>
-									<input type="text" value="08901012017" class="col-4" readonly />
-
-									<p class="col-2">Registration Date</p>
-									<input type="text" value="26-08-2020" class="col-4" readonly />
-
-									<p class="col-2">Status</p>
-									<input type="text" value="Registered" class="col-4" readonly />
-
-								</div>
-
-								<input type="button" name="submit" value="Save" /> 
-
-							</div>
-						</div>
 						
 					</div>
 
@@ -142,31 +91,5 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-			<script type="text/javascript">
-				
-				var modal = document.getElementById("modal");
-
-				var buttons = document.getElementsByClassName("modals");
-
-				var span = document.getElementsByClassName("close")[0];
-
-				for (var i = 0; i < buttons.length; i++) 
-				(function(i){
-					buttons[i].onclick = function() {
-						modal.style.display = "block";
-					}
-				})(i);
-
-				span.onclick = function() {
-				  modal.style.display = "none";
-				}
-
-				window.onclick = function(event) {
-				  if (event.target == modal) {
-				    modal.style.display = "none";
-				  }
-				}
-			</script>
-
 	</body>
 </html>
