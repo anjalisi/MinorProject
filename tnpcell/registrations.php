@@ -1,3 +1,10 @@
+<?php
+session_start();
+require_once "../connect.php";
+
+$email = $_SESSION['admin'];
+
+?>
 <!DOCTYPE HTML>
 
 <html>
@@ -46,47 +53,45 @@
 											<th>Student Email</th>
 											<th>Recruiter Email</th>
 											<th>Job Profile(s)</th>
-											<th>Enrollment No.</th>
 											<th>Registration Date</th>
+											<th>Rounds</th>
 											<th>Status</th>
 											<th></th>
 											<th></th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>Intuit</td>
-											<td>tanu@gmail.com</td>
-											<td>recruiter@intuit.com</td>											
-											<td>Software Engineer FTE</td>
-											<td>08901012017</td>
-											<td>26-08-2020</td>
-											<td>Registered</td>
-											<td><input type="button" name="register" value="Approve" class="small"></td>
-											<td><input type="button" name="editdata" value="Review" class="modals small"></td>
-										</tr>
-										<tr>
-											<td>Intuit</td>
-											<td>tanu@gmail.com</td>
-											<td>recruiter@intuit.com</td>											
-											<td>Software Engineer FTE</td>
-											<td>08901012017</td>
-											<td>26-08-2020</td>
-											<td>Registered</td>
-											<td><input type="button" name="register" value="Approve" class="small"></td>
-											<td><input type="button" name="editdata" value="Review" class="modals small"></td>
-										</tr>
-										<tr>
-											<td>Intuit</td>
-											<td>tanu@gmail.com</td>
-											<td>recruiter@intuit.com</td>											
-											<td>Software Engineer FTE</td>
-											<td>08901012017</td>
-											<td>26-08-2020</td>
-											<td>Registered</td>
-											<td><input type="button" name="register" value="Approve" class="small"></td>
-											<td><input type="button" name="editdata" value="Review" class="modals small"></td>
-										</tr>											
+										
+									<?php
+										$stmt = $pdo->query("SELECT * FROM student_registrations");
+										while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+											echo "<tr>
+											<td>";
+											echo (htmlentities($row['rec_name']));
+											echo ("</td>
+											<td>");
+											echo (htmlentities($row['stu_id']));
+											echo ("</td>
+											<td>");
+											echo (htmlentities($row['rec_id']));
+											echo ("</td>
+											<td>");
+											echo (htmlentities($row['profile']));
+											echo ("</td>
+											<td>");
+											echo (htmlentities($row['applied_date']));
+											echo ("</td>
+											<td>");
+											echo (htmlentities($row['rounds']));
+											echo ("</td>
+											<td>");
+											echo (htmlentities($row['status']));
+											echo ("</td>
+											<td><input type='button' name='register' value='Approve' class='small'></td>
+											<td><input type='button' name='editdata' value='Review' class='modals small'></td>
+										</tr>\n");
+										}
+									?>
 									</tbody>
 								</table>
 							</div>
