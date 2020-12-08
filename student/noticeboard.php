@@ -60,7 +60,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		<nav id="nav">
 			<ul class="links">
 				<li class="active"><a href="noticeboard.php">Notice Board</a></li>
-				<li><a href="registrations.html">Registrations</a></li>
+				<li><a href="registrations.php">Registrations</a></li>
 				<li><a href="profile.php">Profile</a></li>
 			</ul>
 		</nav>
@@ -87,7 +87,6 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 				if (isset($_POST['submit'])) {
 					$stu_id = $_POST['stu_id'];
-					$rec_id = $_POST['rec_id'];
 					$cgpa_stu = "";
 					$name = "";
 					$activeBack = "";
@@ -98,7 +97,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 					$resume = "";
 					$com_name = "";
 					$jd = "";
-					$deadline_date = "";
+					$deadline_date = date("Y-m-d");
 					$aback = "";
 					$job_profiles = "";
 					$contact = "";
@@ -116,8 +115,9 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 						$year = htmlentities($row['grad_year']);
 						$resume = htmlentities($row['resume']);
 					}
+					$rec_id = $_POST['rec_id'];
 					$stmt1 = $pdo->query("SELECT * FROM company_data where company_email='$rec_id'");
-					while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+					while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)) {
 						$role = htmlentities($row['role']);
 						$cgpa_req = htmlentities($row['cgpa']);
 						$job_profiles = htmlentities($row['job_profiles']);
@@ -128,88 +128,41 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 						$dback = htmlentities($row['deadback']);
 					}
 
-					if ($cgpa_req > $cgpa_stu) {
-						//MODAL 
-						//YOU CAN NOT REGISTER HERE
-					} else {
+					// if ($cgpa_req > $cgpa_stu) {
+					// 	//MODAL 
+					// 	//YOU CAN NOT REGISTER HERE
+					// } else {
 						$sql = "INSERT INTO student_registrations(stu_id, rec_id, applied_date, deadline_date, 
 											rec_name, rounds, status, stu_name, stu_year, role, stu_cgpa, rec_jd, stu_res, aback,
 											dback, approve, stu_contact, profile)
 											values(:stu_id,:rec_id, :adate, :ddate, :rec_name, :rounds, :status, :stu_name, :stu_year,
 											:role, :stu_cgpa, :rec_jd, :stu_res, :aback,
 											:dback, :approve, :stu_contact,:profile)";
-<<<<<<< HEAD
-											
-											$stmt = $pdo->prepare($sql);
-											//PLS INSERT HERE
-											$stmt->execute(array(
-												':name' => $_POST['comp_name'],
-												':email' => $_POST['comp_email'],
-												':pass' => $_POST['comp_pass'],
-												':hr' => $_POST['hr_name'],
-												':id' => $id
-											));
-											$_SESSION["username"] = $_POST["email"];  
-
-											header("Location:recruiter/applications.php");
-											return;
-										}
-									}
-
-									if($year==3){
-										$stmt = $pdo->query("SELECT * FROM company_data where approve=1 and role='Summer Intern'");
-										
-										while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
-
-											$id= htmlentities($row['company_email']);
-											$stmt0= $pdo->query("SELECT * FROM student_registrations where rec_id=$id and stu_id=$email");
-											$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
-											
-											echo "<article><header>
-=======
 
 						$stmt = $pdo->prepare($sql);
 						//PLS INSERT HERE
 						$stmt->execute(array(
 							':stu_id' => $stu_id,
 							':rec_id' => $rec_id,
-							':adate' => $applied_date,
+							':adate' => date("Y-m-d"),
 							':ddate' => $deadline_date,
-							':rec_name' => $rec_name,
-							':rounds' => $rounds,
-							':status' => $status,
-							':stu_name' => $stu_name,
-							':stu_year' => $stu_year,
+							':rec_name' => $com_name,
+							':rounds' => 0,
+							':status' => "Registered",
+							':stu_name' => $name,
+							':stu_year' => $year,
 							':role' => $role,
-							':stu_cgpa' => $stu_cgpa,
-							':rec_jd' => $rec_jd,
-							':stu_res' => $stu_res,
+							':stu_cgpa' => $cgpa_stu,
+							':rec_jd' => $jd,
+							':stu_res' => $resume,
 							':aback' => $aback,
 							':dback' => $dback,
-							':approve' => $approve,
-							':stu_contact' => $stu_contact,
-							':profile' => $profile,
+							':approve' => 0,
+							':stu_contact' => $contact,
+							':profile' => $job_profiles,
 
 						));
-						$stmt->execute(array(
-							':name' => $_POST['comp_name'],
-							':email' => $_POST['comp_email'],
-							':pass' => $_POST['comp_pass'],
-							':hr' => $_POST['hr_name'],
-							':id' => $id
-						));
-						$stmt->execute(array(
-							':name' => $_POST['comp_name'],
-							':email' => $_POST['comp_email'],
-							':pass' => $_POST['comp_pass'],
-							':hr' => $_POST['hr_name'],
-							':id' => $id
-						));
-						$_SESSION["username"] = $_POST["email"];
-
-						header("Location:recruiter/applications.php");
-						return;
-					}
+					
 				}
 
 				if ($year == 3) {
@@ -217,7 +170,6 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 					while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 						$id = htmlentities($row['id']);
 						echo "<article><header>
->>>>>>> e2f9cb35cd8f6cfc1b37eda57fd7fbb9eb25e8ef
 													<h2><a href='#'>";
 						echo (htmlentities($row['company_name']));
 						echo ("</a></h2>
@@ -299,7 +251,6 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 											</tbody>
 											</table>
 										<ul class='actions special'>
-<<<<<<< HEAD
 											<li>
 											<form method='post'>
 												<input type='hidden' value='$email' name='stu_id'/>
@@ -315,20 +266,10 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 									while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 
 										$id= htmlentities($row['company_email']);
-										$stmt0= $pdo->query("SELECT * FROM student_registrations where rec_id=$id and stu_id=$email");
-										$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+										$stmt0= $pdo->query("SELECT * FROM student_registrations where rec_id='$id' and stu_id='$email'");
+										$row0 = $stmt0->fetchAll(PDO::FETCH_ASSOC);
 										
 										echo "<article><header>
-=======
-											<li><form method='post'><input type='text'/><input type='submit' class='button' name='submit' value='Register'/></form></li>
-										</ul></article>						");
-					}
-				} else {
-					$stmt = $pdo->query("SELECT * FROM company_data where approve=1 and role<>'Summer Intern'");
-					while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-						$id = htmlentities($row['company_email']);
-						echo "<article><header>
->>>>>>> e2f9cb35cd8f6cfc1b37eda57fd7fbb9eb25e8ef
 												<h2><a href='#'>";
 						echo (htmlentities($row['company_name']));
 						echo ("</a></h2>
@@ -413,68 +354,17 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 										<li>
 										<form method='post'>
 											<input type='hidden' value='$email' name='stu_id'/>
-											<input type='hidden' value='$id' name='rec_id'/>
-											<input type='submit' class='button' name='submit' value='Registered' readonly/>
-										</form></li>
-<<<<<<< HEAD
-									</ul></article>	");
-									}
-								}
+											<input type='hidden' value='$id' name='rec_id'/>");
+						if(count($row0)){
+							echo("<input type='text' class='button disabled' value='REgistered' readonly/> ");
+						}				
+						else{
+							echo("<input type='submit' class='button' name='submit' value='Register'/>");
+						}
 							
-
-								?>
-								
-							</section>
-
-						<!-- Footer -->
-							<footer>
-								<div class="pagination">
-									<!--<a href="#" class="previous">Prev</a>-->
-									<a href="#" class="page active">1</a>
-									<a href="#" class="page">2</a>
-									<a href="#" class="page">3</a>
-									<span class="extra">&hellip;</span>
-									<a href="#" class="page">8</a>
-									<a href="#" class="page">9</a>
-									<a href="#" class="page">10</a>
-									<a href="#" class="next">Next</a>
-								</div>
-							</footer>
-
-					</div>
-
-
-				<!-- Copyright -->
-					<div id="copyright">
-						<p> &copy; Copyright 2020 | Design: Team 23</p>
-					</div>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script type="text/javascript">
-
-				mybutton = document.getElementById("totop");
-
-				window.onscroll = function() {scrollFunction()};
-
-				function scrollFunction() {
-				  if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
-				    mybutton.style.display = "block";
-				  } else {
-				    mybutton.style.display = "none";
-				  }
-=======
+										echo("</form></li>
 									</ul></article>						");
 					}
->>>>>>> e2f9cb35cd8f6cfc1b37eda57fd7fbb9eb25e8ef
 				}
 
 

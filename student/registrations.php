@@ -1,3 +1,10 @@
+<?php
+session_start();
+require_once "../connect.php";
+
+$email = $_SESSION['email'];
+
+?>
 <!DOCTYPE HTML>
 
 <html>
@@ -22,7 +29,7 @@
 					<nav id="nav">
 						<ul class="links">
 							<li><a href="noticeboard.php">Notice Board</a></li>
-							<li class="active"><a href="registrations.html">Registrations</a></li>
+							<li class="active"><a href="registrations.php">Registrations</a></li>
 							<li><a href="profile.php">Profile</a></li>
 						</ul>
 					</nav>
@@ -56,54 +63,34 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>1.</td>
-											<td><a href="#">Intuit FTE</a></td>
-											<td>24-08-2020</td>
-											<td>26-08-2020</td>
-											<td>3</td>
-											<td>Test Scheduled</td>
-										</tr>
-										<tr>
-											<td>2.</td>
-											<td><a href="#">Microsoft FTE</a></td>
-											<td>23-08-2020</td>
-											<td>25-08-2020</td>
-											<td>4</td>
-											<td>Shortlisted for Interview</td>
-										</tr>
-										<tr>
-											<td>3.</td>
-											<td><a href="#">Intuit FTE</a></td>
-											<td>24-08-2020</td>
-											<td>26-08-2020</td>
-											<td>2</td>
-											<td>Results Announced</td>
-										</tr>
-										<tr>
-											<td>4.</td>
-											<td><a href="#">Intuit FTE</a></td>
-											<td>24-08-2020</td>
-											<td>26-08-2020</td>
-											<td>3</td>
-											<td>Registered</td>
-										</tr>
-										<tr>
-											<td>5.</td>
-											<td><a href="#">Intuit FTE</a></td>
-											<td>24-08-2020</td>
-											<td>26-08-2020</td>
-											<td>3</td>
-											<td>Registered</td>
-										</tr>
-										<tr>
-											<td>6.</td>
-											<td><a href="#">Intuit FTE</a></td>
-											<td>24-08-2020</td>
-											<td>26-08-2020</td>
-											<td>3</td>
-											<td>Registered</td>
-										</tr>
+									<?php
+										$stmt = $pdo->query("SELECT * FROM student_registrations where stu_id='$email' and approve=1");
+										$x=1;
+										while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+											echo "<tr>
+											<td>";
+											echo ($x++);
+											echo ("</td>
+											<td>");
+											echo (htmlentities($row['rec_name']));
+											echo ("</td>
+											<td>");
+											echo (htmlentities($row['applied_date']));
+											echo ("</td>
+											<td>");
+											echo (htmlentities($row['deadline_date']));
+											echo ("</td>
+											<td>");
+											echo (htmlentities($row['rounds']));
+											echo ("</td>
+											<td>");
+											echo (htmlentities($row['status']));
+											echo ("</td>
+											</tr>");
+										}
+										?>
+
+									
 									</tbody>
 								</table>
 							</div>
