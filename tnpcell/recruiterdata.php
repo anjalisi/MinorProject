@@ -70,8 +70,16 @@ $email = $_SESSION['admin'];
 					</thead>
 					<tbody>
 						<?php
+						if(isset($_POST['approve'])){
+							$rec_id= $_POST['rec_id'];
+							$stmt = $pdo->prepare("UPDATE company_data SET approve=1 where company_email=:email");
+							$stmt->execute(array(':email' => $rec_id));
+							
+						}
 						$stmt = $pdo->query("SELECT * FROM company_data");
 						while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+							$rec_id=htmlentities($row['company_email']);
+							$approve = htmlentities($row['approve']);
 							echo "<tr>
 							<td>";
 							echo (htmlentities($row['company_name']));
@@ -114,9 +122,20 @@ $email = $_SESSION['admin'];
 							echo ("</td>
 							<td>");
 							echo ("</td>
-							<td><input type='button' name='notice' value='Post' class='small'></td>
-							<td><input type='button' name='editrec' value='Edit' class='modals small'></td>
-						</tr>\n");
+							<td><form method='post'>
+							<input type='hidden' value='$rec_id' name='rec_id'/>");
+							if($approve == 0)
+							{
+								echo("
+								<input type='submit' class='small' name='approve' value='Post'/>-
+								</form></td>");
+							}
+							else{
+								echo("
+								<input type='submit' class='small disabled' name='approve' value='Posted' />
+								</form></td>");
+							}
+							echo("<td><a href='editstudent.html' class='button small'>Edit</a></td>\n");
 						}
 						?>
 
@@ -124,82 +143,6 @@ $email = $_SESSION['admin'];
 				</table>
 			</div>
 			
-			<div id="modal" class="modal">
-				<div class="modal-content">
-					<div class="modal-heading"><span class="close">&times;</span>Edit Details</div>	
-					<div class="row">
-						<p class="col-2">Company Name</p>
-						<input type="text" value="Intuit" class="col-4" readonly />
-
-						<p class="col-2">Company ID</p>
-						<input type="text" value="Intuit" class="col-4" readonly />
-
-						<p class="col-2">Hiring Manager</p>
-						<input type="text" value="Intuit" class="col-4" readonly />
-
-						<p class="col-2">Domain</p>
-						<input type="text" value="Intuit" class="col-4" readonly />
-
-						<p class="col-2">Email</p>
-						<input type="text" value="Intuit" class="col-4" readonly />
-
-						<p class="col-2">Contact No.</p>
-						<input type="text" value="Intuit" class="col-4" readonly />
-
-						<p class="col-2">Job Profile(s)</p>
-						<input type="text" value="Intuit" class="col-4" readonly />
-
-						<p class="col-2">Duration</p>
-						<input type="text" value="role" class="col-4" readonly />
-
-						<p class="col-2">Location</p>
-						<input type="text" value="Intuit" class="col-4" readonly />
-
-						<p class="col-2">Base Compensation</p>
-						<input type="text" value="Intuit" class="col-4" readonly />
-
-						<p class="col-2">CTC</p>
-						<input type="text" value="Intuit" class="col-4" readonly />
-
-						<p class="col-2">Test Date</p>
-						<input type="text" value="Intuit" class="col-4" readonly />
-
-						<p class="col-2">Interview Date</p>
-						<input type="text" value="Intuit" class="col-4" readonly />	
-
-						<p class="col-2">Deadline</p>
-						<input type="text" value="Intuit" class="col-4" readonly />
-
-						<p class="col-2">Min. Shortlists</p>
-						<input type="text" value="Intuit" class="col-4" readonly />	
-
-						<p class="col-2">POC Name</p>
-						<input type="text" value="Intuit" class="col-4" readonly />
-
-						<p class="col-2">POC Contact No.</p>
-						<input type="text" value="Intuit" class="col-4" readonly />
-
-						<p class="col-2">Job Description</p>
-						<input type="text" value="Intuit" class="col-4" readonly />
-
-						<p class="col-2">CGPA Eligibility</p>
-						<input type="text" value="Intuit" class="col-4" readonly />
-
-						<p class="col-2">Dead Backlogs</p>
-						<input type="text" value="Intuit" class="col-4" readonly />	
-
-						<p class="col-2">Active Backlogs</p>
-						<input type="text" value="Intuit" class="col-4" readonly />
-
-						<p class="col-2">Result Date</p>
-						<input type="text" value="Intuit" class="col-4" readonly />		
-					</div>
-
-					<input type="button" name="submit" value="Save" /> 
-
-				</div>
-			</div>
-
 		</div>
 
 
@@ -219,31 +162,6 @@ $email = $_SESSION['admin'];
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
-	<script type="text/javascript">
-				
-		var modal = document.getElementById("modal");
-
-		var buttons = document.getElementsByClassName("modals");
-
-		var span = document.getElementsByClassName("close")[0];
-
-		for (var i = 0; i < buttons.length; i++) 
-		(function(i){
-			buttons[i].onclick = function() {
-				modal.style.display = "block";
-			}
-		})(i);
-
-		span.onclick = function() {
-		  modal.style.display = "none";
-		}
-
-		window.onclick = function(event) {
-		  if (event.target == modal) {
-		    modal.style.display = "none";
-		  }
-		}
-	</script>
 
 </body>
 

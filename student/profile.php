@@ -35,8 +35,8 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		<!-- Nav -->
 		<nav id="nav">
 			<ul class="links">
-				<li><a href="noticeboard.html#header">Notice Board</a></li>
-				<li><a href="registrations.html">Registrations</a></li>
+				<li><a href="noticeboard.php">Notice Board</a></li>
+				<li><a href="registrations.php">Registrations</a></li>
 				<li class="active"><a href="profile.php">Profile</a></li>
 			</ul>
 		</nav>

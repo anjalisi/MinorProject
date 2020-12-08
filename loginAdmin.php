@@ -14,7 +14,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $count = $statement->rowCount();
     if ($count > 0) {
         $_SESSION["admin"] = $_POST["email"];
-        header("Location:tnpcell/registrations.php");
+        header("Location:tnpcell/studentdata.php");
         return;
     } else {
         $_SESSION['error'] = "Invalid Username or Password";

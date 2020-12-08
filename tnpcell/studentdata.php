@@ -147,8 +147,7 @@ $email = $_SESSION['admin'];
 								<input type='submit' class='small disabled' name='block' value='Blocked' />
 								</form></td>");
 							}
-							echo("<td><input type='button' name='editstu' value='Edit' class='modals small'></td>
-						</tr>\n");
+							echo("<td><a href='editstudent.php' class='button small'>Edit</a></td>\n");
 						}
 						?>
 
@@ -157,45 +156,6 @@ $email = $_SESSION['admin'];
 				</table>
 			</div>
 			
-			<div id="modal" class="modal">
-				<div class="modal-content">
-					<div class="modal-heading"><span class="close">&times;</span>Edit Details</div>	
-					<div class="row">
-						<p class="col-2">Name</p>
-						<input type="text" value="Kritesha" class="col-4" readonly />
-
-						<p class="col-2">Enrollment No.</p>
-						<input type="text" value="08801012017" class="col-4" readonly />
-
-						<p class="col-2">Email</p>
-						<input type="text" value="tkri@gmail.com" class="col-4" readonly />
-
-						<p class="col-2">Contact No.</p>
-						<input type="text" value="1234567890" class="col-4" readonly />
-
-						<p class="col-2">CGPA</p>
-						<input type="text" value="8.9" class="col-4" readonly />
-
-						<p class="col-2">Active Backs</p>
-						<input type="text" value="0" class="col-4" readonly />
-
-						<p class="col-2">Dead Backs</p>
-						<input type="text" value="0" class="col-4" readonly />
-
-						<p class="col-2">Year</p>
-						<input type="text" value="4" class="col-4" readonly />
-
-						<p class="col-2">Resume Link</p>
-						<input type="text" value="drive.google.com/resumelinkdummy" class="col-4" readonly />	
-
-						<p class="col-2">LOR</p>
-						<input type="text" value="None" class="col-4" readonly />	
-					</div>
-
-					<input type="button" name="submit" value="Save" /> 
-
-				</div>
-			</div>
 
 		</div>
 
@@ -232,30 +192,6 @@ $email = $_SESSION['admin'];
 
 		function topFunction() {
 			document.documentElement.scrollTop = 0;
-		}
-
-
-		var modal = document.getElementById("modal");
-
-		var buttons = document.getElementsByClassName("modals");
-
-		var span = document.getElementsByClassName("close")[0];
-
-		for (var i = 0; i < buttons.length; i++) 
-		(function(i){
-			buttons[i].onclick = function() {
-				modal.style.display = "block";
-			}
-		})(i);
-
-		span.onclick = function() {
-		  modal.style.display = "none";
-		}
-
-		window.onclick = function(event) {
-		  if (event.target == modal) {
-		    modal.style.display = "none";
-		  }
 		}
 	</script>
 
