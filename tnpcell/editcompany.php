@@ -150,10 +150,10 @@ if(isset($_POST['submit'])){
 									<div class="col-4 col-12-xsmall">
 										Minimum Shortlists<input type="text" name="minshrt" id="mins" value="<?=$min?>">
 									</div>
-									<div class="col-6 col-12-xsmall">
+									<div class="col-4 col-12-xsmall">
 										POC Name<input type="text" name="poc" id="pocn" value="<?=$poc?>">
 									</div>
-									<div class="col-6 col-12-xsmall">
+									<div class="col-4 col-12-xsmall">
 										POC Contact No.<input type="text" name="poc_contact" id="pocc" value="<?=$poc_contact?>">
 									</div>
 									<div class="col-3 col-12-xsmall">
