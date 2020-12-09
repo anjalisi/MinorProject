@@ -373,7 +373,7 @@ $status= htmlentities($rows['status']);
 				}
 			}
 			else{
-				echo("<h3>We have closed registrations for the session.</h3>");
+				echo("<h4>We have closed registrations for the session.</h4>");
 			}
 
 				?>
