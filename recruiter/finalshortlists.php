@@ -46,8 +46,8 @@ $job= htmlentities($rows['job_profiles']);
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
-							<li><a href="applications.html">Applications</a></li>
-							<li><a href="profile.html">Profile</a></li>
+							<li><a href="applications.php">Applications</a></li>
+							<li><a href="profile.php">Profile</a></li>
 							<li class="active"><a href="finalshortlists.html">Shortlists</a></li>
 						</ul>
 					</nav>
@@ -91,7 +91,7 @@ $job= htmlentities($rows['job_profiles']);
 												$dback= htmlentities($row['dback']);
 												$duration= htmlentities($row['role']);
 												echo('<tr><td> <a href="#">');
-												echo($name);
+												echo($stu_name);
 												echo('</a> </td>
 											<td>');
 												echo($stu_contact);
@@ -115,7 +115,6 @@ $job= htmlentities($rows['job_profiles']);
 												echo($duration);
 												echo('</td></tr>');
 											}					
-
 										?>
 									</tbody>
 								</table>

@@ -63,7 +63,7 @@ if (isset($_POST['submit'])) {
 				<li><a href="recruiterdata.php">Recruiter Database</a></li>
 				<li><a href="registrations.php">Registrations Database</a></li>
 				<li><a href="placed.php">Placed Students</a></li>
-				<li class="active"><a href="editstudent.html">Edit Student</a></li>
+				<li class="active"><a href="editstudent.php">Edit Student</a></li>
 			</ul>
 		</nav>
 

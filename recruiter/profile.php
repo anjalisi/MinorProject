@@ -121,7 +121,7 @@ $rows= $stmt->fetchAll(PDO::FETCH_ASSOC);
 											<td><?= $dback?></td>
 										</tr>
 										<tr>
-											<td>Role</td>
+											<td>Duration</td>
 											<td><?= $role?></td>
 										</tr>
 										<tr>

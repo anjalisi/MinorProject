@@ -151,7 +151,7 @@ if(isset($_POST['submit'])){
 										Job Profile(s)<input type="text" name="jobpr" id="jobpr" value="<?= $job_profiles?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Role<select name="role" >
+										Duration<select name="role" >
 											<option selected><?=$role?></option>
 											<option >6 Month Intern</option>
 											<option >Full Time Employee</option>

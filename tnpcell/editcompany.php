@@ -157,16 +157,16 @@ if(isset($_POST['submit'])){
 										POC Contact No.<input type="text" name="poc_contact" id="pocc" value="<?=$poc_contact?>">
 									</div>
 									<div class="col-3 col-12-xsmall">
-										Test Date<input type="date" name="tdate" id="tdate" value="<?=$test_date?>">
+										Test Date *<input type="date" name="tdate" id="tdate" value="<?=$test_date?>" required>
 									</div>
 									<div class="col-3 col-12-xsmall">
-										Interview Date<input type="date" name="idate" id="idate" value="<?=$interview_date?>">
+										Interview Date *<input type="date" name="idate" id="idate" value="<?=$interview_date?>" required>
 									</div>
 									<div class="col-3 col-12-xsmall">
-										Deadline Date<input type="date" name="ddate" id="rdate" value="<?=$deadline_date?>">
+										Deadline Date *<input type="date" name="ddate" id="rdate" value="<?=$deadline_date?>" required>
 									</div>
 									<div class="col-3 col-12-xsmall">
-										Result Date<input type="date" name="rdate" id="rdate" value="<?=$rdate?>">
+										Result Date *<input type="date" name="rdate" id="rdate" value="<?=$rdate?>" required>
 									</div>
 									<div class="col-4 col-12-xsmall">
 										CGPA Eligibility<input type="text" name="cgpa" id="cgpa" value="<?=$cgpa?>">
