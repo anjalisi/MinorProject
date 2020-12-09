@@ -48,133 +48,61 @@ $email = $_SESSION['admin'];
 									<h1>Placed Students</h1>
 								</header>							
 							</section>
-
-							<h2 class="company-name">Intuit</h2>
-							<div class="table-wrapper">
-								<table>
-									<thead>
-										<tr>
-											<th>S.No.</th>
-											<th>Full Name</th>
-											<th>Email</th>
-											<th>Course</th>
-											<th>Year</th>
-											<th>Profile</th>
-											<th>Other Offers</th>
-											<th>Offer Status</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>1.</td>
-											<td> <a href="#">Shreya Srivatsan</a> </td>
-											<td>shreya@gmail.com</td>
-											<td>BTech</td>
-											<td>4th</td>
-											<td>SDE</td>
-											<td>No</td>
-											<td><input type="button" name="accept" value="Accept" class="small"></td>
-											<td><input type="button" name="reject" value="Reject" class="small"></td>
-										</tr>
-										<tr>
-											<td>2.</td>
-											<td> <a href="#">Anjali Singh</a> </td>
-											<td>anjo@gmail.com</td>
-											<td>BTech</td>
-											<td>4th</td>
-											<td>SDE</td>
-											<td>No</td>
-											<td><input type="button" name="accept" value="Accept" class="small"></td>
-											<td><input type="button" name="reject" value="Reject" class="small"></td>
-										</tr>
-										<tr>
-											<td>3.</td>
-											<td> <a href="#">Taniya Rawat</a> </td>
-											<td>tanu@gmail.com</td>
-											<td>BTech</td>
-											<td>4th</td>
-											<td>SDE</td>
-											<td>No</td>
-											<td><input type="button" name="accept" value="Accept" class="small"></td>
-											<td><input type="button" name="reject" value="Reject" class="small"></td>
-										</tr>
-										<tr>
-											<td>4.</td>
-											<td> <a href="#">ABCD</a> </td>
-											<td>abcd.xyz.123@gmail.com</td>
-											<td>BTech</td>
-											<td>4th</td>
-											<td>SDE</td>
-											<td>No</td>
-											<td><input type="button" name="accept" value="Accept" class="small"></td>
-											<td><input type="button" name="reject" value="Reject" class="small"></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-
-							<h2 class="company-name">Microsoft</h2>
-							<div class="table-wrapper">
-								<table>
-									<thead>
-										<tr>
-											<th>S.No.</th>
-											<th>Full Name</th>
-											<th>Email</th>
-											<th>Course</th>
-											<th>Year</th>
-											<th>Profile</th>
-											<th>Other Offers</th>
-											<th>Offer Status</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>1.</td>
-											<td> <a href="#">Shreya Srivatsan</a> </td>
-											<td>shreya@gmail.com</td>
-											<td>BTech</td>
-											<td>4th</td>
-											<td>SDE</td>
-											<td>No</td>
-											<td><input type="button" name="accept" value="Accept" class="small"></td>
-											<td><input type="button" name="reject" value="Reject" class="small"></td>
-										</tr>
-										<tr>
-											<td>2.</td>
-											<td> <a href="#">Anjali Singh</a> </td>
-											<td>anjo@gmail.com</td>
-											<td>BTech</td>
-											<td>4th</td>
-											<td>SDE</td>
-											<td>No</td>
-											<td><input type="button" name="accept" value="Accept" class="small"></td>
-											<td><input type="button" name="reject" value="Reject" class="small"></td>
-										</tr>
-										<tr>
-											<td>3.</td>
-											<td> <a href="#">Taniya Rawat</a> </td>
-											<td>tanu@gmail.com</td>
-											<td>BTech</td>
-											<td>4th</td>
-											<td>SDE</td>
-											<td>No</td>
-											<td><input type="button" name="accept" value="Accept" class="small"></td>
-											<td><input type="button" name="reject" value="Reject" class="small"></td>
-										</tr>
-										<tr>
-											<td>4.</td>
-											<td> <a href="#">ABCD</a> </td>
-											<td>abcd.xyz.123@gmail.com</td>
-											<td>BTech</td>
-											<td>4th</td>
-											<td>SDE</td>
-											<td>No</td>
-											<td><input type="button" name="accept" value="Accept" class="small"></td>
-											<td><input type="button" name="reject" value="Reject" class="small"></td>
-										</tr>
-									</tbody>
-								</table>
+							<?php
+								$stmt = $pdo->query("SELECT * FROM company_data");
+								while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+									$rec_id=htmlentities($row['company_email']);
+									
+									$com_name = htmlentities($row['company_name']);
+									echo('<h2 class="company-name">');
+									echo($com_name);
+									echo('</h2>
+									<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Student Email</th>
+													<th>Recruiter Email</th>
+													<th>Student Name</th>
+													<th>Year</th>
+													<th>CGPA</th>
+													<th>Job Profile(s)</th>
+													<th>Duration</th>
+												</tr>
+											</thead>
+											<tbody>');
+									$stmt1= $pdo->query("SELECT * from student_registrations where rec_id='$rec_id' and status='Selected'");
+									while($row= $stmt1->fetch(PDO::FETCH_ASSOC)){
+										echo "<tr>
+											<td>";
+											echo (htmlentities($row['stu_id']));
+											echo ("</td>
+											<td>");
+											echo (htmlentities($row['rec_id']));
+											echo ("</td>
+											<td>");
+											echo (htmlentities($row['stu_name']));
+											echo ("</td>
+											<td>");
+											echo (htmlentities($row['stu_year']));
+											echo ("</td>
+											<td>");
+											echo (htmlentities($row['stu_cgpa']));
+											echo ("</td>
+											<td>");
+											echo (htmlentities($row['profile']));
+											echo ("</td>
+											<td>");
+											echo (htmlentities($row['role']));
+											echo ("</td>
+										</tr></tbody>
+										</table>
+									</div>\n");
+							
+									}
+									//
+								}		
+							?>
 							</div>						
 						
 					</div>
