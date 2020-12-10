@@ -132,7 +132,7 @@ $status = htmlentities($rows['status']);
 							$dback = htmlentities($row['deadback']);
 						}
 
-						if ((float)$cgpa_req <= (float)$cgpa_stu && (int)$activeBack <= (int)$aback && (int)$deadBack <= (int)$dback) {
+						if ((float)$cgpa_req <= (float)$cgpa_stu && $activeBack <= $aback && $deadBack <= $dback) {
 							$sql = "INSERT INTO student_registrations(stu_id, rec_id, applied_date, deadline_date, 
 											rec_name, rounds, status, stu_name, stu_year, role, stu_cgpa, rec_jd, stu_res, aback,
 											dback, approve, stu_contact, profile)
