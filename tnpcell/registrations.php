@@ -105,12 +105,13 @@ $email = $_SESSION['admin'];
 											echo (htmlentities($row['status']));
 											echo ("</td>
 											<td><a href='$str' class='button small'>Review</a></td>
-										</tr></tbody>
-										</table>
-									</div>\n");
+										</tr>");
 							
 									}
-									//
+									echo("</tbody>
+									</table>
+								</div>\n");
+									
 								}		
 							?>
 							<!-- <h2 class="company-name">Intuit</h2>
@@ -154,36 +155,6 @@ $email = $_SESSION['admin'];
 										</tr>
 									</thead>
 									<tbody>
-										
-									<?php
-										$stmt = $pdo->query("SELECT * FROM student_registrations");
-										while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-											echo "<tr>
-											<td>";
-											echo (htmlentities($row['rec_name']));
-											echo ("</td>
-											<td>");
-											echo (htmlentities($row['stu_id']));
-											echo ("</td>
-											<td>");
-											echo (htmlentities($row['rec_id']));
-											echo ("</td>
-											<td>");
-											echo (htmlentities($row['profile']));
-											echo ("</td>
-											<td>");
-											echo (htmlentities($row['applied_date']));
-											echo ("</td>
-											<td>");
-											echo (htmlentities($row['rounds']));
-											echo ("</td>
-											<td>");
-											echo (htmlentities($row['status']));
-											echo ("</td>
-											<td><a href='reviewreg.php' class='button small'>Approve</a></td>
-										</tr>\n");
-										}
-									?>
 									</tbody>
 								</table> -->
 							</div>
