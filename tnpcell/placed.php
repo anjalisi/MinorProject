@@ -95,12 +95,12 @@ $email = $_SESSION['admin'];
 											<td>");
 											echo (htmlentities($row['role']));
 											echo ("</td>
-										</tr></tbody>
-										</table>
-									</div>\n");
+										</tr>");
 							
 									}
-									//
+									echo("</tbody>
+									</table>
+								</div>\n");
 								}		
 							?>
 							</div>						
