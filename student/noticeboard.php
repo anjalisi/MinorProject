@@ -132,7 +132,7 @@ $status = htmlentities($rows['status']);
 							$dback = htmlentities($row['deadback']);
 						}
 
-						if ($cgpa_req <= $cgpa_stu && $activeBack <= $aback && $deadBack <= $dback) {
+						if ((float)$cgpa_req <= (float)$cgpa_stu && (int)$activeBack <= (int)$aback && (int)$deadBack <= (int)$dback) {
 							$sql = "INSERT INTO student_registrations(stu_id, rec_id, applied_date, deadline_date, 
 											rec_name, rounds, status, stu_name, stu_year, role, stu_cgpa, rec_jd, stu_res, aback,
 											dback, approve, stu_contact, profile)
@@ -259,7 +259,7 @@ $status = htmlentities($rows['status']);
 											</form></li>
 										</ul></article>	");
 							}
-						} else {
+						} else if($year == 4){
 							$stmt = $pdo->query("SELECT * FROM company_data where approve=1 and role<>'Summer Intern'");
 							while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
