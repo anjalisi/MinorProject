@@ -93,7 +93,7 @@ $job= htmlentities($rows['job_profiles']);
 						<article class="post featured">
 							<header class="major">
 								<h2>Applications</h2>
-							</header>
+							</header>	
 						</article>
 
 						<h3><?=$job?> - <?=$duration?></h3>

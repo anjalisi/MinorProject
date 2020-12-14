@@ -78,6 +78,11 @@ $status= htmlentities($rows['status']);
 				<header class="major">
 					<h2>Notice Board</h2>
 				</header>
+				<p>
+					Updates you about all the companies visiting the campus. You can register if and only if you fulfill the requirements of the <br>respective company. 
+					<br />
+					<i><b>Note: </b>Register before the deadline mentioned for each company.</i>
+					</p>	
 			</article>
 
 			<!-- Posts -->
@@ -140,41 +145,41 @@ $status= htmlentities($rows['status']);
 							$str= rand();
 							$vkey= md5($str);
 							$id= rand(1000,999999);
-							
-							$sql = "INSERT INTO student_registrations(id, stu_id, rec_id, applied_date, deadline_date, 
-												rec_name, rounds, status, stu_name, stu_year, role, stu_cgpa, rec_jd, stu_res, aback,
-												dback, approve, stu_contact, profile)
-												values(:id,:stu_id,:rec_id, :adate, :ddate, :rec_name, :rounds, :status, :stu_name, :stu_year,
-												:role, :stu_cgpa, :rec_jd, :stu_res, :aback,
-												:dback, :approve, :stu_contact,:profile)";
+							if ((float)$cgpa_req <= (float)$cgpa_stu && $activeBack <= $aback && $deadBack <= $dback) {
+									$sql = "INSERT INTO student_registrations(id, stu_id, rec_id, applied_date, deadline_date, 
+														rec_name, rounds, status, stu_name, stu_year, role, stu_cgpa, rec_jd, stu_res, aback,
+														dback, approve, stu_contact, profile)
+														values(:id,:stu_id,:rec_id, :adate, :ddate, :rec_name, :rounds, :status, :stu_name, :stu_year,
+														:role, :stu_cgpa, :rec_jd, :stu_res, :aback,
+														:dback, :approve, :stu_contact,:profile)";
 
-							$stmt = $pdo->prepare($sql);
-							//PLS INSERT HERE
-							$stmt->execute(array(
-								':id' => $id, 
-								':stu_id' => $stu_id,
-								':rec_id' => $rec_id,
-								':adate' => date("Y-m-d"),
-								':ddate' => $deadline_date,
-								':rec_name' => $com_name,
-								':rounds' => 0,
-								':status' => "Registered",
-								':stu_name' => $name,
-								':stu_year' => $year,
-								':role' => $role,
-								':stu_cgpa' => $cgpa_stu,
-								':rec_jd' => $jd,
-								':stu_res' => $resume,
-								':aback' => $aback,
-								':dback' => $dback,
-								':approve' => 1,
-								':stu_contact' => $contact,
-								':profile' => $job_profiles,
+									$stmt = $pdo->prepare($sql);
+									//PLS INSERT HERE
+									$stmt->execute(array(
+										':id' => $id, 
+										':stu_id' => $stu_id,
+										':rec_id' => $rec_id,
+										':adate' => date("Y-m-d"),
+										':ddate' => $deadline_date,
+										':rec_name' => $com_name,
+										':rounds' => 0,
+										':status' => "Registered",
+										':stu_name' => $name,
+										':stu_year' => $year,
+										':role' => $role,
+										':stu_cgpa' => $cgpa_stu,
+										':rec_jd' => $jd,
+										':stu_res' => $resume,
+										':aback' => $aback,
+										':dback' => $dback,
+										':approve' => 1,
+										':stu_contact' => $contact,
+										':profile' => $job_profiles,
 
-							));
-						
-					}
-
+									));
+								
+							}
+						}
 					if ($year == 3) {
 						$stmt = $pdo->query("SELECT * FROM company_data where approve=1 and role='Summer Intern'");
 						while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {

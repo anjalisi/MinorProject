@@ -47,7 +47,10 @@ $email = $_SESSION['admin'];
 							<section class="post">
 								<header class="major align-center">
 									<h1>Registration Database</h1>
-								</header>							
+								</header>	
+								<p>
+									Review the applications for each recruiter. Keep the applicants updated by editing the rounds and status.  
+								</p>						
 							</section>
 							<?php
 								$stmt = $pdo->query("SELECT * FROM company_data");

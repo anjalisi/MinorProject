@@ -74,7 +74,10 @@ $email = $_SESSION['admin'];
 			<section class="post">
 				<header class="major align-center">
 					<h1>Student Database</h1>
-				</header>
+				</header><p>
+						View the list of students who have logged in on the portal.<br/>
+						Edit/Update the data as and when necessary or in case of any discrepencies. A student can be blocked from further activity,<br/> disabling the student to participate in further placement drives.
+						</p>	
 			</section>
 
 			<div class="table-wrapper">

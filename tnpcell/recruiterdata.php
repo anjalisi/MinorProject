@@ -52,6 +52,8 @@ $email = $_SESSION['admin'];
 				<header class="major align-center">
 					<h1>Recruiter Database</h1>
 				</header>
+				<p>Click on 'POST' to make the company data visible to all the applicants.<br>
+					You can add or edit some of the data, if required.</p>
 			</section>
 
 			<div class="table-wrapper">
