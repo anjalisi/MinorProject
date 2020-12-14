@@ -48,9 +48,8 @@ $email = $_SESSION['email'];
 									<h1>Registrations</h1>
 								</header>
 								<p>
-									View the recruiters you have applied to and the status of your application.
+									View the recruiters you have applied to and track the status of your application.
 									<br />
-									Follow the link to the company profile for more information about the company's process.
 								</p>								
 							</section>
 

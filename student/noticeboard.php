@@ -78,6 +78,11 @@ $status= htmlentities($rows['status']);
 				<header class="major">
 					<h2>Notice Board</h2>
 				</header>
+				<p>
+					Updates you about all the companies visiting the campus. You can register if and only if you fulfill the requirements of the <br>respective company. 
+					<br />
+					<i><b>Note: </b>Register before the deadline mentioned for each company.</i>
+					</p>	
 			</article>
 
 			<!-- Posts -->
