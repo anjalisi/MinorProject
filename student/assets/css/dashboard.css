@@ -2442,6 +2442,7 @@ label {
 input[type="tel"],
 input[type="text"],
 input[type="password"],
+input[type="file"],
 input[type="email"],
 select,
 textarea {
@@ -2463,6 +2464,7 @@ textarea {
 input[type="tel"]:invalid,
 input[type="text"]:invalid,
 input[type="password"]:invalid,
+input[type="file"]:invalid,
 input[type="email"]:invalid,
 select:invalid,
 textarea:invalid {
@@ -2489,6 +2491,7 @@ select::-ms-expand {
 input[type="tel"],
 input[type="text"],
 input[type="password"],
+input[type="file"],
 input[type="email"],
 select {
   height: 3rem;
@@ -2593,6 +2596,7 @@ label {
 input[type="tel"],
 input[type="text"],
 input[type="password"],
+input[type="file"],
 input[type="email"],
 select,
 textarea {
@@ -2602,6 +2606,7 @@ textarea {
 input[type="tel"]:focus,
 input[type="text"]:focus,
 input[type="password"]:focus,
+input[type="file"]:focus,
 input[type="email"]:focus,
 select:focus,
 textarea:focus {
@@ -4185,6 +4190,7 @@ body.is-preload #intro:not(.hidden) + #header + #nav {
 #footer input[type="tel"],
 #footer input[type="text"],
 #footer input[type="password"],
+#footer input[type="file"],
 #footer input[type="email"],
 #footer select,
 #footer textarea {
@@ -4194,6 +4200,7 @@ body.is-preload #intro:not(.hidden) + #header + #nav {
 #footer input[type="tel"]:focus,
 #footer input[type="text"]:focus,
 #footer input[type="password"]:focus,
+#footer input[type="file"]:focus,
 #footer input[type="email"]:focus,
 #footer select:focus,
 #footer textarea:focus {

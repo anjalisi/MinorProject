@@ -11,12 +11,41 @@ $email=$_SESSION['email'];
 $stmt= $pdo->query("SELECT * FROM student_data where email='$email'");
 $rows= $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+if(isset($_POST['save'])){
+	echo '<script>alert("hello")</script>';
+	$filename=$email.'-resume-'.$_FILES['myfile']['name'];
+	$destination='uploads/'.$filename;
+	$extension= pathinfo($filename, PATHINFO_EXTENSION);
+	$file= $_FILES['myfile']['tmp_name'];
+	$size= $_FILES['myfile']['size'];
+
+	if(!in_array($extension,['pdf','doc','docx'])){
+		echo '<script>alert("Welcome to Geeks for Geeks")</script>';
+	}
+	// if($_FILES['myfile']['size']>10*1048576){
+	//     echo "file is too large";
+	// }
+	else{
+		if(move_uploaded_file($file, $destination)){
+			$sql= "UPDATE student_data SET resume=:name WHERE email='$email'";
+			
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(array(
+			':name' => $filename));
+
+			
+		header("Location: profile.php");
+		return;
+		}
+
+	}
+}
 
 if(isset($_POST['submit'])){
 	
 	if(strcmp($_POST['passw'], $_POST['rpassw'])==0){ 
 		$stmt = $pdo->prepare("UPDATE student_data SET Name=:name,contact=:contact, enroll_no=:enrol,CGPA=:CGPA, dead_back=:deadBack, active_back=:activeBack,
-		grad_year=:year, resume=:resume, password=:pass WHERE email='$email'");
+		grad_year=:year, password=:pass WHERE email='$email'");
 
 		$stmt->execute(array(
 			':name'=> $_POST['fname'],
@@ -26,7 +55,6 @@ if(isset($_POST['submit'])){
 			':deadBack' =>  $_POST['dback'],
 			':activeBack' =>  $_POST['aback'],
 			':year' => $_POST['year'],
-			':resume' => ($_POST['resume']),
 			':pass' => $_POST['passw'],
 			)
 		);
@@ -143,9 +171,7 @@ if(isset($_POST['submit'])){
 											
 									</div>
 
-									<div class="col-12">
-										Resume Link<input type="text" name="resume" id="resume" value="<?= $resume?>"  />
-									</div>
+									
 									<div class="col-12">
 										Password<input type="password" name="passw" id="passw" value="<?= $password ?>" />
 									</div>
@@ -164,6 +190,20 @@ if(isset($_POST['submit'])){
 									</div>
 								</div>								
 							</form>
+							
+							<section class="post">
+								<header class="major">
+									<h1>Resume</h1>
+								</header>	
+							</section>
+								<form method="post" enctype="multipart/form-data">
+								Resume <div class="col-12">
+										
+											<input type="file" name="myfile"><br>
+									</div>
+										<button type="submit" name="save" class="button primary" >Upload</button>
+										</form>
+									</div>
 						
 					</div>
 
