@@ -12,7 +12,6 @@ $stmt= $pdo->query("SELECT * FROM student_data where email='$email'");
 $rows= $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if(isset($_POST['save'])){
-	echo '<script>alert("hello")</script>';
 	$filename=$email.'-resume-'.$_FILES['myfile']['name'];
 	$destination='uploads/'.$filename;
 	$extension= pathinfo($filename, PATHINFO_EXTENSION);
@@ -35,6 +34,8 @@ if(isset($_POST['save'])){
 
 			
 		header("Location: profile.php");
+		
+		echo '<script>alert("Uploaded Sucessfully!")</script>';
 		return;
 		}
 

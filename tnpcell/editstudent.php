@@ -14,6 +14,37 @@ if (!isset($_GET['txt'])) {
 
 $email = $_GET['txt'];
 
+if(isset($_POST['save'])){
+	$filename=$email.'-lor-'.$_FILES['myfile']['name'];
+	$destination='../student/lor/'.$filename;
+	$extension= pathinfo($filename, PATHINFO_EXTENSION);
+	$file= $_FILES['myfile']['tmp_name'];
+	$size= $_FILES['myfile']['size'];
+
+	if(!in_array($extension,['pdf','doc','docx'])){
+		echo '<script>alert("Enter a PDF or Doc!")</script>';
+	}
+	if($_FILES['myfile']['size']>2097152){
+	    echo '<script>alert("File should be under 2MB")</script>';
+	}
+	else{
+		if(move_uploaded_file($file, $destination)){
+			$sql= "UPDATE student_data SET lor=:name WHERE email='$email'";
+			
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(array(
+			':name' => $filename));
+
+			
+	header("Location:studentdata.php");
+		
+		echo '<script>alert("Uploaded Sucessfully!")</script>';
+		return;
+		}
+
+	}
+}
+
 $stmt = $pdo->query("SELECT * FROM student_data where email='$email'");
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -121,10 +152,7 @@ if (isset($_POST['submit'])) {
 					</div>
 
 					<div class="col-6">
-						Resume Link<input type="text" name="resume" id="resume" value="<?=$resume?>" />
-					</div>
-					<div class="col-6">
-						Letter of Recommendation<input type="text" name="lor" id="lor" value="Recommendation">
+						Resume <input type="text" name="resume" id="resume" value="<?=$resume?>" readonly/>
 					</div>
 					<div class="col-12">
 						<ul class="actions">
@@ -134,7 +162,26 @@ if (isset($_POST['submit'])) {
 					</div>
 				</div>
 			</form>
+<!-- Post -->
+<section class="post">
+				<header class="major">
+					<h1>Letter of Recommendation</h1>
+				</header>
+			</section>
 
+			<form method="post" enctype="multipart/form-data">
+				<div class="row gtr-uniform">
+					<div class="col-12 col-12-xsmall">
+						Upload LOR<br><input type="file" name="myfile" value="<?= $name?>" />
+					</div>
+					<div class="col-12">
+						<ul class="actions">
+							<li><input type="submit" value="Upload" name = "save"  class="button primary"></li>
+						</ul>
+					</div>
+				</div>
+			</form>
+			
 		</div>
 
 

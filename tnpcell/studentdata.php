@@ -142,7 +142,7 @@ $email = $_SESSION['admin'];
 							echo (htmlentities($row['resume']));
 							echo ("</td>
 							<td>");
-							echo ("resume link");
+							echo (htmlentities($row['lor']));
 							echo ("</td>
 							<td><form method='post'>
 							<input type='hidden' value='$stu_id' name='stu_id'/>");

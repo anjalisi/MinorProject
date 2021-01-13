@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: Dec 08, 2020 at 04:59 AM
+-- Generation Time: Jan 13, 2021 at 06:51 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -33,26 +33,27 @@ CREATE TABLE `student_data` (
   `email` varchar(150) NOT NULL,
   `password` varchar(150) NOT NULL,
   `contact` varchar(10) DEFAULT NULL,
-  `CGPA` varchar(4) DEFAULT NULL,
-  `active_back` varchar(50) DEFAULT NULL,
-  `dead_back` varchar(50) DEFAULT NULL,
+  `CGPA` varchar(4) DEFAULT '0',
+  `active_back` int(5) DEFAULT '0',
+  `dead_back` int(5) DEFAULT '0',
   `resume` varchar(400) DEFAULT NULL,
   `enroll_no` varchar(12) NOT NULL,
   `approve` varchar(10) DEFAULT NULL,
-  `grad_year` varchar(10) DEFAULT NULL,
+  `grad_year` int(5) DEFAULT '1',
   `recommendation` varchar(400) DEFAULT NULL,
-  `status` varchar(20) NOT NULL
+  `status` varchar(20) NOT NULL,
+  `lor` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `student_data`
 --
 
-INSERT INTO `student_data` (`Name`, `email`, `password`, `contact`, `CGPA`, `active_back`, `dead_back`, `resume`, `enroll_no`, `approve`, `grad_year`, `recommendation`, `status`) VALUES
-('Anjali', 'anju@gmail.com', '1231212', NULL, NULL, NULL, NULL, NULL, '100', NULL, NULL, NULL, 'Closed'),
-('Anjali', 'anju@igdtuw.ac.in', 'Anjali@2020', '', '', '', '', '', '100010120173', NULL, '4', NULL, 'Closed'),
-('Taniya', 'tanu@mail.com', 'taniya123', '237429857', '4', '', '9', '', '1001', NULL, '', NULL, 'Open'),
-('anjali', 'anjuu@gmail.com', 'ifsiodf', NULL, NULL, NULL, NULL, NULL, '2938742983', NULL, NULL, NULL, 'Open');
+INSERT INTO `student_data` (`Name`, `email`, `password`, `contact`, `CGPA`, `active_back`, `dead_back`, `resume`, `enroll_no`, `approve`, `grad_year`, `recommendation`, `status`, `lor`) VALUES
+('Taniya', 'taniya@igdtuw.ac.in', 'Taniya@123', '9958246433', '7', 0, 0, '', '08901012017', NULL, 4, NULL, 'Open', 'taniya@igdtuw.ac.in-lor-CSE_7.PDF'),
+('Shreya', 'shreya@igdtuw.ac.in', 'Shreya@2020', '', '6.5', 7, 2, '', '09301012017', NULL, 1, NULL, 'Open', NULL),
+('anjali', 'anjali@igdtuw.ac.in', 'Anjali@2020', '', '9.0', 0, 2, 'anjali@igdtuw.ac.in-resume-AnjaliResume20-Blue.pdf', '10001012017', NULL, 4, NULL, 'Open', 'anjali@igdtuw.ac.in-lor-sem 7.pdf'),
+('Taniya', 'taniya100@igdtuw.ac.in', 'Taniya@123', '', '8', 0, 0, '', '10901012017', NULL, 4, NULL, 'Open', NULL);
 
 --
 -- Indexes for dumped tables
