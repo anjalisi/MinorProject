@@ -21,10 +21,11 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (isset($_POST['submit'])) {
 
-	$stmt = $pdo->prepare("UPDATE student_registrations SET rounds=:rounds,status=:status  
+	$stmt = $pdo->prepare("UPDATE student_registrations SET profile=:profile, rounds=:rounds,status=:status  
 		WHERE id='$email'");
 	$stmt->execute(array(
 		':rounds' => $_POST['rounds'],
+		':profile' => $_POST['profile'],
 		':status' => $_POST['status'],
 	));
 	header("Location:registrations.php");

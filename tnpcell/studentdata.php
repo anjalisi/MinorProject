@@ -92,7 +92,7 @@ $email = $_SESSION['admin'];
 							<th>Active Backs</th>
 							<th>Dead Backs</th>
 							<th>Year</th>
-							<th>Resume Link</th>
+							<th>Resume</th>
 							<th>LOR</th>
 							<th></th>
 							<th></th>
@@ -107,6 +107,12 @@ $email = $_SESSION['admin'];
 							
 						}
 
+						if(isset($_POST['unblock'])){
+							$stu_id= $_POST['stu_id'];
+							$stmt = $pdo->prepare("UPDATE student_data SET status='Open' where email=:email");
+							$stmt->execute(array(':email' => $stu_id));
+							
+						}
 
 						$stmt = $pdo->query("SELECT * FROM student_data");
 						while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -149,12 +155,12 @@ $email = $_SESSION['admin'];
 							if(strcmp($status, 'Closed'))
 							{
 								echo("
-								<input type='submit' class='small' name='block' value='Block'/>-
+								<input type='submit' class='small' name='block' value='Block'/>
 								</form></td>");
 							}
 							else{
 								echo("
-								<input type='submit' class='small disabled' name='block' value='Blocked' />
+								<input type='submit' class='small' name='unblock' value='Unblock' />
 								</form></td>");
 							}
 							echo("<td><a href='$str' class='button small'>Edit</a></td>\n");
