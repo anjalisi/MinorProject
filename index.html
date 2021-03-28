@@ -5,6 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="assets/css/liMarquee.css" rel="stylesheet" type="text/css">
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="index is-preload">
@@ -18,19 +19,8 @@
 							<li class="submenu">
 								<a href="#">Information</a>
 								<ul>
-									<li><a href="no-sidebar.html">Our Top Recruiters</a></li>
 									<li><a href="left-sidebar.html">Placement Report '19</a></li>
-									<li><a href="right-sidebar.html">Placement Report '18</a></li>								<!-- 	
-									<li class="submenu">
-										<a href="#">Submenu</a>
-										<ul>
-											<li><a href="#">Dolore Sed</a></li>
-											<li><a href="#">Consequat</a></li>
-											<li><a href="#">Lorem Magna</a></li>
-											<li><a href="#">Sed Magna</a></li>
-											<li><a href="#">Ipsum Nisl</a></li>
-										</ul>
-									</li> -->
+									<li><a href="right-sidebar.html">Placement Report '18</a></li>		
 									<li><a href="#students" class="scrolly">Students</a></li>
 									<li><a href="#recruiters" class="scrolly">Recruiters</a></li>
 									<li><a href="#brochure">Placement Brochure</a></li>
@@ -238,6 +228,15 @@
 
 						</section>
 
+						<!-- Marquee -->
+						<header class="container">
+							<h2><strong>Our Past Recruiters</strong></h2>
+							
+							<div class="str3 str_wrap">
+					                <img src="images/company.png">
+					        </div>
+						</header>
+
 				</article>
 
 			<!-- CTA -->
@@ -275,6 +274,22 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+			<script src="assets/js/jquery.liMarquee.js"></script>
+			<script>
+				$(window).load(function() { 
+				        
+				   				
+						$('.str3').liMarquee({
+							direction: 'left',	
+							loop:-1,			
+							scrolldelay: 0,		
+							scrollamount:200,	
+							circular: true		
+						});
+						
+				    })
+			</script>
 
 	</body>
 </html>
