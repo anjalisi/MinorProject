@@ -58,7 +58,7 @@ $status= htmlentities($rows['status']);
 
 		<!-- Header -->
 		<header id="header">
-			<a href="../index.html" class="logo">Logout</a>
+			<a href="../logout.php" class="logo">Logout</a>
 		</header>
 
 		<!-- Nav -->
