@@ -42,7 +42,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
         <div class="banner">
             <form method="POST" class="form sign-in">
-                <h2>TnP Student Login</h2> 
+                <h2>TnP Administrator Login</h2> 
                 <?php
 					if(isset($_SESSION['error']))
 					{
@@ -58,9 +58,9 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                     <span>Password</span>
                     <input type="password" name="password" required>
                 </label>
+                <br />
+                <br />
                 <input value="Sign In" class="submit" type="submit"></input>
-
-                <p class="forgot-pass">Forgot Password ?</p>
             </form>
 
         </div>
