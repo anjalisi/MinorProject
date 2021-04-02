@@ -23,7 +23,7 @@ if(isset($_POST['stu_name']) && isset($_POST['stu_email']) && isset($_POST['sign
         $stmt->execute(array(
             ':name' => $_POST['stu_name'],
             ':email' => $_POST['stu_email'],
-            ':password' => $_POST['stu_pass'],
+            ':password' => md5($_POST['stu_pass']),
             ':enroll_no' => $_POST['enrol'],
         ));
         $_SESSION['email'] = $_POST['stu_email'];
@@ -40,7 +40,7 @@ if(isset($_POST['email']) && isset($_POST['pass']) )
 	$statement->execute(  
 		 array(  
 			  'username'=>$_POST["email"],  
-			  'password'=>$_POST["pass"]  
+			  'password'=>md5($_POST["pass"])
 		 )  
 	);  
 	$count = $statement->rowCount();  

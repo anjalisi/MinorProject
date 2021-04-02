@@ -29,7 +29,7 @@ if(isset($_POST['comp_name']) && isset($_POST['comp_email']) && isset($_POST['si
         $stmt->execute(array(
             ':name' => $_POST['comp_name'],
             ':email' => $_POST['comp_email'],
-            ':pass' => $_POST['comp_pass'],
+            ':pass' => md5($_POST['comp_pass']),
             ':hr' => $_POST['hr_name'],
             ':id' => $id
         ));
@@ -47,7 +47,7 @@ if(isset($_POST['email']) && isset($_POST['password']) )
 	$statement->execute(  
 		 array(  
 			  'username'=>$_POST["email"],  
-			  'password'=>$_POST["password"]  
+			  'password'=>md5($_POST["password"])  
 		 )  
 	);  
 	$count = $statement->rowCount();  
