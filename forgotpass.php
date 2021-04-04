@@ -33,9 +33,6 @@ if(isset($_POST['email'])){
             $sender_email= "From: projectcllg@gmail.com";
             if(mail($email, $subject, $body, $sender_email)){
                 $_SESSION['msg'] = "Check your mail to reset your password";
-                header("Location:resetpass.php");
-                return;
-
             }  
         }
 	}  
