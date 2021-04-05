@@ -154,13 +154,13 @@ if(isset($_POST['submit'])){
 										Contact No.<input type="tel" maxlength="10" pattern="^[0-9]{10}$" name="phone" id="phone" value="<?= $contact?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
-										CGPA<input type="text" name="cgpa" id="cgpa" value="<?= $CGPA?>" />
+										CGPA<input type="text" pattern="^[0]|[0-9]\.(\d?\d?)|[10].[0]$" name="cgpa" id="cgpa" value="<?= $CGPA?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Active Backs<input type="text" name="aback" id="aback" value="<?= $activeBack?>" />
+										Active Backs<input type="text" pattern="^[0-49]{50}$" name="aback" id="aback" value="<?= $activeBack?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Dead Backs<input type="text" name="dback" id="dback" value="<?= $deadBack?>" />
+										Dead Backs<input type="text" pattern="^[0-49]{50}$" name="dback" id="dback" value="<?= $deadBack?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
 										Year
