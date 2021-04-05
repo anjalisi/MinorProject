@@ -424,6 +424,11 @@ $status= htmlentities($rows['status']);
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
 	<script type="text/javascript">
+		
+		window.onload = setTimeout(function() {
+			alert("Make sure your profile is up to date before registrations.");
+		}, 2000);
+
 		mybutton = document.getElementById("totop");
 
 		window.onscroll = function() {
