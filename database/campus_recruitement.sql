@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: Dec 09, 2020 at 07:30 AM
+-- Generation Time: Apr 05, 2021 at 03:33 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -66,7 +66,7 @@ CREATE TABLE `company_data` (
   `jd_link` varchar(450) DEFAULT NULL,
   `result_date` date DEFAULT '2020-11-11',
   `id` int(10) NOT NULL,
-  `approve` int(2) NOT NULL DEFAULT '1',
+  `approve` int(2) NOT NULL DEFAULT '0',
   `role` varchar(80) DEFAULT NULL,
   `cgpa` varchar(5) DEFAULT NULL,
   `deadback` int(11) NOT NULL DEFAULT '0',
@@ -78,7 +78,32 @@ CREATE TABLE `company_data` (
 --
 
 INSERT INTO `company_data` (`domain`, `company_name`, `company_email`, `company_contact`, `base`, `ctc`, `location`, `job_profiles`, `test_date`, `interview_date`, `deadline_date`, `min_shortlist`, `password`, `poc_name`, `poc_contact`, `hr_name`, `jd_link`, `result_date`, `id`, `approve`, `role`, `cgpa`, `deadback`, `activeback`) VALUES
-('', 'Cisco', 'cisco@gmail.com', '', '', '', '', '', '2020-12-08', '2020-12-16', '2020-12-17', '', 'CIsco@2020', '', '', 'Anjali', '', '2020-12-16', 627354, 1, 'Full Time Employee', '7', 0, 0);
+('', 'Cisco', 'cisco@gmail.com', '', '8L', '10L', '', '', '2020-12-08', '2020-12-16', '2020-12-17', '', 'CIsco@2020', 'Taniya', '1909837562', 'Anjali', '', '2020-12-16', 627354, 1, 'Full Time Employee', '7', 0, 0),
+('', 'Microsoft', 'microsoft@gmail.com', '9958246909', '8L', '12L', '', '', '2020-11-11', '2020-11-11', '2020-11-11', '', 'Microsoft@2020', '', '1829374859', 'Bill Gates', '', '2020-11-11', 356889, 1, 'Full Time Employee', '7.5', 0, 0),
+(NULL, 'Paytm', 'paytm@gmail.com', NULL, NULL, NULL, NULL, NULL, '2020-11-11', '2020-11-11', '2020-11-11', NULL, 'f75d15a90093b555cec5498247b34f00', NULL, NULL, 'Ragini Sharma', NULL, '2020-11-11', 727071, 0, NULL, NULL, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `file_uploads`
+--
+
+CREATE TABLE `file_uploads` (
+  `id` int(11) NOT NULL,
+  `filename` varchar(255) DEFAULT NULL,
+  `filesize` int(11) DEFAULT NULL,
+  `student_name` varchar(200) DEFAULT NULL,
+  `student_mail` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `file_uploads`
+--
+
+INSERT INTO `file_uploads` (`id`, `filename`, `filesize`, `student_name`, `student_mail`) VALUES
+(1, 'AnjaliResume20-Blue.pdf', 54467, NULL, NULL),
+(7, 'resnlp-01.pdf', NULL, NULL, NULL),
+(8, 'resnlp-01.pdf', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -99,15 +124,21 @@ CREATE TABLE `student_data` (
   `approve` varchar(10) DEFAULT NULL,
   `grad_year` int(5) DEFAULT '1',
   `recommendation` varchar(400) DEFAULT NULL,
-  `status` varchar(20) NOT NULL
+  `status` varchar(20) NOT NULL,
+  `lor` varchar(250) DEFAULT NULL,
+  `token` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `student_data`
 --
 
-INSERT INTO `student_data` (`Name`, `email`, `password`, `contact`, `CGPA`, `active_back`, `dead_back`, `resume`, `enroll_no`, `approve`, `grad_year`, `recommendation`, `status`) VALUES
-('anjali', 'anjali@igdtuw.ac.in', 'Anjali@2020', '', '0', 0, 0, '', '10001012017', NULL, 4, NULL, 'Open');
+INSERT INTO `student_data` (`Name`, `email`, `password`, `contact`, `CGPA`, `active_back`, `dead_back`, `resume`, `enroll_no`, `approve`, `grad_year`, `recommendation`, `status`, `lor`, `token`) VALUES
+('Ragini Sharma', 'ragini@igdtuw.ac.in', '252f090cca1ae8082d57b6a140871ef8', NULL, '0', 0, 0, NULL, '01001012019', NULL, 1, NULL, 'Open', NULL, ''),
+('Taniya', 'taniya@igdtuw.ac.in', 'Taniya@123', '9958246433', '7', 0, 0, '', '08901012017', NULL, 4, NULL, 'Open', 'taniya@igdtuw.ac.in-lor-CSE_7.PDF', ''),
+('Shreya', 'shreya093btcse17@igdtuw.ac.in', 'Shreya@2020', '', '6.5', 7, 2, '', '09301012017', NULL, 1, NULL, 'Open', NULL, 'ceadebe126df9014131949f3b83efd'),
+('anjali', 'muskan.anjali.singh@gmail.com', 'Anjali@2020', '', '9.0', 0, 2, 'anjali@igdtuw.ac.in-resume-AnjaliResume20-Blue.pdf', '10001012017', NULL, 4, NULL, 'Open', 'anjali@igdtuw.ac.in-lor-sem 7.pdf', '19a256ba3e721f98f580da6da179a0'),
+('Taniya', 'taniya100@igdtuw.ac.in', 'Taniya@123', '', '8', 0, 0, '', '10901012017', NULL, 4, NULL, 'Open', NULL, '');
 
 -- --------------------------------------------------------
 
@@ -142,7 +173,11 @@ CREATE TABLE `student_registrations` (
 --
 
 INSERT INTO `student_registrations` (`stu_id`, `id`, `rec_id`, `applied_date`, `deadline_date`, `rec_name`, `rounds`, `status`, `stu_name`, `stu_year`, `role`, `stu_cgpa`, `rec_jd`, `stu_res`, `aback`, `dback`, `approve`, `stu_contact`, `profile`) VALUES
-('anjali@igdtuw.ac.in', 577730, 'cisco@gmail.com', '2020-12-09', '2020-12-17', 'Cisco', 1, 'Selected', 'anjali', 4, 'Full Time Employee', '0', '', '', '0', '0', 1, '', '');
+('shreya@igdtuw.ac.in', 16761, 'microsoft@gmail.com', '2020-12-10', '2020-11-11', 'Microsoft', 0, 'Registered', 'Shreya', 1, 'Full Time Employee', '6.5', '', '', '0', '0', 1, '', ''),
+('Anjali@igdtuw.ac.in', 72103, 'microsoft@gmail.com', '2020-12-14', '2020-11-11', 'Microsoft', 0, 'Registered', 'anjali', 4, 'Full Time Employee', '8', '', '', '0', '0', 1, '', ''),
+('taniya@igdtuw.ac.in', 572882, 'cisco@gmail.com', '2020-12-10', '2020-12-17', 'Cisco', 3, 'Interview Scheduled', 'Taniya', 1, 'Full Time Employee', '0', '', '', '0', '0', 1, '', 'Data Engineer'),
+('anjali@igdtuw.ac.in', 577730, 'cisco@gmail.com', '2020-12-09', '2020-12-17', 'Cisco', 1, 'Selected', 'anjali', 4, 'Full Time Employee', '0', '', '', '0', '0', 1, '', ''),
+('shreya@igdtuw.ac.in', 588928, 'cisco@gmail.com', '2020-12-10', '2020-12-17', 'Cisco', 0, 'Selected', 'Shreya', 1, 'Full Time Employee', '0', '', '', '0', '0', 1, '', '');
 
 --
 -- Indexes for dumped tables
@@ -161,6 +196,12 @@ ALTER TABLE `company_data`
   ADD PRIMARY KEY (`company_email`);
 
 --
+-- Indexes for table `file_uploads`
+--
+ALTER TABLE `file_uploads`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `student_data`
 --
 ALTER TABLE `student_data`
@@ -171,6 +212,16 @@ ALTER TABLE `student_data`
 --
 ALTER TABLE `student_registrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `file_uploads`
+--
+ALTER TABLE `file_uploads`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
