@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: Dec 07, 2020 at 02:39 PM
+-- Generation Time: Apr 05, 2021 at 03:43 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -37,22 +37,22 @@ CREATE TABLE `company_data` (
   `ctc` varchar(20) DEFAULT NULL,
   `location` varchar(300) DEFAULT NULL,
   `job_profiles` varchar(450) DEFAULT NULL,
-  `test_date` date DEFAULT NULL,
-  `interview_date` date DEFAULT NULL,
-  `deadline_date` date DEFAULT NULL,
+  `test_date` date DEFAULT '2020-11-11',
+  `interview_date` date DEFAULT '2020-11-11',
+  `deadline_date` date DEFAULT '2020-11-11',
   `min_shortlist` varchar(10) DEFAULT NULL,
   `password` varchar(150) DEFAULT NULL,
   `poc_name` varchar(100) DEFAULT NULL,
   `poc_contact` varchar(12) DEFAULT NULL,
   `hr_name` varchar(150) DEFAULT NULL,
   `jd_link` varchar(450) DEFAULT NULL,
-  `result_date` date DEFAULT NULL,
+  `result_date` date DEFAULT '2020-11-11',
   `id` int(10) NOT NULL,
-  `approve` int(2) NOT NULL,
+  `approve` int(2) NOT NULL DEFAULT '0',
   `role` varchar(80) DEFAULT NULL,
   `cgpa` varchar(5) DEFAULT NULL,
-  `deadback` int(11) NOT NULL,
-  `activeback` int(11) NOT NULL
+  `deadback` int(11) NOT NULL DEFAULT '0',
+  `activeback` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -60,9 +60,9 @@ CREATE TABLE `company_data` (
 --
 
 INSERT INTO `company_data` (`domain`, `company_name`, `company_email`, `company_contact`, `base`, `ctc`, `location`, `job_profiles`, `test_date`, `interview_date`, `deadline_date`, `min_shortlist`, `password`, `poc_name`, `poc_contact`, `hr_name`, `jd_link`, `result_date`, `id`, `approve`, `role`, `cgpa`, `deadback`, `activeback`) VALUES
-('technology', 'a', 'an@gmail.com', '', '', '', '', '', '2020-12-24', '2020-12-16', '2020-12-15', '', 'Anjali@2020', 'Anjali', '', 'Taniya', '', '2020-12-04', 0, 1, '6 Month Intern', '7.5', 3, 2),
-('', 'Cisco', 'cisco@gmail.com', '', '', '', '', '', '2020-12-01', '2020-12-02', '2020-12-15', '', 'Cisco@2020', 'Anjali Singh', '', 'HR', '', '2020-12-23', 335885, 1, 'Summer Intern', '', 0, 0),
-('Technical', 'Intuit', 'hrname@intuit.com', '9934564738', '12,000,000', '35,000,000', 'Bangalore, Delhi', 'Intern, SDE', '2020-12-15', '2020-12-21', '2020-12-09', '1', 'Anjali@2020', 'Anjali', '3242342434', 'Taniya', 'drive.com', '2020-11-30', 0, 0, NULL, NULL, 0, 0);
+('', 'Cisco', 'cisco@gmail.com', '', '8L', '10L', '', '', '2020-12-08', '2020-12-16', '2020-12-17', '', 'CIsco@2020', 'Taniya', '1909837562', 'Anjali', '', '2020-12-16', 627354, 1, 'Full Time Employee', '7', 0, 0),
+('', 'Microsoft', 'microsoft@gmail.com', '9958246909', '8L', '12L', '', '', '2020-11-11', '2020-11-11', '2020-11-11', '', 'Microsoft@2020', '', '1829374859', 'Bill Gates', '', '2020-11-11', 356889, 1, 'Full Time Employee', '7.5', 0, 0),
+(NULL, 'Paytm', 'paytm@gmail.com', NULL, NULL, NULL, NULL, NULL, '2020-11-11', '2020-11-11', '2020-11-11', NULL, 'f75d15a90093b555cec5498247b34f00', NULL, NULL, 'Ragini Sharma', NULL, '2020-11-11', 727071, 0, NULL, NULL, 0, 0);
 
 --
 -- Indexes for dumped tables
