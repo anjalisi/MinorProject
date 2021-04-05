@@ -139,16 +139,16 @@ if (isset($_POST['submit'])) {
 						Contact No.<input type="text" readonly name="phone" id="phone" value="<?=$contact?>" />
 					</div>
 					<div class="col-3 col-12-xsmall">
-						CGPA<input type="text" name="cgpa" id="cgpa" value="<?=$CGPA?>" />
+						CGPA<input type="text" pattern="^[0]|[0-9]\.(\d?\d?)|[10].[0]$" name="cgpa" id="cgpa" value="<?=$CGPA?>" />
 					</div>
 					<div class="col-3 col-12-xsmall">
 						Year<input type="text" readonly name="year" id="year" value="<?=$year?>" />
 					</div>
 					<div class="col-3 col-12-xsmall">
-						Active Backlogs<input type="text" name="aback" id="activeback" value="<?=$activeBack?>">
+						Active Backlogs<input type="text" pattern="^[0-49]{50}$" name="aback" id="activeback" value="<?=$activeBack?>">
 					</div>
 					<div class="col-3 col-12-xsmall">
-						Dead Backlogs<input type="text" name="dback" id="deadback" value="<?=$deadBack?>">
+						Dead Backlogs<input type="text" pattern="^[0-49]{50}$" name="dback" id="deadback" value="<?=$deadBack?>">
 					</div>
 
 					<div class="col-6">

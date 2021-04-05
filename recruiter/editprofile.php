@@ -160,22 +160,22 @@ if(isset($_POST['submit'])){
 										</select>
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Min. CGPA<input type="text" name="cgpa" value="<?= $cgpa?>" />
+										Min. CGPA<input type="text" pattern= "^[0-9]*\.[0-9]+$" name="cgpa" value="<?= $cgpa?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Active Backs Allowed<input type="text" name="aback" id="locn" value="<?= $aback?>" />
+										Active Backs Allowed<input type="text" pattern="^[0-9]+$" name="aback" id="locn" value="<?= $aback?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Dead Backs Allowed<input type="text" name="dback" id="locn" value="<?= $dback?>" />
+										Dead Backs Allowed<input type="text" pattern="^[0-9]+$" name="dback" id="locn" value="<?= $dback?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Location<input type="text" name="locn" id="locn" value="<?= $location?>" />
+										Location<input type="text" pattern="^[a-zA-Z]+$" name="locn" id="locn" value="<?= $location?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Compensation (CTC)<input type="text" name="ctc" id="ctc" value="<?= $ctc?>" />
+										Compensation (CTC)<input type="text" pattern="^[0-9]+ [a-zA-Z]+$" name="ctc" id="ctc" value="<?= $ctc?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Base Salary<input type="text" name="base" id="base" value="<?= $base?>" />
+										Base Salary<input type="text" pattern="^[0-9]+ [a-zA-Z]+$" name="base" id="base" value="<?= $base?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
 										Minimum Shortlists<input type="text" name="minshrt" pattern="^[0-9]{1,2,3,4,5}$" title="Enter a number" id="minshrt" value="<?= $min ?>" />
@@ -199,7 +199,7 @@ if(isset($_POST['submit'])){
 										POC Contact <input type="tel" name="poc_contact" id="pass" value="<?= $poc_contact ?>" maxlength="10" pattern="^[0-9]{10}$" />
 									</div>
 									<div class="col-12">
-										Job Description File(Drive Link)<input type="text" name="jd" value="<?= $jd ?>" />
+										Job Description File(Drive Link)<input type="text" pattern="^https://drive\.google\.com/file/d/([0-9]+([a-zA-Z]+[0-9]+)+)([a-zA-Z]+(/[a-zA-Z]+)+)\?usp=sharing$" name="jd" value="<?= $jd ?>" />
 									</div>
 									<div class="col-12">
 										Password<input type="password" name="passw" id="passw" value="<?= $password ?>" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"

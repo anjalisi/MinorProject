@@ -145,7 +145,7 @@ if(isset($_POST['submit'])){
 										Base Compensation<input type="text" name="base" id="base" value="<?=$base?>" readonly/>
 									</div>
 									<div class="col-4 col-12-xsmall">
-										CTC<input type="text" name="ctc" id="ctc" value="<?=$ctc?>" readonly/>
+										CTC<input type="text" name="ctc" pattern="^[0-9]+ [a-zA-Z]+$" id="ctc" value="<?=$ctc?>" readonly/>
 									</div>
 									<div class="col-4 col-12-xsmall">
 										Minimum Shortlists<input type="text" name="minshrt" id="mins" value="<?=$min?>">
@@ -169,17 +169,17 @@ if(isset($_POST['submit'])){
 										Result Date *<input type="date" name="rdate" id="rdate" value="<?=$rdate?>" required>
 									</div>
 									<div class="col-4 col-12-xsmall">
-										CGPA Eligibility<input type="text" name="cgpa" id="cgpa" value="<?=$cgpa?>">
+										CGPA Eligibility<input type="text" pattern="^[0]|[0-9]\.(\d?\d?)|[10].[0]$" name="cgpa" id="cgpa" value="<?=$cgpa?>">
 									</div>
 									<div class="col-4 col-12-xsmall">
-										Dead Backlogs<input type="text" name="dback" id="deadb" value="<?=$dback?>">
+										Dead Backlogs<input type="text" pattern="^[0-9]+$" name="dback" id="deadb" value="<?=$dback?>">
 									</div>
 									<div class="col-4 col-12-xsmall">
-										Active Backlogs<input type="text" name="aback" id="activeb" value="<?=$aback?>">
+										Active Backlogs<input type="text" pattern="^[0-9]+$" name="aback" id="activeb" value="<?=$aback?>">
 									</div>
 									
 									<div class="col-6">
-										Job Description Link<input type="text" name="jd" id="jdlink" value="<?= $jd?>"  />
+										Job Description Link<input type="text" pattern=pattern="^https://drive\.google\.com/file/d/([0-9]+([a-zA-Z]+[0-9]+)+)([a-zA-Z]+(/[a-zA-Z]+)+)\?usp=sharing$" name="jd" id="jdlink" value="<?= $jd?>"  />
 									</div>
 									<div class="col-12">
 										<ul class="actions">
