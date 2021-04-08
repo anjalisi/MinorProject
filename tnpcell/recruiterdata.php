@@ -24,7 +24,7 @@ $email = $_SESSION['admin'];
 		<link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 </head>
 
-<body class="is-preload">
+<body class="is-preload" onmousemove="reset_interval()" onclick="reset_interval()" onkeypress="reset_interval()" onscroll="reset_interval()">
 
 	<!-- Wrapper -->
 	<div id="wrapper" class="fade-in">
@@ -173,6 +173,21 @@ $email = $_SESSION['admin'];
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
+	<script type="text/javascript">
+		var timer = setInterval(function(){ auto_logout() }, 600000);
+		function reset_interval(){
+		    clearInterval(timer);
+		    timer = setInterval(function(){ auto_logout() }, 600000);
+		}
+		 
+		function auto_logout(){
+		    
+		    if(confirm("Your session has ended due to inactivity, click Ok to login to the portal again.")){
+		        window.location="../logout.php";
+		    }
+		 
+		}
+	</script>
 
 </body>
 
