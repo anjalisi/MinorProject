@@ -1,13 +1,14 @@
 <?php
-session_start();
-require_once "connect.php";
+ session_start();
+ require_once "connect.php";
 
  if (!isset($_GET['token'])) {
-     header("Location: loginStudent.php");
+     header("Location: index.html");
      return;
- }
+}
 
 $token = $_GET['token'];
+
     //student query
     $query = "SELECT * from student_data where token = :token";
     $statement = $pdo->prepare($query);
@@ -15,7 +16,7 @@ $token = $_GET['token'];
         ':token' => $token
     ));
     $count = $statement->rowCount();
-    
+    //echo($count);
     // recruiter query
     $query1 = "SELECT * FROM company_data WHERE token = :token";
     $statement1 = $pdo->prepare($query1);
@@ -26,10 +27,10 @@ $token = $_GET['token'];
     );
 
     $count1 = $statement1->rowCount();
-
+    //echo($count1);
  if (isset($_POST['submit']) && $count > 0) { 
     if (strcmp($_POST['pass'], $_POST['rpass']) == 0) {
-         $stmt = $pdo->prepare("UPDATE student_data SET password=:pass WHERE token= '$token'");
+         $stmt = $pdo->prepare("UPDATE student_data SET password=:pass, token='' WHERE token= '$token'");
         
          $stmt->execute(array(
              ':pass' => md5($_POST['pass'])
@@ -39,29 +40,30 @@ $token = $_GET['token'];
              return;
         } else {
             echo("Error");
-            $_SESSION['error'] = "Passwords Did Not Match";
+            $_SESSION['error1'] = "Passwords Did Not Match";
              header("Location: resetpass.php?token=".$token);
              return;
         }
-     } else if(isset($_POST['submit']) && $count1 > 0){
-        if (strcmp($_POST['pass'], $_POST['rpass']) == 0) {
-            $stmt = $pdo->prepare("UPDATE company_data SET password=:pass WHERE token='$token'");
-
-            $stmt->execute(array(
+            
+     } 
+   
+else if(isset($_POST['submit']) && $count1 > 0){
+    if (strcmp($_POST['pass'], $_POST['rpass']) == 0) {
+            //echo($token);
+            $stmt1 = $pdo->prepare("UPDATE company_data SET token='',password=:pass WHERE token='$token'");
+            //echo($token);
+            $stmt1->execute(array(
                 ':pass' => md5($_POST['pass'])
             ));
-            header("Location: loginRecruiter.php");
-            return;
-        } else {
-            $_SESSION['error'] = "Passwords Did Not Match";
-            header("Location: resetpass.php");
+            //echo($token);
+             header("Location: loginRecruiter.php");
+             return;
+        } 
+    else {
+            $_SESSION['error1'] = "Passwords Did Not Match";
+            header("Location: resetpass.php?token=".$token);
             return;
         }
-     }else {
-        $_SESSION['error1'] = "Invalid credentials";
-        header("Location: resetpass.php");
-        return;
-         
      }
 
  ?>
