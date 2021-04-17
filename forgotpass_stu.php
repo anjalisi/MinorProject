@@ -29,8 +29,8 @@ if(isset($_POST['email'])){
 
             $subject = "Password Reset";
             $body=  "Hi, $name.\n 
-            Click here to reset your password http://localhost/mp/forgotpass.php?token=$token";
-            $sender_email= "From: projectcllg@gmail.com";
+            Click here to reset your password http://igdtuwrecruits.in/resetpass.php?token=$token";
+            $sender_email= "From: igdtuwrecruits@gmail.com";
             if(mail($email, $subject, $body, $sender_email)){
                 $_SESSION['msg'] = "Check your mail to reset your password";
             }  
@@ -39,9 +39,10 @@ if(isset($_POST['email'])){
 	else  
 	{  
 		$_SESSION['error'] = "User does not exist";
-        header("Location: forgotpass.php");
+        header("Location: forgotpass_stu.php");
         return;  
 	}
+    
 }
 
 ?>
