@@ -100,7 +100,7 @@ if(isset($_POST['email']) && isset($_POST['pass']) )
                 
                     <input class="submit" type="submit" value="Sign In"></input>
                 
-                <p><a href="forgotpass.php" class="forgot-pass">Forgot Password ?</a></p>
+                <p><a href="forgotpass_stu.php" class="forgot-pass">Forgot Password ?</a></p>
             </form>
 
             <div class="sub-cont">
