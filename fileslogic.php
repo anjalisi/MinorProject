@@ -9,7 +9,7 @@ if(isset($_POST['save'])){
     $size= $_FILES['myfile']['size'];
 
     if(!in_array($extension,['pdf','doc','docx'])){
-        echo '<script>alert("Welcome to Geeks for Geeks")</script>';
+        echo '<script>alert("Incorrect File Type!")</script>';
     }
     // if($_FILES['myfile']['size']>10*1048576){
     //     echo "file is too large";

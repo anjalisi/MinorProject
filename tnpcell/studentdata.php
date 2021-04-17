@@ -2,8 +2,7 @@
 session_start();
 require_once "../connect.php";
 
-if(!isset($_SESSION['admin']))
-{
+if (!isset($_SESSION['admin'])) {
 	header('Location:../loginAdmin.php');
 	return;
 }
@@ -21,7 +20,8 @@ $email = $_SESSION['admin'];
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/tnpdash.css" />
 	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
 </head>
 
 <body class="is-preload" onmousemove="reset_interval()" onclick="reset_interval()" onkeypress="reset_interval()" onscroll="reset_interval()">
@@ -74,10 +74,11 @@ $email = $_SESSION['admin'];
 			<section class="post">
 				<header class="major align-center">
 					<h1>Student Database</h1>
-				</header><p>
-						View the list of students who have logged in on the portal.<br/>
-						Edit/Update the data as and when necessary or in case of any discrepencies. A student can be blocked from further activity,<br/> disabling the student to participate in further placement drives.
-						</p>	
+				</header>
+				<p>
+					View the list of students who have logged in on the portal.<br />
+					Edit/Update the data as and when necessary or in case of any discrepencies. A student can be blocked from further activity,<br /> disabling the student to participate in further placement drives.
+				</p>
 			</section>
 
 			<div class="table-wrapper">
@@ -100,25 +101,23 @@ $email = $_SESSION['admin'];
 					</thead>
 					<tbody>
 						<?php
-						if(isset($_POST['block'])){
-							$stu_id= $_POST['stu_id'];
+						if (isset($_POST['block'])) {
+							$stu_id = $_POST['stu_id'];
 							$stmt = $pdo->prepare("UPDATE student_data SET status='Closed' where email=:email");
 							$stmt->execute(array(':email' => $stu_id));
-							
 						}
 
-						if(isset($_POST['unblock'])){
-							$stu_id= $_POST['stu_id'];
+						if (isset($_POST['unblock'])) {
+							$stu_id = $_POST['stu_id'];
 							$stmt = $pdo->prepare("UPDATE student_data SET status='Open' where email=:email");
 							$stmt->execute(array(':email' => $stu_id));
-							
 						}
 
 						$stmt = $pdo->query("SELECT * FROM student_data");
 						while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-							$stu_id=htmlentities($row['email']);
-							$str="editstudent.php?txt=".strval($stu_id);
-							$status= htmlentities($row['status']);			
+							$stu_id = htmlentities($row['email']);
+							$str = "editstudent.php?txt=" . strval($stu_id);
+							$status = htmlentities($row['status']);
 							echo "<tr>
 							<td>";
 							echo (htmlentities($row['Name']));
@@ -152,18 +151,16 @@ $email = $_SESSION['admin'];
 							echo ("</td>
 							<td><form method='post'>
 							<input type='hidden' value='$stu_id' name='stu_id'/>");
-							if(strcmp($status, 'Closed'))
-							{
-								echo("
+							if (strcmp($status, 'Closed')) {
+								echo ("
 								<input type='submit' class='small' name='block' value='Block'/>
 								</form></td>");
-							}
-							else{
-								echo("
+							} else {
+								echo ("
 								<input type='submit' class='small' name='unblock' value='Unblock' />
 								</form></td>");
 							}
-							echo("<td><a href='$str' class='button small'>Edit</a></td>\n");
+							echo ("<td><a href='$str' class='button small'>Edit</a></td>\n");
 						}
 						?>
 
@@ -171,7 +168,7 @@ $email = $_SESSION['admin'];
 
 				</table>
 			</div>
-			
+
 
 		</div>
 
@@ -211,18 +208,23 @@ $email = $_SESSION['admin'];
 		}
 	</script>
 	<script type="text/javascript">
-		var timer = setInterval(function(){ auto_logout() }, 600000);
-		function reset_interval(){
-		    clearInterval(timer);
-		    timer = setInterval(function(){ auto_logout() }, 600000);
+		var timer = setInterval(function() {
+			auto_logout()
+		}, 600000);
+
+		function reset_interval() {
+			clearInterval(timer);
+			timer = setInterval(function() {
+				auto_logout()
+			}, 600000);
 		}
-		
-		function auto_logout(){
-    
-		    if(!alert("Your session has ended due to inactivity, click Ok to login to the portal again.")){
-		        window.location="../logout.php";
-		    }
-		 
+
+		function auto_logout() {
+
+			if (!alert("Your session has ended due to inactivity, click Ok to login to the portal again.")) {
+				window.location = "../logout.php";
+			}
+
 		}
 	</script>
 

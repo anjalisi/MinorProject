@@ -2,8 +2,7 @@
 session_start();
 require_once "../connect.php";
 
-if(!isset($_SESSION['admin']))
-{
+if (!isset($_SESSION['admin'])) {
 	header('Location:../loginAdmin.php');
 	return;
 }
@@ -21,7 +20,8 @@ $email = $_SESSION['admin'];
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/tnpdash.css" />
 	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
 </head>
 
 <body class="is-preload" onmousemove="reset_interval()" onclick="reset_interval()" onkeypress="reset_interval()" onscroll="reset_interval()">
@@ -78,18 +78,17 @@ $email = $_SESSION['admin'];
 					</thead>
 					<tbody>
 						<?php
-						if(isset($_POST['approve'])){
-							$rec_id= $_POST['rec_id'];
+						if (isset($_POST['approve'])) {
+							$rec_id = $_POST['rec_id'];
 							$stmt = $pdo->prepare("UPDATE company_data SET approve=1 where company_email=:email");
 							$stmt->execute(array(':email' => $rec_id));
-							
 						}
 						$stmt = $pdo->query("SELECT * FROM company_data");
 						while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-							$rec_id=htmlentities($row['company_email']);
+							$rec_id = htmlentities($row['company_email']);
 							$approve = htmlentities($row['approve']);
-							$id=htmlentities($row['id']);
-							$str="editcompany.php?txt=".strval($id);
+							$id = htmlentities($row['id']);
+							$str = "editcompany.php?txt=" . strval($id);
 							//echo($str);
 							echo "<tr>
 							<td>";
@@ -135,25 +134,23 @@ $email = $_SESSION['admin'];
 							echo ("</td>
 							<td><form method='post'>
 							<input type='hidden' value='$rec_id' name='rec_id'/>");
-							if($approve == 0)
-							{
-								echo("
+							if ($approve == 0) {
+								echo ("
 								<input type='submit' class='small' name='approve' value='Post'/>-
 								</form></td>");
-							}
-							else{
-								echo("
+							} else {
+								echo ("
 								<input type='submit' class='small disabled' name='approve' value='Posted' />
 								</form></td>");
 							}
-							echo("<td><a href='$str' class='button small'>Edit</a></td>\n");
+							echo ("<td><a href='$str' class='button small'>Edit</a></td>\n");
 						}
 						?>
 
 					</tbody>
 				</table>
 			</div>
-			
+
 		</div>
 
 
@@ -174,18 +171,23 @@ $email = $_SESSION['admin'];
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
 	<script type="text/javascript">
-		var timer = setInterval(function(){ auto_logout() }, 600000);
-		function reset_interval(){
-		    clearInterval(timer);
-		    timer = setInterval(function(){ auto_logout() }, 600000);
+		var timer = setInterval(function() {
+			auto_logout()
+		}, 600000);
+
+		function reset_interval() {
+			clearInterval(timer);
+			timer = setInterval(function() {
+				auto_logout()
+			}, 600000);
 		}
-		
-		function auto_logout(){
-    
-		    if(!alert("Your session has ended due to inactivity, click Ok to login to the portal again.")){
-		        window.location="../logout.php";
-		    }
-		 
+
+		function auto_logout() {
+
+			if (!alert("Your session has ended due to inactivity, click Ok to login to the portal again.")) {
+				window.location = "../logout.php";
+			}
+
 		}
 	</script>
 

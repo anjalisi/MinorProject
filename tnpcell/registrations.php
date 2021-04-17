@@ -2,8 +2,7 @@
 session_start();
 require_once "../connect.php";
 
-if(!isset($_SESSION['admin']))
-{
+if (!isset($_SESSION['admin'])) {
 	header('Location:../loginAdmin.php');
 	return;
 }
@@ -13,54 +12,58 @@ $email = $_SESSION['admin'];
 <!DOCTYPE HTML>
 
 <html>
-	<head>
-		<title>Campus Recruitment | TNP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/tnpdash.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload" onmousemove="reset_interval()" onclick="reset_interval()" onkeypress="reset_interval()" onscroll="reset_interval()">
 
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+<head>
+	<title>Campus Recruitment | TNP</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/tnpdash.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+</head>
 
-				<!-- Header -->
-					<header id="header">
-						<a href="../logout.php" class="logo">Logout</a>
-					</header>
+<body class="is-preload" onmousemove="reset_interval()" onclick="reset_interval()" onkeypress="reset_interval()" onscroll="reset_interval()">
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li><a href="studentdata.php">Student Database</a></li>
-							<li><a href="recruiterdata.php">Recruiter Database</a></li>
-							<li class="active"><a href="registrations.php">Registration Database</a></li>
-							<li><a href="placed.php">Placed Students</a></li>
-						</ul>
-					</nav>
+	<!-- Wrapper -->
+	<div id="wrapper" class="fade-in">
 
-				<!-- Main -->
-					<div id="main">
+		<!-- Header -->
+		<header id="header">
+			<a href="../logout.php" class="logo">Logout</a>
+		</header>
 
-						<!-- Post -->
-							<section class="post">
-								<header class="major align-center">
-									<h1>Registration Database</h1>
-								</header>	
-								<p>
-									Review the applications for each recruiter. Keep the applicants updated by editing the rounds and status.  
-								</p>						
-							</section>
-							<?php
-								$stmt = $pdo->query("SELECT * FROM company_data");
-								while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-									$rec_id=htmlentities($row['company_email']);
-									
-									$com_name = htmlentities($row['company_name']);
-									echo('<h2 class="company-name">');
-									echo($com_name);
-									echo('</h2>
+		<!-- Nav -->
+		<nav id="nav">
+			<ul class="links">
+				<li><a href="studentdata.php">Student Database</a></li>
+				<li><a href="recruiterdata.php">Recruiter Database</a></li>
+				<li class="active"><a href="registrations.php">Registration Database</a></li>
+				<li><a href="placed.php">Placed Students</a></li>
+			</ul>
+		</nav>
+
+		<!-- Main -->
+		<div id="main">
+
+			<!-- Post -->
+			<section class="post">
+				<header class="major align-center">
+					<h1>Registration Database</h1>
+				</header>
+				<p>
+					Review the applications for each recruiter. Keep the applicants updated by editing the rounds and status.
+				</p>
+			</section>
+			<?php
+			$stmt = $pdo->query("SELECT * FROM company_data");
+			while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$rec_id = htmlentities($row['company_email']);
+
+				$com_name = htmlentities($row['company_name']);
+				echo ('<h2 class="company-name">');
+				echo ($com_name);
+				echo ('</h2>
 									<div class="table-wrapper">
 										<table>
 											<thead>
@@ -78,46 +81,44 @@ $email = $_SESSION['admin'];
 												</tr>
 											</thead>
 											<tbody>');
-									$stmt1= $pdo->query("SELECT * from student_registrations where rec_id='$rec_id'");
-									while($row= $stmt1->fetch(PDO::FETCH_ASSOC)){
-										//echo(1);
-										$str="reviewreg.php?txt=".strval(htmlentities($row['id']));
-										echo "<tr>
+				$stmt1 = $pdo->query("SELECT * from student_registrations where rec_id='$rec_id'");
+				while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)) {
+					//echo(1);
+					$str = "reviewreg.php?txt=" . strval(htmlentities($row['id']));
+					echo "<tr>
 											<td>";
-											echo (htmlentities($row['stu_id']));
-											echo ("</td>
+					echo (htmlentities($row['stu_id']));
+					echo ("</td>
 											<td>");
-											echo (htmlentities($row['stu_name']));
-											echo ("</td>
+					echo (htmlentities($row['stu_name']));
+					echo ("</td>
 											<td>");
-											echo (htmlentities($row['stu_year']));
-											echo ("</td>
+					echo (htmlentities($row['stu_year']));
+					echo ("</td>
 											<td>");
-											echo (htmlentities($row['rec_id']));
-											echo ("</td>
+					echo (htmlentities($row['rec_id']));
+					echo ("</td>
 											<td>");
-											echo (htmlentities($row['profile']));
-											echo ("</td>
+					echo (htmlentities($row['profile']));
+					echo ("</td>
 											<td>");
-											echo (htmlentities($row['applied_date']));
-											echo ("</td>
+					echo (htmlentities($row['applied_date']));
+					echo ("</td>
 											<td>");
-											echo (htmlentities($row['rounds']));
-											echo ("</td>
+					echo (htmlentities($row['rounds']));
+					echo ("</td>
 											<td>");
-											echo (htmlentities($row['status']));
-											echo ("</td>
+					echo (htmlentities($row['status']));
+					echo ("</td>
 											<td><a href='$str' class='button small'>Review</a></td>
 										</tr>");
-							
-									}
-									echo("</tbody>
+				}
+				echo ("</tbody>
 									</table>
 								</div>\n");
-									
-								}		
-							?>
-							<!-- <h2 class="company-name">Intuit</h2>
+			}
+			?>
+			<!-- <h2 class="company-name">Intuit</h2>
 							<div class="table-wrapper">
 								<table>
 									<thead>
@@ -160,41 +161,47 @@ $email = $_SESSION['admin'];
 									<tbody>
 									</tbody>
 								</table> -->
-							</div>
-						
-					</div>
+		</div>
+
+	</div>
 
 
 
-				<!-- Copyright -->
-					<div id="copyright">
-						<p> &copy; Copyright 2020 | Design: Team 23</p>
-					</div>
+	<!-- Copyright -->
+	<div id="copyright">
+		<p> &copy; Copyright 2020 | Design: Team 23</p>
+	</div>
 
-			</div>
+	</div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script type="text/javascript">
-				var timer = setInterval(function(){ auto_logout() }, 600000);
-				function reset_interval(){
-				    clearInterval(timer);
-				    timer = setInterval(function(){ auto_logout() }, 600000);
-				}
-				 
-				function auto_logout(){
-		    
-				    if(!alert("Your session has ended due to inactivity, click Ok to login to the portal again.")){
-				        window.location="../logout.php";
-				    }
-				 
-				}
-			</script>
-	</body>
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script type="text/javascript">
+		var timer = setInterval(function() {
+			auto_logout()
+		}, 600000);
+
+		function reset_interval() {
+			clearInterval(timer);
+			timer = setInterval(function() {
+				auto_logout()
+			}, 600000);
+		}
+
+		function auto_logout() {
+
+			if (!alert("Your session has ended due to inactivity, click Ok to login to the portal again.")) {
+				window.location = "../logout.php";
+			}
+
+		}
+	</script>
+</body>
+
 </html>
