@@ -45,7 +45,7 @@ $status= htmlentities($rows['status']);
 				<b>View and update your details to participate in the University Campus Recruitment Drive.</b>
 				<br />
 				<br />
-				Download the <a href="#">Placement Brochure</a> to know the guidelines for the process.
+				View the <a  href="../info/TNP-2019-2020.pdf" target="_blank">Recruitment Statuss</a> of IGDTUW'19.
 				<br />
 				For more information, visit the <a href="http://igdtuw.ac.in/" target="_blank">University Website</a>.
 				<br />
@@ -274,113 +274,113 @@ $status= htmlentities($rows['status']);
 												</form></li>
 											</ul></article>	");
 			
-											}
-										}
-									else{
-										$stmt = $pdo->query("SELECT * FROM company_data where approve=1 and role<>'Summer Intern'");
-										while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
-
-											$id= htmlentities($row['company_email']);
-											$stmt0= $pdo->query("SELECT * FROM student_registrations where rec_id='$id' and stu_id='$email'");
-											$row0 = $stmt0->fetchAll(PDO::FETCH_ASSOC);
-											
-											echo "<article><header>
-													<h2><a href='#'>";
-							echo (htmlentities($row['company_name']));
-							echo ("</a></h2>
-											</header>
-											<div class='table-wrapper'>
-											<table>
-												<tbody>
-													<tr>
-														<td>Test Date</td>
-														<td>");
-							echo (htmlentities($row['test_date']));
-							echo ("</td>
-											</tr>
-											<tr>
-												<td>Job Profile</td>
-												<td>");
-							echo (htmlentities($row['job_profiles']));
-							echo ("</td>
-											</tr>
-											<tr>
-												<td>Domain</td>
-												<td>");
-							echo (htmlentities($row['domain']));
-							echo ("
-											<tr>
-												<td>Role</td>													
-												<td>");
-							echo (htmlentities($row['role']));
-							echo ("</td></TR>
-											<tr>
-												<td>Eligibility Cutoff</td>
-												<td>");
-							echo (htmlentities($row['cgpa']));
-							echo ("</td>
-											</tr>
-											<tr>
-												<td>Active Backlogs</td>
-												<td>");
-							echo (htmlentities($row['activeback']));
-							echo ("</td>
-											</tr>
-											<tr>
-												<td>Dead Backlogs</td>
-												<td>");
-							echo (htmlentities($row['deadback']));
-							echo ("</td>
-											</tr>
-											<tr>
-												<td>Compensation (CTC)</td>
-												<td>");
-							echo (htmlentities($row['ctc']));
-							echo ("</td>
-											</tr>
-											<tr>
-												<td>Base Salary</td>
-												<td>");
-							echo (htmlentities($row['base']));
-							echo ("</td>
-											</tr>
-											<tr>
-												<td>Registration Deadline</td>
-												<td>");
-							echo (htmlentities($row['deadline_date']));
-							echo ("</td>
-											</tr>
-											<tr>
-												<td>POC</td>
-												<td>");
-							echo (htmlentities($row['poc_name']));
-							echo ("</td>
-											</tr>
-											<tr>
-												<td>POC Contact</td>
-												<td><a href='#'>");
-							echo (htmlentities($row['poc_contact']));
-							echo ("</a></td>
-											</tr>
-																					
-											</tbody>
-											</table>
-										<ul class='actions special'>
-											<li>
-											<form method='post'>
-												<input type='hidden' value='$email' name='stu_id'/>
-												<input type='hidden' value='$id' name='rec_id'/>");
-							if(count($row0)){
-								echo("<input type='text' class='button disabled' value='Registered' readonly/> ");
-							}				
-							else{
-								echo("<input type='submit' class='button' name='submit' value='Register'/>");
 							}
-								
-											echo("</form></li>
-										</ul></article>						");
-						}
 					}
+					else if($year==4){
+									$stmt = $pdo->query("SELECT * FROM company_data where approve=1 and role<>'Summer Intern'");
+									while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
+
+										$id= htmlentities($row['company_email']);
+										$stmt0= $pdo->query("SELECT * FROM student_registrations where rec_id='$id' and stu_id='$email'");
+										$row0 = $stmt0->fetchAll(PDO::FETCH_ASSOC);
+										
+										echo "<article><header>
+												<h2><a href='#'>";
+						echo (htmlentities($row['company_name']));
+						echo ("</a></h2>
+										</header>
+										<div class='table-wrapper'>
+										<table>
+											<tbody>
+												<tr>
+													<td>Test Date</td>
+													<td>");
+						echo (htmlentities($row['test_date']));
+						echo ("</td>
+										</tr>
+										<tr>
+											<td>Job Profile</td>
+											<td>");
+						echo (htmlentities($row['job_profiles']));
+						echo ("</td>
+										</tr>
+										<tr>
+											<td>Domain</td>
+											<td>");
+						echo (htmlentities($row['domain']));
+						echo ("
+										<tr>
+											<td>Role</td>													
+											<td>");
+						echo (htmlentities($row['role']));
+						echo ("</td></TR>
+										<tr>
+											<td>Eligibility Cutoff</td>
+											<td>");
+						echo (htmlentities($row['cgpa']));
+						echo ("</td>
+										</tr>
+										<tr>
+											<td>Active Backlogs</td>
+											<td>");
+						echo (htmlentities($row['activeback']));
+						echo ("</td>
+										</tr>
+										<tr>
+											<td>Dead Backlogs</td>
+											<td>");
+						echo (htmlentities($row['deadback']));
+						echo ("</td>
+										</tr>
+										<tr>
+											<td>Compensation (CTC)</td>
+											<td>");
+						echo (htmlentities($row['ctc']));
+						echo ("</td>
+										</tr>
+										<tr>
+											<td>Base Salary</td>
+											<td>");
+						echo (htmlentities($row['base']));
+						echo ("</td>
+										</tr>
+										<tr>
+											<td>Registration Deadline</td>
+											<td>");
+						echo (htmlentities($row['deadline_date']));
+						echo ("</td>
+										</tr>
+										<tr>
+											<td>POC</td>
+											<td>");
+						echo (htmlentities($row['poc_name']));
+						echo ("</td>
+										</tr>
+										<tr>
+											<td>POC Contact</td>
+											<td><a href='#'>");
+						echo (htmlentities($row['poc_contact']));
+						echo ("</a></td>
+										</tr>
+																				
+										</tbody>
+										</table>
+									<ul class='actions special'>
+										<li>
+										<form method='post'>
+											<input type='hidden' value='$email' name='stu_id'/>
+											<input type='hidden' value='$id' name='rec_id'/>");
+						if(count($row0)){
+							echo("<input type='text' class='button disabled' value='Registered' readonly/> ");
+						}				
+						else{
+							echo("<input type='submit' class='button' name='submit' value='Register'/>");
+						}
+							
+										echo("</form></li>
+									</ul></article>						");
+					}
+				}
 				}
 			else{
 				echo("<h3>We have closed registrations for the session.</h3>");

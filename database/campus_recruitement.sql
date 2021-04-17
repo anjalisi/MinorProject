@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: Apr 05, 2021 at 03:33 PM
+-- Generation Time: Apr 17, 2021 at 02:46 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -80,7 +80,7 @@ CREATE TABLE `company_data` (
 INSERT INTO `company_data` (`domain`, `company_name`, `company_email`, `company_contact`, `base`, `ctc`, `location`, `job_profiles`, `test_date`, `interview_date`, `deadline_date`, `min_shortlist`, `password`, `poc_name`, `poc_contact`, `hr_name`, `jd_link`, `result_date`, `id`, `approve`, `role`, `cgpa`, `deadback`, `activeback`) VALUES
 ('', 'Cisco', 'cisco@gmail.com', '', '8L', '10L', '', '', '2020-12-08', '2020-12-16', '2020-12-17', '', 'CIsco@2020', 'Taniya', '1909837562', 'Anjali', '', '2020-12-16', 627354, 1, 'Full Time Employee', '7', 0, 0),
 ('', 'Microsoft', 'microsoft@gmail.com', '9958246909', '8L', '12L', '', '', '2020-11-11', '2020-11-11', '2020-11-11', '', 'Microsoft@2020', '', '1829374859', 'Bill Gates', '', '2020-11-11', 356889, 1, 'Full Time Employee', '7.5', 0, 0),
-(NULL, 'Paytm', 'paytm@gmail.com', NULL, NULL, NULL, NULL, NULL, '2020-11-11', '2020-11-11', '2020-11-11', NULL, 'f75d15a90093b555cec5498247b34f00', NULL, NULL, 'Ragini Sharma', NULL, '2020-11-11', 727071, 0, NULL, NULL, 0, 0);
+('', 'Paytm', 'paytm@gmail.com', '', '10Lpa', '30Lpa', '', '', '2020-11-11', '2020-11-11', '2020-11-11', '', '9e2c30268f31ef01b026715b40e397f9', '', '', 'Ragini Sharma', '', '2020-11-11', 727071, 0, '6 Month Intern', '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -126,7 +126,7 @@ CREATE TABLE `student_data` (
   `recommendation` varchar(400) DEFAULT NULL,
   `status` varchar(20) NOT NULL,
   `lor` varchar(250) DEFAULT NULL,
-  `token` varchar(100) NOT NULL
+  `token` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -137,7 +137,7 @@ INSERT INTO `student_data` (`Name`, `email`, `password`, `contact`, `CGPA`, `act
 ('Ragini Sharma', 'ragini@igdtuw.ac.in', '252f090cca1ae8082d57b6a140871ef8', NULL, '0', 0, 0, NULL, '01001012019', NULL, 1, NULL, 'Open', NULL, ''),
 ('Taniya', 'taniya@igdtuw.ac.in', 'Taniya@123', '9958246433', '7', 0, 0, '', '08901012017', NULL, 4, NULL, 'Open', 'taniya@igdtuw.ac.in-lor-CSE_7.PDF', ''),
 ('Shreya', 'shreya093btcse17@igdtuw.ac.in', 'Shreya@2020', '', '6.5', 7, 2, '', '09301012017', NULL, 1, NULL, 'Open', NULL, 'ceadebe126df9014131949f3b83efd'),
-('anjali', 'muskan.anjali.singh@gmail.com', 'Anjali@2020', '', '9.0', 0, 2, 'anjali@igdtuw.ac.in-resume-AnjaliResume20-Blue.pdf', '10001012017', NULL, 4, NULL, 'Open', 'anjali@igdtuw.ac.in-lor-sem 7.pdf', '19a256ba3e721f98f580da6da179a0'),
+('Anjali', 'anjali100btcse17@igdtuw.ac.in', '3b186bcb98b1f82bff2c625f8d28fc96', '', '0', 0, 0, NULL, '10001012017', NULL, 4, NULL, 'Open', NULL, NULL),
 ('Taniya', 'taniya100@igdtuw.ac.in', 'Taniya@123', '', '8', 0, 0, '', '10901012017', NULL, 4, NULL, 'Open', NULL, '');
 
 -- --------------------------------------------------------

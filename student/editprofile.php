@@ -56,7 +56,7 @@ if(isset($_POST['submit'])){
 			':deadBack' =>  $_POST['dback'],
 			':activeBack' =>  $_POST['aback'],
 			':year' => $_POST['year'],
-			':pass' => $_POST['passw'],
+			':pass' => md5($_POST['passw']),
 			)
 		);
 		header("Location: profile.php");

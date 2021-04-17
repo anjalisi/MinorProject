@@ -33,7 +33,7 @@ if(isset($_POST['submit'])){
 			':idate' => ($_POST['idate']),
 			':ddate' => $_POST['ddate'],
 			':min' => $_POST['minshrt'],
-			':pass' => $_POST['passw'],
+			':pass' => md5($_POST['passw']),
 			':poc' => $_POST['poc'],
 			':pcont'  => $_POST['poc_contact'],
 			':hr' => $_POST['rname'],
@@ -151,7 +151,7 @@ if(isset($_POST['submit'])){
 										Job Profile(s)<input type="text" name="jobpr" id="jobpr" value="<?= $job_profiles?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Duration<select name="role" >
+										Duration *	<select name="role" required >
 											<option selected><?=$role?></option>
 											<option >6 Month Intern</option>
 											<option >Full Time Employee</option>
@@ -172,10 +172,10 @@ if(isset($_POST['submit'])){
 										Location<input type="text" pattern="^[a-zA-Z]+$" name="locn" id="locn" value="<?= $location?>" />
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Compensation (CTC)<input type="text" pattern="^[0-9]+ [a-zA-Z]+$" name="ctc" id="ctc" value="<?= $ctc?>" />
+										Compensation (CTC) *<input type="text" pattern="^[0-9a-zA-Z]+$" title="" name="ctc" id="ctc" value="<?= $ctc?>" required/>
 									</div>
 									<div class="col-6 col-12-xsmall">
-										Base Salary<input type="text" pattern="^[0-9]+ [a-zA-Z]+$" name="base" id="base" value="<?= $base?>" />
+										Base Salary *<input type="text" pattern="^[0-9a-zA-Z]+$" name="base" id="base" value="<?= $base?>" required/>
 									</div>
 									<div class="col-6 col-12-xsmall">
 										Minimum Shortlists<input type="text" name="minshrt" pattern="^[0-9]{1,2,3,4,5}$" title="Enter a number" id="minshrt" value="<?= $min ?>" />

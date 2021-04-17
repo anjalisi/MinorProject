@@ -59,7 +59,7 @@ $job= htmlentities($rows['job_profiles']);
 							<b>View applicant profiles and participate in the University Campus Recruitment Drive.</b>
 							<br />
 							<br />
-							Download the <a href="#">Recruitment Guide</a> to know the guidelines for the process.
+							Download the <a href="../info/TnP Brochure 2020-21.pdf" target="_blank">Placement Brochure</a> here.
 							<br />
 							For more information, visit the <a href="http://igdtuw.ac.in/" target="_blank">University Website</a>.
 							<br />
