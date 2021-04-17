@@ -179,10 +179,10 @@ $email = $_SESSION['admin'];
 		    clearInterval(timer);
 		    timer = setInterval(function(){ auto_logout() }, 600000);
 		}
-		 
+		
 		function auto_logout(){
-		    
-		    if(confirm("Your session has ended due to inactivity, click Ok to login to the portal again.")){
+    
+		    if(!alert("Your session has ended due to inactivity, click Ok to login to the portal again.")){
 		        window.location="../logout.php";
 		    }
 		 

@@ -189,8 +189,8 @@ $email = $_SESSION['admin'];
 				}
 				 
 				function auto_logout(){
-				    
-				    if(confirm("Your session has ended due to inactivity, click Ok to login to the portal again.")){
+		    
+				    if(!alert("Your session has ended due to inactivity, click Ok to login to the portal again.")){
 				        window.location="../logout.php";
 				    }
 				 

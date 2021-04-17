@@ -155,13 +155,13 @@ $rows = $stmt->fetch(PDO::FETCH_ASSOC)
 		    timer = setInterval(function(){ auto_logout() }, 600000);
 		}
 		 
-		function auto_logout(){
+				function auto_logout(){
 		    
-		    if(confirm("Your session has ended due to inactivity, click Ok to login to the portal again.")){
-		        window.location="../logout.php";
-		    }
-		 
-		}
+				    if(!alert("Your session has ended due to inactivity, click Ok to login to the portal again.")){
+				        window.location="../logout.php";
+				    }
+				 
+				}
 	</script>
 
 </body>
