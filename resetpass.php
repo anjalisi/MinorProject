@@ -1,56 +1,70 @@
 <?php
 session_start();
 require_once "connect.php";
-if (isset($_POST['email'])) {
-    $query = "SELECT * from student_data where email=:email AND token = :token";
+
+ if (!isset($_GET['token'])) {
+     header("Location: loginStudent.php");
+     return;
+ }
+
+$token = $_GET['token'];
+    //student query
+    $query = "SELECT * from student_data where token = :token";
     $statement = $pdo->prepare($query);
     $statement->execute(array(
-        ':email' => $_POST['email'],
-        ':token' => $_POST['token']
+        ':token' => $token
     ));
     $count = $statement->rowCount();
-    if ($count > 0) {
+    
+    // recruiter query
+    $query1 = "SELECT * FROM company_data WHERE token = :token";
+    $statement1 = $pdo->prepare($query1);
+    $statement1->execute(
+        array(
+            'token' => $token
+        )
+    );
 
-        if (strcmp($_POST['passw'], $_POST['rpassw']) == 0) {
-            $stmt = $pdo->prepare("UPDATE student_data SET password=:pass WHERE token='$token'");
+    $count1 = $statement1->rowCount();
 
-            $stmt->execute(array(
-                ':pass' => md5($_POST['passw'])
+ if (isset($_POST['submit']) && $count > 0) { 
+    if (strcmp($_POST['pass'], $_POST['rpass']) == 0) {
+         $stmt = $pdo->prepare("UPDATE student_data SET password=:pass WHERE token= '$token'");
+        
+         $stmt->execute(array(
+             ':pass' => md5($_POST['pass'])
             ));
-            header("Location: profile.php");
-            return;
-        } else if (strcmp($_POST['passw'], $_POST['rpassw']) != 0) {
+            echo("HEELLLOO");
+             header("Location: loginStudent.php");
+             return;
+        } else {
+            echo("Error");
             $_SESSION['error'] = "Passwords Did Not Match";
-            header("Location: restpass.php");
-            return;
+             header("Location: resetpass.php?token=".$token);
+             return;
         }
-    } else {
-        $query1 = "SELECT * FROM company_data WHERE company_email = :username AND token = :token";
-        $statement = $pdo->prepare($query1);
-        $statement->execute(
-            array(
-                'username' => $_POST["email"],
-                'token' => $_POST["token"]
-            )
-        );
-
-        if (strcmp($_POST['passw'], $_POST['rpassw']) == 0) {
+     } else if(isset($_POST['submit']) && $count1 > 0){
+        if (strcmp($_POST['pass'], $_POST['rpass']) == 0) {
             $stmt = $pdo->prepare("UPDATE company_data SET password=:pass WHERE token='$token'");
 
             $stmt->execute(array(
-                ':pass' => md5($_POST['passw'])
+                ':pass' => md5($_POST['pass'])
             ));
-            header("Location: profile.php");
+            header("Location: loginRecruiter.php");
             return;
-        } else if (strcmp($_POST['passw'], $_POST['rpassw']) != 0) {
+        } else {
             $_SESSION['error'] = "Passwords Did Not Match";
-            header("Location: restpass.php");
+            header("Location: resetpass.php");
             return;
         }
-    }
-}
+     }else {
+        $_SESSION['error1'] = "Invalid credentials";
+        header("Location: resetpass.php");
+        return;
+         
+     }
 
-?>
+ ?>
 
 <!DOCTYPE HTML>
 <html>
@@ -70,17 +84,27 @@ if (isset($_POST['email'])) {
         </header>
 
         <div class="banner">
-            <div class="form sign-in">
+             <form method="post" class="form sign-in">
                 <h2>Password Reset</h2>
                 <p>Enter a strong password.</p>
                 <br />
+                <?php
+                if (isset($_SESSION['error'])) {
+                    echo ("<center><span style='color:blue;'>" . htmlentities($_SESSION['error']) . "</span></center>\n");
+                    unset($_SESSION['error']);
+                }
+                if (isset($_SESSION['msg1'])) {
+                    echo ("<center><span style='color:blue;'>" . htmlentities($_SESSION['msg']) . "</span></center>\n");
+                    unset($_SESSION['msg1']);
+                }
+                ?>
                 <label>
                     <span>New Password</span>
-                    <input name="pass" type="password" name="pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                    <input id="pass" type="password" name="pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
                 </label>
                 <label>
                     <span>Confirm Password</span>
-                    <input name="rpass" type="password" name="rpass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                    <input id="rpass" type="password" name="rpass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
                 </label>
                 <br />
 
@@ -89,12 +113,11 @@ if (isset($_POST['email'])) {
                     <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
 
                 <br />
-                <a href="">
-                    <button class="submit" type="button">Reset my Password</button>
-                </a>
-            </div>
-
-        </div>
+                <input name="submit" class="submit" type="submit" value="Reset my Password"></input>
+            </form>
+        </div>    
+        
+    </div>
 
         <script type="text/javascript" src="assets/js/script.js"></script>
 
@@ -102,3 +125,5 @@ if (isset($_POST['email'])) {
 </body>
 
 </html>
+             
+       
