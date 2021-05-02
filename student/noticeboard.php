@@ -419,8 +419,14 @@ $status = htmlentities($rows['status']);
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
 	<script type="text/javascript">
+		var alerted = localStorage.getItem('alerted')||'';
 		window.onload = setTimeout(function() {
-			alert("Make sure your profile is up to date before registrations.");
+			if (alerted != 'yes')
+			{
+				alert("Make sure your profile is up to date before registrations.");
+				localStorage.setItem('alerted','yes');
+			}
+			
 		}, 2000);
 
 		mybutton = document.getElementById("totop");
