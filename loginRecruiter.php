@@ -15,8 +15,8 @@ if (isset($_POST['comp_name']) && isset($_POST['comp_email']) && isset($_POST['s
         header("Location: loginRecruiter.php");
         return;
     } else {
-        $sql = "INSERT INTO company_data(company_name, company_email, password, hr_name, id)
-     values(:name,:email,:pass, :hr,:id)";
+        $sql = "INSERT INTO company_data(company_name, company_email, password, hr_name, id, test_date, interview_date, deadline_date)
+     values(:name,:email,:pass, :hr,:id, curdate(), curdate(), curdate())";
 
         $str = rand();
         $vkey = md5($str);
@@ -62,103 +62,122 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 <html>
 
 <head>
-    <title>Campus Recruitment | Recruiter Login</title>
+    <title>IGDTUW Recruitment | Recruiter Login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="assets/css/loginstyle.css">
 </head>
 
 <body>
-    <div id="page-wrapper">
-        <!-- Header -->
-        <header id="header" class="alt">
-            <h1 id="logo"><a href="index.html">University <span>Placement Cell</span></a></h1>
-            <nav id="nav">
-                <ul>
-                    <li><a href="loginStudent.php" class="button primary scrolly">Login as Student</a></li>
-                </ul>
-            </nav>
-        </header>
-
-        <div class="cont">
-
-            <form method="post" class="form sign-in">
-                <h2><b>Sign In</b></h2>
-                <?php
-                if (isset($_SESSION['error'])) {
-                    echo ("<center><span style='color:blue;'>" . htmlentities($_SESSION['error']) . "</span></center>\n");
-                    unset($_SESSION['error']);
-                }
-                ?>
-
-                <label>
-                    <span>Email Address</span>
-                    <input type="email" name="email" required>
-                </label>
-                <label>
-                    <span>Password</span>
-                    <input type="password" name="password" required>
-                </label>
-                <input class="submit" type="submit" value="Sign In" class="signin_comp">
-
-                <p><a href="forgotpass_rec.php" class="forgot-pass">Forgot Password ?</a></p>
-            </form>
-
-            <div class="sub-cont">
-
-                <div class="img">
-
-                    <div class="img-text m-up">
-                        <h2>New here?</h2>
-                        <p>Sign up and meet with the brilliant minds on campus!</p>
-                    </div>
-
-                    <div class="img-text m-in">
-                        <h2>One of us?</h2>
-                        <p>If you already have an account, sign in. We've missed you!</p>
-                    </div>
-
-                    <div class="img-btn">
-                        <span class="m-up">Sign Up</span>
-                        <span class="m-in">Sign In</span>
-                    </div>
-                </div>
-
-                <form method="post" class="form sign-up">
-                    <h2>Sign Up</h2>
+    <!-- Header -->
+    <header id="header" class="alt">
+        <nav id="nav">
+            <ul>
+                <li><a href="index.html" class="primary">Home</a></li>                    
+                <li><a href="loginStudent.php" class="primary">Login as Student</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="forms-container">
+            <div class="signin-signup">
+                <form method="post" class="sign-in-form">
+                    
+                    <h2 class="title">Recruiter Login</h2>
                     <?php
                     if (isset($_SESSION['error'])) {
-                        echo ("<center><span style='color:blue;'>" . htmlentities($_SESSION['error']) . "</span></center>\n");
+                        echo ("<p style='color:red;'>" . htmlentities($_SESSION['error']) . "</p>\n");
                         unset($_SESSION['error']);
                     }
                     ?>
-                    <label>
-                        <span>Company Name</span>
-                        <input type="text" pattern="^[a-zA-Z ][a-zA-Z0-9-_. ]*$" name="comp_name" required>
-                    </label>
 
-                    <label>
-                        <span>Email</span>
-                        <input type="email" name="comp_email" required>
-                    </label>
-
-                    <label>
-                        <span>Representative Name</span>
-                        <input type="text" name="hr_name" required>
-                    </label>
-
-                    <label>
-                        <span>Password</span>
-                        <input type="password" name="comp_pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
-                    </label>
-
-                    <input type="submit" class="submit" name="signup_comp" value="Sign Up">
+                    <p class="field-title">Email Address</p>
+                    <div class="input-field">
+                        <input type="email" name="email" required>
+                    </div>
+                    <p class="field-title">Password</p>
+                    <div class="input-field">
+                        <input type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                    </div>
+                    <br />
+                    <div class="g-recaptcha" data-sitekey="6LcgN9YaAAAAAPrZX4J3_17CFdei3GvowPgd2EYk" style="text-align: -webkit-center; text-align: -moz-center; text-align: -o-center; text-align: -ms-center;"></div>
+                    <br />                    
+                    <input type="submit" value="Login" class="btn solid" class="signin_comp"/>
+                    <p><a href="forgotpass_rec.php">Forgot Password?</a></p>
+                    
                 </form>
+                
+                <form method="post" class="sign-up-form">
+                    
+                    <h2 class="title">Sign up</h2>
+                    <?php
+                    if (isset($_SESSION['error'])) {
+                        echo ("<p>" . htmlentities($_SESSION['error']) . "</p>\n");
+                        unset($_SESSION['error']);
+                    }
+                    ?>
+                    <p class="field-title">Company Name</p>
+                    <div class="input-field">
+                        <input type="text" pattern="^[a-zA-Z ][a-zA-Z0-9-_. ]*$" name="comp_name" required>
+                    </div>
+                    <p class="field-title">Email</p>
+                    <div class="input-field">
+                        <input type="email" name="comp_email" required>
+                    </div>
+                    <p class="field-title">Representative Name</p>
+                    <div class="input-field">
+                        <input type="text" name="hr_name" required>
+                    </div>
+                    <p class="field-title">Password</p>
+                    <div class="input-field">
+                        <input type="password" name="comp_pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                    </div>
+                    <input name="signup_comp" type="submit" class="btn" value="Sign up" />          
+                </form>
+            </div>
+        </div>
+
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>New here ?</h3>
+                    <p>
+                        Sign up and meet with the brilliant minds on campus. Happy recruiting!
+                    </p>
+                    <br />
+                    <button class="btn transparent" id="sign-up-btn">
+                        Sign up
+                    </button>
+                </div>
+            </div>
+            
+            <div class="panel right-panel">
+                <div class="content">
+                    <h3>One of us ?</h3>
+                    <p>
+                        If you already have an account, sign in to your dashboard. We've missed you!
+                    </p>
+                    <br />
+                    <button class="btn transparent" id="sign-in-btn">
+                        Sign in
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
-    <script type="text/javascript" src="assets/js/script.js"></script>
 </body>
+
+    <script src="assets/js/script.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script>
+        window.onload = function() {
+            var $recaptcha = document.querySelector('#g-recaptcha-response');
+        
+            if($recaptcha) {
+                $recaptcha.setAttribute("required", "required");
+            }
+        };
+    </script>
 
 </html>

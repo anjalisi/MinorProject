@@ -2,16 +2,16 @@
 	var methods = {
 		init: function (options) {
 			var p = {
-				direction: 'left', //Указывает направление движения содержимого контейнера (left | right | up | down)
-				loop: -1, //Задает, сколько раз будет прокручиваться содержимое. "-1" для бесконечного воспроизведения движения
-				scrolldelay: 0, //Величина задержки в миллисекундах между движениями
-				scrollamount: 50, //Скорость движения контента (px/sec)
-				circular: true, //Если "true" - строка непрерывная 
-				drag: true, //Если "true" - включено перетаскивание строки
-				runshort: true, //Если "true" - короткая строка тоже "бегает", "false" - стоит на месте
-				hoverstop: true, //true - строка останавливается при наведении курсора мыши, false - строка не останавливается
-				inverthover: false, //false - стандартное поведение. Если "true" - строка начинает движение только при наведении курсора
-				xml: false //Путь к xml файлу с нужным текстом
+				direction: 'left', 
+				loop: -1, 
+				scrolldelay: 0, 
+				scrollamount: 50,
+				circular: true,
+				drag: true, 
+				runshort: true, 
+				hoverstop: true, 
+				inverthover: false, 
+				xml: false 
 			};
 			if (options) {
 				$.extend(p, options);

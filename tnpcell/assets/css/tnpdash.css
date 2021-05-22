@@ -332,6 +332,34 @@ input, select, textarea {
 		background-color: #ffffff !important;
 	}
 
+/* Collapsible */
+
+	.collapsible {
+		background-color: rgba(255, 255, 255, 0.55);
+		color: #000000;
+  		cursor: pointer;
+  		padding: 18px;
+	  	width: 100%;
+	  	border: none;
+	  	text-align: justify;
+	  	outline: none;
+	}
+
+	.collapsible.active, .collapsible:hover {
+  		background-color: rgba(255, 255, 255, 0.7);
+	}
+
+	.coll-content {
+		padding: 0 !important;
+		background-color: rgba(255, 255, 255, 0.8);
+		color: #000000;
+		text-align: justify;
+	  	max-height: 0;
+	  	overflow: hidden;
+	  	transition: max-height 0.2s ease-out;
+	}
+
+
 /* Row */
 
 	.row {
@@ -3032,6 +3060,7 @@ input, select, textarea {
 		overflow-x: scroll;
 		margin-right: 4rem !important;
 		margin-left: 4rem !important;
+		padding-top: 3rem;
 	}
 
 	table {

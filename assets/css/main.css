@@ -253,7 +253,7 @@ input, select, textarea {
   		padding: 18px;
 	  	width: 100%;
 	  	border: none;
-	  	text-align: justify;
+	  	text-align: left;
 	  	outline: none;
 	}
 
@@ -270,7 +270,6 @@ input, select, textarea {
 	  	overflow: hidden;
 	  	transition: max-height 0.2s ease-out;
 	}
-
 
 
 /* Row */

@@ -14,7 +14,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if (isset($_POST['submit'])) {
 
 	$stmt = $pdo->prepare('UPDATE company_data SET cgpa=:cgpa, role=:role, deadback=:dback, activeback=:aback, domain=:d,company_contact=:contact, base=:base,ctc=:ctc, location=:loc, job_profiles=:pro,test_date=:tdate,
-		interview_date=:idate, deadline_date=:ddate, min_shortlist= :min, password=:pass, poc_name=:poc, poc_contact= :pcont, hr_name=:hr,
+		interview_date=:idate, deadline_date=:ddate, min_shortlist= :min, poc_name=:poc, poc_contact= :pcont, hr_name=:hr,
 		jd_link=:jd, result_date= :rdate 
 		WHERE company_email=:email');
 	$stmt->execute(
@@ -33,7 +33,6 @@ if (isset($_POST['submit'])) {
 			':idate' => ($_POST['idate']),
 			':ddate' => $_POST['ddate'],
 			':min' => $_POST['minshrt'],
-			':pass' => md5($_POST['passw']),
 			':poc' => $_POST['poc'],
 			':pcont'  => $_POST['poc_contact'],
 			':hr' => $_POST['rname'],
@@ -53,10 +52,11 @@ if (isset($_POST['submit'])) {
 <html>
 
 <head>
-	<title>Campus Recruitment | Recruiter</title>
+	<title>IGDTUW Recruitment | Recruiter</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/dashboard.css" />
+	<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.png">
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
@@ -109,7 +109,6 @@ if (isset($_POST['submit'])) {
 					$aback = htmlentities($row['activeback']);
 					$dback = htmlentities($row['deadback']);
 					$cgpa = htmlentities($row['cgpa']);
-					$password = htmlentities($row['password']);
 				}
 			}
 
@@ -202,12 +201,6 @@ if (isset($_POST['submit'])) {
 					</div>
 					<div class="col-12">
 						Job Description File(Drive Link)<input type="text" pattern="^https://drive\.google\.com/file/d/([0-9]+([a-zA-Z]+[0-9]+)+)([a-zA-Z]+(/[a-zA-Z]+)+)\?usp=sharing$" name="jd" value="<?= $jd ?>" />
-					</div>
-					<div class="col-12">
-						Password<input type="password" name="passw" id="passw" value="<?= $password ?>" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" />
-					</div>
-					<div class="col-12">
-						Confirm Password<input type="password" name="rpassw" id="rpassw" value="<?= $password ?>" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" />
 					</div>
 					<div class="col-12">
 						<input type="checkbox" id="checkx" name="checkx" required>

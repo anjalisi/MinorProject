@@ -75,10 +75,11 @@ if (isset($_POST['submit'])) {
 <html>
 
 <head>
-	<title>Campus Recruitment | Student</title>
+	<title>IGDTUW Recruitment | Student</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/dashboard.css" />
+	<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.png">
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
@@ -158,7 +159,7 @@ if (isset($_POST['submit'])) {
 						Contact No.<input type="tel" maxlength="10" pattern="^[0-9]{10}$" name="phone" id="phone" value="<?= $contact ?>" required />
 					</div>
 					<div class="col-6 col-12-xsmall">
-						CGPA<input type="text" pattern="^[0]|[0-9]\.(\d?\d?)|[10].[0]$" name="cgpa" id="cgpa" value="<?= $CGPA ?>" required />
+						CGPA<input type="text" pattern="^[0]|[0-9]|[0-9]\.(\d?\d?)$" name="cgpa" id="cgpa" value="<?= $CGPA ?>" title="Add upto 2 decimal places" required />
 					</div>
 					<div class="col-6 col-12-xsmall">
 						Active Backs<input type="text" pattern="^[0-9]+$" name="aback" id="aback" value="<?= $activeBack ?>" required />
@@ -202,7 +203,7 @@ if (isset($_POST['submit'])) {
 				</header>
 			</section>
 			<form method="post" enctype="multipart/form-data">
-				Resume <div class="col-12">
+				Kindly ensure the file size does not exceed 2MB. <div class="col-12">
 
 					<input type="file" name="myfile" required><br>
 				</div>

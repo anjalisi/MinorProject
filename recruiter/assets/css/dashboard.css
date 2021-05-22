@@ -332,6 +332,34 @@ input, select, textarea {
 		background-color: #ffffff !important;
 	}
 
+/* Collapsible */
+
+	.collapsible {
+		background-color: rgba(255, 255, 255, 0.55);
+		color: #000000;
+  		cursor: pointer;
+  		padding: 18px;
+	  	width: 100%;
+	  	border: none;
+	  	text-align: justify;
+	  	outline: none;
+	}
+
+	.collapsible.active, .collapsible:hover {
+  		background-color: rgba(255, 255, 255, 0.7);
+	}
+
+	.coll-content {
+		padding: 0 !important;
+		background-color: rgba(255, 255, 255, 0.8);
+		color: #000000;
+		text-align: justify;
+	  	max-height: 0;
+	  	overflow: hidden;
+	  	transition: max-height 0.2s ease-out;
+	}
+
+
 /* Row */
 
 	.row {
@@ -3025,6 +3053,7 @@ input, select, textarea {
 	.table-wrapper {
 		-webkit-overflow-scrolling: touch;
 		overflow-x: auto;
+		padding: 3rem;
 	}
 
 	table {
@@ -3274,10 +3303,10 @@ input, select, textarea {
 			-webkit-transition: opacity 1s ease-in-out;
 			-ms-transition: opacity 1s ease-in-out;
 			transition: opacity 1s ease-in-out;
-			-moz-transition-delay: 0.75s;
-			-webkit-transition-delay: 0.75s;
-			-ms-transition-delay: 0.75s;
-			transition-delay: 0.75s;
+            -moz-transition-delay: 0.25s;
+            -webkit-transition-delay: 0.25s;
+            -ms-transition-delay: 0.25s;
+            transition-delay: 0.25s;
 			background: #1e252d;
 			content: '';
 			display: block;

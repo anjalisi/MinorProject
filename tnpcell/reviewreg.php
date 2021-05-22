@@ -37,10 +37,11 @@ if (isset($_POST['submit'])) {
 <html>
 
 <head>
-	<title>Campus Recruitment | TNP</title>
+	<title>IGDTUW Recruitment | TNP</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/tnpdash.css" />
+	<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.png">
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>

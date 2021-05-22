@@ -67,10 +67,11 @@ if (isset($_POST['submit'])) {
 <html>
 
 <head>
-	<title>Campus Recruitment | TNP</title>
+	<title>IGDTUW Recruitment | TNP</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/tnpdash.css" />
+	<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.png">
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
@@ -137,7 +138,7 @@ if (isset($_POST['submit'])) {
 						Contact No.<input type="text" readonly name="phone" id="phone" value="<?= $contact ?>" />
 					</div>
 					<div class="col-3 col-12-xsmall">
-						CGPA<input type="text" pattern="^[0]|[0-9]\.(\d?\d?)|[10].[0]$" name="cgpa" id="cgpa" value="<?= $CGPA ?>" />
+						CGPA<input type="text" pattern="^[0-9]\.(\d?\d?)$" name="cgpa" id="cgpa" value="<?= $CGPA ?>" />
 					</div>
 					<div class="col-3 col-12-xsmall">
 						Year<input type="text" readonly name="year" id="year" value="<?= $year ?>" />

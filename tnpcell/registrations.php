@@ -14,10 +14,11 @@ $email = $_SESSION['admin'];
 <html>
 
 <head>
-	<title>Campus Recruitment | TNP</title>
+	<title>IGDTUW Recruitment | TNP</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/tnpdash.css" />
+	<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.png">
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
@@ -61,9 +62,10 @@ $email = $_SESSION['admin'];
 				$rec_id = htmlentities($row['company_email']);
 
 				$com_name = htmlentities($row['company_name']);
-				echo ('<h2 class="company-name">');
+				echo ('<h2 class="company-name collapsible"><span class="icon solid fa-angle-down"></span>&ensp;');
 				echo ($com_name);
 				echo ('</h2>
+				                <div class="coll-content">
 									<div class="table-wrapper">
 										<table>
 											<thead>
@@ -115,6 +117,7 @@ $email = $_SESSION['admin'];
 				}
 				echo ("</tbody>
 									</table>
+								</div>
 								</div>\n");
 			}
 			?>
@@ -200,6 +203,22 @@ $email = $_SESSION['admin'];
 				window.location = "../logout.php";
 			}
 
+		}
+	</script>
+	<script type="text/javascript">
+		var coll = document.getElementsByClassName("collapsible");
+		var i;
+
+		for (i = 0; i < coll.length; i++) {
+		  coll[i].addEventListener("click", function() {
+		    this.classList.toggle("active");
+		    var content = this.nextElementSibling;
+		    if (content.style.maxHeight){
+		      content.style.maxHeight = null;
+		    } else {
+		      content.style.maxHeight = content.scrollHeight + "px";
+		    }
+		  });
 		}
 	</script>
 </body>

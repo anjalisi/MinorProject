@@ -15,10 +15,11 @@ $email = $_SESSION['admin'];
 <html>
 
 <head>
-	<title>Campus Recruitment | TNP</title>
+	<title>IGDTUW Recruitment | TNP</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/tnpdash.css" />
+	<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.png">
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
@@ -42,7 +43,6 @@ $email = $_SESSION['admin'];
 			<h1>Training and Placement Cell</h1>
 			<p>
 				<b>View Master Databases for students and recruiters.</b>
-				<br />
 				<br />
 				Update notice board and recruitment status for students. Approve recruiter details.
 				<br />
@@ -80,6 +80,12 @@ $email = $_SESSION['admin'];
 					Edit/Update the data as and when necessary or in case of any discrepencies. A student can be blocked from further activity,<br /> disabling the student to participate in further placement drives.
 				</p>
 			</section>
+			
+			<div class="collapsible company-name">
+			    <h2><span class="icon solid fa-angle-down"></span>&ensp;CSE Final Year</h2>
+			</div>
+			
+			<div class="coll-content">
 
 			<div class="table-wrapper">
 				<table>
@@ -144,10 +150,10 @@ $email = $_SESSION['admin'];
 							echo (htmlentities($row['grad_year']));
 							echo ("</td>
 							<td>");
-							echo (htmlentities($row['resume']));
+							echo '<a href="../student/uploads/'.htmlentities($row['resume']).'" target="_blank">'.htmlentities($row['resume']).'</a>';
 							echo ("</td>
 							<td>");
-							echo (htmlentities($row['lor']));
+							echo '<a href="../student/lor/'.htmlentities($row['lor']).'" target="_blank">'.htmlentities($row['lor']).'</a>';
 							echo ("</td>
 							<td><form method='post'>
 							<input type='hidden' value='$stu_id' name='stu_id'/>");
@@ -161,12 +167,15 @@ $email = $_SESSION['admin'];
 								</form></td>");
 							}
 							echo ("<td><a href='$str' class='button small'>Edit</a></td>\n");
+							echo("</tr>");
 						}
 						?>
 
 					</tbody>
 
 				</table>
+			</div>
+			
 			</div>
 
 
@@ -225,6 +234,22 @@ $email = $_SESSION['admin'];
 				window.location = "../logout.php";
 			}
 
+		}
+	</script>
+	<script type="text/javascript">
+		var coll = document.getElementsByClassName("collapsible");
+		var i;
+
+		for (i = 0; i < coll.length; i++) {
+		  coll[i].addEventListener("click", function() {
+		    this.classList.toggle("active");
+		    var content = this.nextElementSibling;
+		    if (content.style.maxHeight){
+		      content.style.maxHeight = null;
+		    } else {
+		      content.style.maxHeight = content.scrollHeight + "px";
+		    }
+		  });
 		}
 	</script>
 

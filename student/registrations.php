@@ -14,10 +14,11 @@ $email = $_SESSION['email'];
 <html>
 
 <head>
-	<title>Campus Recruitment | Student</title>
+	<title>IGDTUW Recruitment | Student</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/dashboard.css" />
+	<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.png">
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>

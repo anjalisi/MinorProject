@@ -28,6 +28,10 @@ $token = $_GET['token'];
 
     $count1 = $statement1->rowCount();
     //echo($count1);
+if($count==0 && $count1==0){
+    header("Location: 404.shtml");
+    return;
+}
  if (isset($_POST['submit']) && $count > 0) { 
     if (strcmp($_POST['pass'], $_POST['rpass']) == 0) {
          $stmt = $pdo->prepare("UPDATE student_data SET password=:pass, token='' WHERE token= '$token'");
@@ -35,11 +39,9 @@ $token = $_GET['token'];
          $stmt->execute(array(
              ':pass' => md5($_POST['pass'])
             ));
-            echo("HEELLLOO");
              header("Location: loginStudent.php");
              return;
         } else {
-            echo("Error");
             $_SESSION['error1'] = "Passwords Did Not Match";
              header("Location: resetpass.php?token=".$token);
              return;
@@ -68,64 +70,76 @@ else if(isset($_POST['submit']) && $count1 > 0){
 
  ?>
 
+
 <!DOCTYPE HTML>
 <html>
 
 <head>
-    <title>Campus Recruitment | Reset Password</title>
+    <title>IGDTUW Recruitment | Reset Password</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="assets/css/loginstyle.css">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
 </head>
 
 <body>
-    <div id="page-wrapper">
-        <!-- Header -->
-        <header id="header" class="alt">
-            <h1 id="logo"><a href="index.html">University <span>Placement Cell</span></a></h1>
-        </header>
-
-        <div class="banner">
-             <form method="post" class="form sign-in">
-                <h2>Password Reset</h2>
-                <p>Enter a strong password.</p>
-                <br />
-                <?php
-                if (isset($_SESSION['error'])) {
-                    echo ("<center><span style='color:blue;'>" . htmlentities($_SESSION['error']) . "</span></center>\n");
-                    unset($_SESSION['error']);
-                }
-                if (isset($_SESSION['msg1'])) {
-                    echo ("<center><span style='color:blue;'>" . htmlentities($_SESSION['msg']) . "</span></center>\n");
-                    unset($_SESSION['msg1']);
-                }
-                ?>
-                <label>
-                    <span>New Password</span>
-                    <input id="pass" type="password" name="pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
-                </label>
-                <label>
-                    <span>Confirm Password</span>
-                    <input id="rpass" type="password" name="rpass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
-                </label>
-                <br />
-
-                <!-- RECAPTCHA ADD WHEN DOMAIN REGISTERED 
-                    <div class="g-recaptcha" data-sitekey="WEBSITEKEYHERE" data-theme="light" data-size="normal" data-image="image"></div> 
-                    <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
-
-                <br />
-                <input name="submit" class="submit" type="submit" value="Reset my Password"></input>
-            </form>
-        </div>    
+    <!-- Header -->
+    <header id="header" class="alt">
+        <nav id="nav">
+            <ul>
+                <li><a href="index.html" class="primary">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="forms-container">
+            <div class="signin-signup">
+                <form method="post" class="sign-in-form">
+                    
+                    <h2 class="title">Reset Password</h2>
+                    <p class="field-title">Enter a strong password.</p>
+                    <?php
+                    if (isset($_SESSION['error1'])) {
+                        echo ("<p style='color:red;'>" . htmlentities($_SESSION['error1']) . "</p>\n");
+                        unset($_SESSION['error1']);
+                    }
+                    if (isset($_SESSION['msg1'])) {
+                        echo ("<p style='color:red;'>" . htmlentities($_SESSION['msg']) . "</p>\n");
+                        unset($_SESSION['msg1']);
+                    }
+                    ?>
+                    <p class="field-title">New Password</p>
+                    <div class="input-field">   
+                        <input id="pass" type="password" name="pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                    </div> 
+                    <p class="field-title">Confirm Password</p>
+                    <div class="input-field">
+                        <input id="rpass" type="password" name="rpass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                    </div>
+                    <br />
+                    <div class="g-recaptcha" data-sitekey="6LcgN9YaAAAAAPrZX4J3_17CFdei3GvowPgd2EYk" style="text-align: -webkit-center; text-align: -moz-center; text-align: -o-center; text-align: -ms-center;"></div>
+                    <br />
+                    <input name="submit" class="btn solid submit" type="submit" value="Reset Password"></input>
+                </form>
+            </div>    
         
+        </div>
+
     </div>
 
         <script type="text/javascript" src="assets/js/script.js"></script>
+        <script src="https://www.google.com/recaptcha/api.js"></script>
+        <script>
+            window.onload = function() {
+                var $recaptcha = document.querySelector('#g-recaptcha-response');
+            
+                if($recaptcha) {
+                    $recaptcha.setAttribute("required", "required");
+                }
+            };
+        </script>
 
 
 </body>
 
 </html>
-             
-       

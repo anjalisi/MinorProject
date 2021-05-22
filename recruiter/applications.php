@@ -21,10 +21,11 @@ $job = htmlentities($rows['job_profiles']);
 <html>
 
 <head>
-	<title>Campus Recruitment | Recruiter</title>
+	<title>IGDTUW Recruitment | Recruiter</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/dashboard.css" />
+	<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.png">
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
@@ -63,8 +64,6 @@ $job = htmlentities($rows['job_profiles']);
 				<br />
 				Download the <a href="../info/TnP Brochure 2020-21.pdf" target="_blank">Placement Brochure</a> here.
 				<br />
-				For more information, visit the <a href="http://igdtuw.ac.in/" target="_blank">University Website</a>.
-				<br />
 				Recruiter ID: <b><?= $id ?></b> <?= $name ?>.
 				<br />
 				Person of Contact: <b><a href="#"><?= $poc ?></a></b>
@@ -98,8 +97,9 @@ $job = htmlentities($rows['job_profiles']);
 				</header>
 			</article>
 
-			<h3><?= $job ?> - <?= $duration ?></h3>
-			<div class="table-wrapper">
+			<h3 class="collapsible"><span class="icon solid fa-angle-down"></span>&ensp;<?= $job ?> - <?= $duration ?></h3>
+			<div class="coll-content">
+			    <div class="table-wrapper">
 				<table>
 					<thead>
 						<tr>
@@ -109,6 +109,7 @@ $job = htmlentities($rows['job_profiles']);
 							<th>Year</th>
 							<th>CGPA</th>
 							<th>Resume</th>
+							<th>LOR</th>
 							<th>Active Backlogs</th>
 							<th>Dead Backlogs</th>
 							<th>Date Applied</th>
@@ -121,14 +122,16 @@ $job = htmlentities($rows['job_profiles']);
 							$stu_name = htmlentities($row['stu_name']);
 							$stu_contact = htmlentities($row['stu_contact']);
 							$stu_res = htmlentities($row['stu_res']);
+							$lor = htmlentities($row['lor']);
 							$year = htmlentities($row['stu_year']);
 							$cgpa = htmlentities($row['stu_cgpa']);
 							$aback = htmlentities($row['aback']);
+							$dback = htmlentities($row['dback']);		
 							$date = htmlentities($row['applied_date']);
-							$dback = htmlentities($row['dback']);
-							echo ('<tr><td> <a href="#">');
+
+							echo ('<tr><td>');
 							echo ($stu_name);
-							echo ('</a> </td>
+							echo ('</td>
 											<td>');
 							echo ($stu_contact);
 							echo ('</td>
@@ -139,9 +142,13 @@ $job = htmlentities($rows['job_profiles']);
 							echo ($cgpa);
 							echo ('</td>
 											<td>');
-							echo ($stu_res);
+							
+							echo ('<a href="../student/uploads/'.$stu_res.'" target="_blank"><?= $stu_res ?></a></td>');
 							echo ('</td>
 											<td>');
+							echo ('<a href="../student/lor/'.$lor.'" target="_blank"><?= $lor ?></a>');
+							echo ('</td>
+							                <td>');
 							echo ($aback);
 							echo ('</td>
 											<td>');
@@ -155,6 +162,7 @@ $job = htmlentities($rows['job_profiles']);
 						?>
 					</tbody>
 				</table>
+			    </div>
 			</div>
 			<!-- 
 							<h3>Software Engineer - Intern</h3>
@@ -227,20 +235,6 @@ $job = htmlentities($rows['job_profiles']);
 			<!-- </table> -->
 			<!-- </div> -->
 
-			<!-- Footer -->
-			<footer>
-				<div class="pagination">
-					<!--<a href="#" class="previous">Prev</a>-->
-					<a href="#" class="page active">1</a>
-					<a href="#" class="page">2</a>
-					<a href="#" class="page">3</a>
-					<span class="extra">&hellip;</span>
-					<a href="#" class="page">8</a>
-					<a href="#" class="page">9</a>
-					<a href="#" class="page">10</a>
-					<a href="#" class="next">Next</a>
-				</div>
-			</footer>
 
 		</div>
 
@@ -297,6 +291,22 @@ $job = htmlentities($rows['job_profiles']);
 				window.location = "../logout.php";
 			}
 
+		}
+	</script>
+		<script type="text/javascript">
+		var coll = document.getElementsByClassName("collapsible");
+		var i;
+
+		for (i = 0; i < coll.length; i++) {
+		  coll[i].addEventListener("click", function() {
+		    this.classList.toggle("active");
+		    var content = this.nextElementSibling;
+		    if (content.style.maxHeight){
+		      content.style.maxHeight = null;
+		    } else {
+		      content.style.maxHeight = content.scrollHeight + "px";
+		    }
+		  });
 		}
 	</script>
 

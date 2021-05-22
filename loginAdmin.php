@@ -27,45 +27,75 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 <html>
 
 <head>
-    <title>Campus Recruitment | TnP Login</title>
+    <title>IGDTUW Recruitment | TnP Login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="assets/css/loginstyle.css">
 </head>
 
 <body>
-    <div id="page-wrapper">
-        <!-- Header -->
-        <header id="header" class="alt">
-            <h1 id="logo"><a href="index.html">University <span>Placement Cell</span></a></h1>
-        </header>
+    <!-- Header -->
+    <header id="header" class="alt">
+        <nav id="nav">
+            <ul>
+                <li><a href="index.html" class="primary">Home</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <div class="banner">
-            <form method="POST" class="form sign-in">
-                <h2>TnP Administrator Login</h2>
-                <?php
-                if (isset($_SESSION['error'])) {
-                    echo ("<center><span style='color:blue;'>" . htmlentities($_SESSION['error']) . "</span></center>\n");
-                    unset($_SESSION['error']);
-                }
-                ?>
-                <label>
-                    <span>Email Address</span>
-                    <input type="email" name="email" placeholder="@igdtuw.ac.in" required>
-                </label>
-                <label>
-                    <span>Password</span>
-                    <input type="password" name="password" required>
-                </label>
-                <br />
-                <br />
-                <input value="Sign In" class="submit" type="submit"></input>
-            </form>
-
+    <div class="container">
+        <div class="forms-container">
+            <div class="signin-signup">
+                <form method="post" class="sign-in-form">
+                    
+                    <h2 class="title">Sign in</h2>
+                    <?php
+                    if (isset($_SESSION['error'])) {
+                        echo ("<p style='color:red;'>" . htmlentities($_SESSION['error']) . "</p>\n");
+                        unset($_SESSION['error']);
+                    }
+                    ?>
+                    <p class="field-title">Email Address</p>
+                    <div class="input-field">
+                        <input name="email" type="email" required>
+                    </div>
+                    <p class="field-title">Password</p>
+                    <div class="input-field">
+                        <input name="password" type="password" required>
+                    </div>
+                    <br />
+                    <div class="g-recaptcha" data-sitekey="6LcgN9YaAAAAAPrZX4J3_17CFdei3GvowPgd2EYk" style="text-align: -webkit-center; text-align: -moz-center; text-align: -o-center; text-align: -ms-center;"></div>
+                    <br />
+                    <input type="submit" value="Login" class="btn solid" />
+                    
+                </form>
+            </div>
         </div>
 
-        <script type="text/javascript" src="assets/js/script.js"></script>
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>Administrator Login</h3>
+                    <p>
+                        For members of the Training and Placement Cell of IGDTUW only. Kindly do not share these credentials with unauthorized users.
+                    </p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
 
-</body>
+</body>    
+
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script>
+        window.onload = function() {
+            var $recaptcha = document.querySelector('#g-recaptcha-response');
+        
+            if($recaptcha) {
+                $recaptcha.setAttribute("required", "required");
+            }
+        };
+    </script>
 
 </html>

@@ -15,10 +15,11 @@ $email = $_SESSION['admin'];
 <html>
 
 <head>
-	<title>Campus Recruitment | TNP</title>
+	<title>IGDTUW Recruitment | TNP</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/tnpdash.css" />
+	<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.png">
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
@@ -83,6 +84,11 @@ $email = $_SESSION['admin'];
 							$stmt = $pdo->prepare("UPDATE company_data SET approve=1 where company_email=:email");
 							$stmt->execute(array(':email' => $rec_id));
 						}
+						if (isset($_POST['unapprove'])) {
+							$rec_id = $_POST['rec_id'];
+							$stmt = $pdo->prepare("UPDATE company_data SET approve=0 where company_email=:email");
+							$stmt->execute(array(':email' => $rec_id));
+						}
 						$stmt = $pdo->query("SELECT * FROM company_data");
 						while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 							$rec_id = htmlentities($row['company_email']);
@@ -136,11 +142,11 @@ $email = $_SESSION['admin'];
 							<input type='hidden' value='$rec_id' name='rec_id'/>");
 							if ($approve == 0) {
 								echo ("
-								<input type='submit' class='small' name='approve' value='Post'/>-
+								<input type='submit' class='small' name='approve' value='Post'/>
 								</form></td>");
 							} else {
 								echo ("
-								<input type='submit' class='small disabled' name='approve' value='Posted' />
+								<input type='submit' class='small' name='unapprove' value='Unpost' />
 								</form></td>");
 							}
 							echo ("<td><a href='$str' class='button small'>Edit</a></td>\n");

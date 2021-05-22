@@ -2,6 +2,27 @@
 session_start();
 require_once "../connect.php";
 
+if (isset($_GET['token'])) {
+     
+     echo($_GET['token']);
+     $token = $_GET['token'];
+
+    //student query
+    $query = "SELECT * from student_data where token = :token";
+    $statement = $pdo->prepare($query);
+    $statement->execute(array(
+        ':token' => $token
+    ));
+    $count = $statement->rowCount();
+    
+    if($count == 1){
+	$stmt = $pdo->prepare("UPDATE student_data SET approve2 = 1, token='' WHERE token= '$token'");
+	$stmt->execute();
+    }
+    header('Location: noticeboard.php');
+    return;
+}
+
 if (!isset($_SESSION['email'])) {
 	header('Location:../loginStudent.php');
 	return;
@@ -10,6 +31,14 @@ $email = $_SESSION['email'];
 $stmt = $pdo->query("SELECT * FROM student_data where email='$email'");
 $rows = $stmt->fetch(PDO::FETCH_ASSOC);
 $status = htmlentities($rows['status']);
+$approve = htmlentities($rows['approve2']);
+
+if($approve == 0){
+	$_SESSION['msg'] = "Email not verified. Check your email to verify your account.";
+	header("Location: ../loginStudent.php");
+	return;
+}
+
 
 ?>
 <!DOCTYPE HTML>
@@ -17,10 +46,11 @@ $status = htmlentities($rows['status']);
 <html>
 
 <head>
-	<title>Campus Recruitment | Student</title>
+	<title>IGDTUW Recruitment | Student</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/dashboard.css" />
+	<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.png">
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
@@ -42,10 +72,7 @@ $status = htmlentities($rows['status']);
 		<div id="intro">
 			<h1>Student Dashboard</h1>
 			<p>
-				<b>View and update your details to participate in the University Campus Recruitment Drive.</b>
-				<br />
-				<br />
-				View the <a href="../info/TNP-2019-2020.pdf" target="_blank">Recruitment Statuss</a> of IGDTUW'19.
+				View the <a href="../info/TNP-2019-2020.pdf" target="_blank">Recruitment Stats</a> of IGDTUW'19.
 				<br />
 				For more information, visit the <a href="http://igdtuw.ac.in/" target="_blank">University Website</a>.
 				<br />
@@ -89,7 +116,9 @@ $status = htmlentities($rows['status']);
 			<section class="posts">
 
 				<?php
-
+				
+				
+				echo(isset($_GET['token']));
 				$stmt = $pdo->query("SELECT * FROM student_data where email='$email'");
 				while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 					$year = htmlentities($row['grad_year']);
@@ -105,6 +134,7 @@ $status = htmlentities($rows['status']);
 						$dback = "";
 						$year = "";
 						$resume = "";
+						$lor = "";
 						$com_name = "";
 						$jd = "";
 						$deadline_date = date("Y-m-d");
@@ -124,6 +154,7 @@ $status = htmlentities($rows['status']);
 							$deadBack = htmlentities($row['dead_back']);
 							$year = htmlentities($row['grad_year']);
 							$resume = htmlentities($row['resume']);
+							$lor = htmlentities($row['lor']);
 						}
 						$rec_id = $_POST['rec_id'];
 						$stmt1 = $pdo->query("SELECT * FROM company_data where company_email='$rec_id'");
@@ -148,10 +179,10 @@ $status = htmlentities($rows['status']);
 						if ((float)$cgpa_req <= (float)$cgpa_stu && $activeBack <= $aback && $deadBack <= $dback) {
 							$sql = "INSERT INTO student_registrations(id, stu_id, rec_id, applied_date, deadline_date, 
 														rec_name, rounds, status, stu_name, stu_year, role, stu_cgpa, rec_jd, stu_res, aback,
-														dback, approve, stu_contact, profile)
+														dback, approve, stu_contact, profile, lor)
 														values(:id,:stu_id,:rec_id, :adate, :ddate, :rec_name, :rounds, :status, :stu_name, :stu_year,
 														:role, :stu_cgpa, :rec_jd, :stu_res, :aback,
-														:dback, :approve, :stu_contact,:profile)";
+														:dback, :approve, :stu_contact,:profile,:lor)";
 
 							$stmt = $pdo->prepare($sql);
 							//PLS INSERT HERE
@@ -175,7 +206,7 @@ $status = htmlentities($rows['status']);
 								':approve' => 1,
 								':stu_contact' => $contact,
 								':profile' => $job_profiles,
-
+                                ':lor' => $lor
 							));
 						}
 					}
@@ -195,6 +226,12 @@ $status = htmlentities($rows['status']);
 															<td>Test Date</td>
 															<td>");
 							echo (htmlentities($row['test_date']));
+							echo ("</td>
+												</tr>
+												<tr>
+													<td>Registration Deadline</td>
+													<td>");
+							echo (htmlentities($row['deadline_date']));
 							echo ("</td>
 												</tr>
 												<tr>
@@ -244,9 +281,9 @@ $status = htmlentities($rows['status']);
 							echo ("</td>
 												</tr>
 												<tr>
-													<td>Registration Deadline</td>
+													<td>Job Description</td>
 													<td>");
-							echo (htmlentities($row['deadline_date']));
+							echo '<a href="'.htmlentities($row['jd_link']).'" target="_blank">'.htmlentities($row['jd_link']).'</a>';
 							echo ("</td>
 												</tr>
 												<tr>
@@ -296,6 +333,12 @@ $status = htmlentities($rows['status']);
 							echo ("</td>
 										</tr>
 										<tr>
+											<td>Registration Deadline</td>
+											<td>");
+							echo (htmlentities($row['deadline_date']));
+							echo ("</td>
+										</tr>
+										<tr>
 											<td>Job Profile</td>
 											<td>");
 							echo (htmlentities($row['job_profiles']));
@@ -342,9 +385,9 @@ $status = htmlentities($rows['status']);
 							echo ("</td>
 										</tr>
 										<tr>
-											<td>Registration Deadline</td>
+											<td>Job Description</td>
 											<td>");
-							echo (htmlentities($row['deadline_date']));
+							echo '<a href="'.htmlentities($row['jd_link']).'" target="_blank">'.htmlentities($row['jd_link']).'</a>';
 							echo ("</td>
 										</tr>
 										<tr>
@@ -355,9 +398,9 @@ $status = htmlentities($rows['status']);
 										</tr>
 										<tr>
 											<td>POC Contact</td>
-											<td><a href='#'>");
+											<td>");
 							echo (htmlentities($row['poc_contact']));
-							echo ("</a></td>
+							echo ("</td>
 										</tr>
 																				
 										</tbody>
@@ -384,21 +427,6 @@ $status = htmlentities($rows['status']);
 				?>
 
 			</section>
-
-			<!-- Footer -->
-			<footer>
-				<div class="pagination">
-					<!--<a href="#" class="previous">Prev</a>-->
-					<a href="#" class="page active">1</a>
-					<a href="#" class="page">2</a>
-					<a href="#" class="page">3</a>
-					<span class="extra">&hellip;</span>
-					<a href="#" class="page">8</a>
-					<a href="#" class="page">9</a>
-					<a href="#" class="page">10</a>
-					<a href="#" class="next">Next</a>
-				</div>
-			</footer>
 
 		</div>
 

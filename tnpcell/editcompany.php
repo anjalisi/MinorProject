@@ -53,10 +53,11 @@ if (isset($_POST['submit'])) {
 <html>
 
 <head>
-	<title>Campus Recruitment | TNP</title>
+	<title>IGDTUW Recruitment | TNP</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/tnpdash.css" />
+	<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.png">
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
@@ -173,7 +174,7 @@ if (isset($_POST['submit'])) {
 						Result Date *<input type="date" name="rdate" id="rdate" value="<?= $rdate ?>" required>
 					</div>
 					<div class="col-4 col-12-xsmall">
-						CGPA Eligibility<input type="text" pattern="^[0]|[0-9]\.(\d?\d?)|[10].[0]$" name="cgpa" id="cgpa" value="<?= $cgpa ?>">
+						CGPA Eligibility<input type="text" pattern="^[0-9]\.(\d?\d?)$" name="cgpa" id="cgpa" value="<?= $cgpa ?>">
 					</div>
 					<div class="col-4 col-12-xsmall">
 						Dead Backlogs<input type="text" pattern="^[0-9]+$" name="dback" id="deadb" value="<?= $dback ?>">

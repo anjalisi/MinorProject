@@ -28,10 +28,10 @@ if (isset($_POST['email'])) {
 
             $subject = "Password Reset";
             $body =  "Hi, $name.\n 
-            Click here to reset your password http://igdtuwrecruits.in/resetpass.php?token=$token";
+            Click here to reset your password igdtuwrecruits.in/resetpass.php?token=$token";
             $sender_email = "From: igdtuwrecruits@gmail.com";
             if (mail($email, $subject, $body, $sender_email)) {
-                $_SESSION['msg'] = "Check your mail to reset your password";
+                $_SESSION['msg'] = "Check your mail to reset your password. This might take a few minutes.";
             }
         }
     } else {
@@ -47,49 +47,61 @@ if (isset($_POST['email'])) {
 <html>
 
 <head>
-    <title>Campus Recruitment | Forgot Password</title>
+    <title>IGDTUW Recruitment | Forgot Password</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="assets/css/loginstyle.css">
 </head>
 
 <body>
-    <div id="page-wrapper">
-        <!-- Header -->
-        <header id="header" class="alt">
-            <h1 id="logo"><a href="index.html">University <span>Placement Cell</span></a></h1>
-        </header>
-
-        <div class="banner">
-            <form method="POST" class="form sign-in">
-                <h2>Forgot Password?</h2>
-                <p>Enter your email address and click on the link in the email to reset your password.</p>
+     <!-- Header -->
+    <header id="header" class="alt">
+        <nav id="nav">
+            <ul>
+                <li><a href="index.html" class="primary">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="forms-container">
+            <div class="signin-signup">
+                <form method="post" class="sign-in-form">
+                    
+                <h2 class="title">Forgot Password?</h2>
                 <br />
                 <?php
                 if (isset($_SESSION['error'])) {
-                    echo ("<center><span style='color:blue;'>" . htmlentities($_SESSION['error']) . "</span></center>\n");
+                    echo ("<p style='color: red;'>" . htmlentities($_SESSION['error']) . "</p>\n");
                     unset($_SESSION['error']);
                 }
                 if (isset($_SESSION['msg'])) {
-                    echo ("<center><span style='color:blue;'>" . htmlentities($_SESSION['msg']) . "</span></center>\n");
+                    echo ("<p style='color:red;'>" . htmlentities($_SESSION['msg']) . "</p>\n");
                     unset($_SESSION['msg']);
                 }
                 ?>
-                <label>
-                    <span>Email Address</span>
-                    <input type="email" name="email" required>
-                </label>
-                <br />
-                <br />
-                <a href="">
-                    <input class="submit" name="submit" type="submit" value="Send Email" />
-                </a>
-            </form>
-
+                <p class="field-title">Email Address</p>
+                <div class="input-field">
+                    <input name="email" type="email" required>
+                </div>
+                <input type="submit" value="Send Email" class="btn solid" />
+                    
+                </form>
+            </div>
         </div>
 
-        <script type="text/javascript" src="assets/js/script.js"></script>
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <p>
+                        Enter your email address and click on the link in the email to reset your password.
+                    </p>
+                </div>
+            </div>
+            
+        </div>
+    </div>   
 
 </body>
-
+    
+    <script type="text/javascript" src="assets/js/script.js"></script>
 </html>

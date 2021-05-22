@@ -17,10 +17,11 @@ $rows = $stmt->fetch(PDO::FETCH_ASSOC)
 <html>
 
 <head>
-	<title>Campus Recruitment | Student</title>
+	<title>IGDTUW Recruitment | Student</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/dashboard.css" />
+	<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.png">
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
@@ -108,7 +109,10 @@ $rows = $stmt->fetch(PDO::FETCH_ASSOC)
 						</tr>
 						<tr>
 							<td>Resume Link</td>
-							<td><?= $resume ?></td>
+							<td>
+							    <?php
+							    echo '<a href="uploads/'.$resume.'" target="_blank">';
+							    ?><?= $resume ?></a></td>
 						</tr>
 						<tr>
 							<td>Year</td>
@@ -124,7 +128,6 @@ $rows = $stmt->fetch(PDO::FETCH_ASSOC)
 			<div class="col-12">
 				<ul class="actions">
 					<li><a href="editprofile.php" class="button primary">Edit</a></li>
-					<li><a href="editprofile.php" class="button">Reset Password</a></li>
 				</ul>
 			</div>
 
